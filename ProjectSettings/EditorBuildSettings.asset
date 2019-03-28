@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FlatArena.unity
+    guid: 525e9ce5be4556f45af9164df064ca5d
   m_configObjects: {}
