@@ -2,84 +2,91 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MechaController : MonoBehaviour
 {
-	// Configurable Parameters
+	// Configuration Parameters
 	[Header("Weapons")]
 	[SerializeField] private MechaWeapon m_LeftWeapon = null;
 	[SerializeField] private MechaWeapon m_RightWeapon = null;
 
 	[Header("Movement")]
-	[SerializeField] private MechaWheel[] m_LeftWheels = null;
-	[SerializeField] private MechaWheel[] m_RightWheels = null;
-	[SerializeField] private float m_FullTorqueOverAllWheels = 100.0f;
-	//[SerializeField] private Vector3 m_CentreOfMassOffset = new Vector3(0.0f,0.0f, 0.0f);
+	[SerializeField] List<MechaWheel> wheels;
+	[SerializeField] float accelerationTorque;
+	[SerializeField] float brakeTorque;
+	[SerializeField] float turnTorque;
 
-	public void MoveFlyByWire(float throwAccel, float throwTurn, float throwBrake)
+	[Header("Physics")]
+	[SerializeField] Transform CenterOfMass;
+
+	// Cached References
+	Rigidbody rigidBody;
+
+	private void Awake()
+	{
+		rigidBody = GetComponent<Rigidbody>();
+		rigidBody.centerOfMass = CenterOfMass.localPosition;
+	}
+
+	public void MoveFlyByWire(float throwAccel, float throwTurn, bool brakeButton)
 	{
 		// Clamp input values
 		throwTurn = Mathf.Clamp(throwTurn, -1, 1);
 		throwAccel = Mathf.Clamp(throwAccel, -1, 1);
-		throwBrake = -1 * Mathf.Clamp(throwBrake, -1, 0);
 
-		ApplyDriveFlyByWire(throwAccel, throwTurn);
+		for(int i = 0; i < wheels.Count; i++)
+		{
+			wheels[i].Accelerate(throwAccel, accelerationTorque);
+			TurnBody(throwTurn, turnTorque);
+
+			if(brakeButton) // TODO: should this be moved out of this function?
+				wheels[i].Brake(brakeTorque);
+
+			wheels[i].ApplyLocalPositionToVisuals(); // TODO: is there a way to decouple this mechanism from this function?
+		}
 	}
 
-	void ApplyDriveFlyByWire(float throwAccel, float throwTurn)
+	public void MoveManually(float throwLV, float throwRV, bool brakeButton)
 	{
-		float thrustPerWheel = m_FullTorqueOverAllWheels / (m_LeftWheels.Length + m_RightWheels.Length);
-		if(Mathf.Abs(throwTurn) > 0.25f)
-			Turn(throwTurn * thrustPerWheel);
-		else
-			Accelerate(throwAccel * thrustPerWheel);
+		// Clamp input values
+		throwLV = Mathf.Clamp(throwLV, -1, 1);
+		throwRV = Mathf.Clamp(throwRV, -1, 1);
+
+		//float thrustPerLeftWheel = throwLV * (m_FullTorqueOverAllWheels / (m_LeftWheels.Length + m_RightWheels.Length));
+		//float thrustPerRightWheel = throwRV * (m_FullTorqueOverAllWheels / (m_LeftWheels.Length + m_RightWheels.Length));
+		//foreach(var wheel in m_LeftWheels)
+		//{
+		//	wheel.ApplyTorque(thrustPerLeftWheel);
+		//}
+		//foreach(var wheel in m_RightWheels)
+		//{
+		//	wheel.ApplyTorque(thrustPerRightWheel);
+		//}
 	}
 
-	private void Accelerate(float thrustPerWheel)
+	private void TurnBody(float throwTurn, float torqueAmount)
 	{
-		foreach(var wheel in m_LeftWheels)
-		{
-			wheel.ApplyTorque(thrustPerWheel);
-		}
-		foreach(var wheel in m_RightWheels)
-		{
-			wheel.ApplyTorque(thrustPerWheel);
-		}
+		if(!rigidBody)
+			return;
+
+		Vector3 rotationVelocity = transform.up * throwTurn * torqueAmount;
+		rigidBody.AddTorque(rotationVelocity, ForceMode.Force);
 	}
 
-	private void Turn(float thrustPerWheel)
-	{
-		foreach(var wheel in m_LeftWheels)
-		{
-			wheel.ApplyTorque(thrustPerWheel);
-		}
-
-		foreach(var wheel in m_RightWheels)
-		{
-			wheel.ApplyTorque(-thrustPerWheel);
-		}
-	}
-
-	public void MoveManually(float throwLV, float throwRV)
-	{
-		float thrustPerLeftWheel = throwLV * (m_FullTorqueOverAllWheels / (m_LeftWheels.Length + m_RightWheels.Length));
-		float thrustPerRightWheel = throwRV * (m_FullTorqueOverAllWheels / (m_LeftWheels.Length + m_RightWheels.Length));
-		foreach(var wheel in m_LeftWheels)
-		{
-			wheel.ApplyTorque(thrustPerLeftWheel);
-		}
-		foreach(var wheel in m_RightWheels)
-		{
-			wheel.ApplyTorque(thrustPerRightWheel);
-		}
-	}
 
 	public void FirePrimaryWeapon()
 	{
+		if(!m_LeftWeapon)
+			return;
+
 		m_LeftWeapon.OnFire();
 	}
 
 	public void FireSecondaryWeapon()
 	{
+		if(!m_RightWeapon)
+			return;
+
 		m_RightWeapon.OnFire();
 	}
 }

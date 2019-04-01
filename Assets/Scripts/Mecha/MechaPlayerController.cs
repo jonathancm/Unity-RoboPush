@@ -6,16 +6,14 @@ using UnityEngine.Assertions;
 public class MechaPlayerController : MonoBehaviour
 {
 	// Cached references
-	MechaController m_MechaController; // the car controller we want to use
+	MechaController m_MechaController; // the controller we want to use
 
 	// User Input
 	float throwAccel = 0;
 	float throwTurn = 0;
 	float throwLV = 0;
-	// float throwLH = 0; // Horizontal axis not used
 	float throwRV = 0;
-	// float throwRH = 0; // Horizontal axis not used
-	bool isJumpRequested = false;
+	bool brakeButton = false;
 
 	void Awake()
 	{
@@ -31,7 +29,7 @@ public class MechaPlayerController : MonoBehaviour
 		throwTurn = Input.GetAxis("IntendTurn");
 		throwLV = Input.GetAxis("LeftVertical");
 		throwRV = Input.GetAxis("RightVertical");
-		isJumpRequested = isJumpRequested || Input.GetButtonDown("Jump");
+		brakeButton = Input.GetButton("Jump");
 
 		if(Input.GetButtonDown("Fire1"))
 			m_MechaController.FirePrimaryWeapon();
@@ -46,8 +44,8 @@ public class MechaPlayerController : MonoBehaviour
 			return;
 
 		if(Mathf.Abs(throwAccel) > 0 || Mathf.Abs(throwTurn) > 0)
-			m_MechaController.MoveFlyByWire(throwAccel, throwTurn, throwAccel);
+			m_MechaController.MoveFlyByWire(throwAccel, throwTurn, brakeButton);
 		else
-			m_MechaController.MoveManually(throwLV, throwRV);
+			m_MechaController.MoveManually(throwLV, throwRV, brakeButton);
 	}
 }

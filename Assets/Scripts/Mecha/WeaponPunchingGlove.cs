@@ -8,7 +8,7 @@ public class WeaponPunchingGlove : MonoBehaviour
 	// Configurable Parameters
 	[SerializeField] float basePunchingArmOffset = 0.8f;
 	[SerializeField] float punchingArmLength = 0.85f;
-	[Range(0.001f, 100)] [SerializeField] float punchExtensionSteps = 4;
+	[Range(0.01f, 10)] [SerializeField] float punchExtensionSteps = 0.5f;
 
 	enum WeaponState
 	{
@@ -43,11 +43,6 @@ public class WeaponPunchingGlove : MonoBehaviour
 	{
 		if(weaponState == WeaponState.Ready)
 			weaponState = WeaponState.Firing;
-	}
-
-	private void FixedUpdate()
-	{
-		
 	}
 
 	private void ExtendArm()

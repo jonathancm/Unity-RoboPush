@@ -110,7 +110,7 @@ MonoBehaviour:
   wheelMesh: {fileID: 6596533762814495807}
   isLeftWheel: 0
   maxVisibleRPM: 125
-  decelerationForce: 250
+  decelerationForce: 500
 --- !u!1 &6596533762814495807
 GameObject:
   m_ObjectHideFlags: 0
