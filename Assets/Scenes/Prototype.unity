@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 44859420}
-  m_IndirectSpecularColor: {r: 0.12745735, g: 0.23407312, b: 0.38314754, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -149,7 +149,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.5
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -1728,10 +1728,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7167234795774139243, guid: a32de8f98f049934ba73556b5f86760a,
+    - target: {fileID: 30410189993549895, guid: a32de8f98f049934ba73556b5f86760a,
         type: 3}
-      propertyPath: maxMotorTorque
-      value: 500
+      propertyPath: m_WheelDampingRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314236346670899179, guid: a32de8f98f049934ba73556b5f86760a,
+        type: 3}
+      propertyPath: m_WheelDampingRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437580522287414764, guid: a32de8f98f049934ba73556b5f86760a,
+        type: 3}
+      propertyPath: m_WheelDampingRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373674707435850857, guid: a32de8f98f049934ba73556b5f86760a,
+        type: 3}
+      propertyPath: m_WheelDampingRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046648787593181821, guid: a32de8f98f049934ba73556b5f86760a,
+        type: 3}
+      propertyPath: m_WheelDampingRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6720145443267546158, guid: a32de8f98f049934ba73556b5f86760a,
+        type: 3}
+      propertyPath: m_WheelDampingRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 895774329588259133, guid: a32de8f98f049934ba73556b5f86760a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a32de8f98f049934ba73556b5f86760a, type: 3}
