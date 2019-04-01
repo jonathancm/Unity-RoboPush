@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-[RequireComponent(typeof(MechaController))]
 public class MechaPlayerController : MonoBehaviour
 {
 	// Cached references
@@ -25,6 +24,9 @@ public class MechaPlayerController : MonoBehaviour
 
 	void Update()
 	{
+		if(!m_MechaController)
+			return;
+
 		throwAccel = Input.GetAxis("IntendAccelerate");
 		throwTurn = Input.GetAxis("IntendTurn");
 		throwLV = Input.GetAxis("LeftVertical");
@@ -40,6 +42,9 @@ public class MechaPlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		if(!m_MechaController)
+			return;
+
 		if(Mathf.Abs(throwAccel) > 0 || Mathf.Abs(throwTurn) > 0)
 			m_MechaController.MoveFlyByWire(throwAccel, throwTurn, throwAccel);
 		else

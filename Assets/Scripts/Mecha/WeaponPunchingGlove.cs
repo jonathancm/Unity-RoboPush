@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 public class WeaponPunchingGlove : MonoBehaviour
 {
+	// Configurable Parameters
+	[SerializeField] float basePunchingArmOffset = 0.8f;
+	[SerializeField] float punchingArmLength = 0.85f;
+	[Range(0.001f, 100)] [SerializeField] float punchExtensionSteps = 4;
+
 	enum WeaponState
 	{
 		Ready,
@@ -12,33 +17,13 @@ public class WeaponPunchingGlove : MonoBehaviour
 		CoolingDown
 	};
 
-	// Cached references
-	Rigidbody rigidBody;
-
 	// State variables
 	WeaponState weaponState = WeaponState.Ready;
 	Vector3 originalPosition;
-	float basePunchingArmOffset = 0.8f;
-	float punchingArmLength = 0.85f;
-
-	private void Awake()
-	{
-		rigidBody = GetComponent<Rigidbody>();
-	}
 
 	private void Update()
 	{
 		originalPosition = transform.parent.transform.position + basePunchingArmOffset * transform.forward;
-	}
-
-	public void Fire()
-	{
-		if(weaponState == WeaponState.Ready)
-			weaponState = WeaponState.Firing;
-	}
-
-	private void FixedUpdate()
-	{
 		switch(weaponState)
 		{
 			case WeaponState.Firing:
@@ -54,6 +39,17 @@ public class WeaponPunchingGlove : MonoBehaviour
 		}
 	}
 
+	public void Fire()
+	{
+		if(weaponState == WeaponState.Ready)
+			weaponState = WeaponState.Firing;
+	}
+
+	private void FixedUpdate()
+	{
+		
+	}
+
 	private void ExtendArm()
 	{
 		Vector3 targetPosition = originalPosition + (punchingArmLength * transform.forward.normalized);
@@ -64,9 +60,8 @@ public class WeaponPunchingGlove : MonoBehaviour
 		}
 		else
 		{
-			float maxDistanceStep = punchingArmLength / 4;
-			Vector3 nextIntermediatePosition = Vector3.MoveTowards(transform.position, targetPosition, maxDistanceStep);
-			rigidBody.MovePosition(nextIntermediatePosition);
+			float maxDistanceStep = punchingArmLength / punchExtensionSteps;
+			transform.position = Vector3.MoveTowards(transform.position, targetPosition, maxDistanceStep * Time.deltaTime);
 		}
 	}
 
@@ -78,9 +73,16 @@ public class WeaponPunchingGlove : MonoBehaviour
 		}
 		else
 		{
-			float maxDistanceStep = punchingArmLength / 4;
-			Vector3 nextIntermediatePosition = Vector3.MoveTowards(transform.position, originalPosition, maxDistanceStep);
-			rigidBody.MovePosition(nextIntermediatePosition);
+			float maxDistanceStep = punchingArmLength / punchExtensionSteps;
+			transform.position = Vector3.MoveTowards(transform.position, originalPosition, maxDistanceStep * Time.deltaTime);
+		}
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if(weaponState == WeaponState.Firing)
+		{
+			weaponState = WeaponState.CoolingDown;
 		}
 	}
 }

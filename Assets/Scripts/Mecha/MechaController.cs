@@ -5,51 +5,24 @@ using UnityEngine;
 public class MechaController : MonoBehaviour
 {
 	// Configurable Parameters
+	[Header("Weapons")]
 	[SerializeField] private MechaWeapon m_LeftWeapon = null;
 	[SerializeField] private MechaWeapon m_RightWeapon = null;
+
+	[Header("Movement")]
 	[SerializeField] private MechaWheel[] m_LeftWheels = null;
 	[SerializeField] private MechaWheel[] m_RightWheels = null;
-	//[SerializeField] private Vector3 m_CentreOfMassOffset;
-	[SerializeField] private float m_MaximumTurnRate = 10.0f;
-	//[Range(0, 1)] [SerializeField] private float m_SteerHelper; // 0 is raw physics , 1 the car will grip in the direction it is facing
-	[Range(0, 1)] [SerializeField] private float m_TractionControl; // 0 is no traction control, 1 is full interference
 	[SerializeField] private float m_FullTorqueOverAllWheels = 100.0f;
-	[SerializeField] private float m_Downforce = 100.0f;
-	[SerializeField] private float m_Topspeed = 200.0f;
-	[SerializeField] private float m_BrakeTorque = 100.0f;
-
-	// Cached references
-	Rigidbody m_Rigidbody;
-
-	// State variables
-	float m_TurnRate;
-	float m_CurrentTorque;
-
-	void Start()
-	{
-		m_CurrentTorque = m_FullTorqueOverAllWheels;
-	}
-
-	void Update()
-	{
-
-	}
+	//[SerializeField] private Vector3 m_CentreOfMassOffset = new Vector3(0.0f,0.0f, 0.0f);
 
 	public void MoveFlyByWire(float throwAccel, float throwTurn, float throwBrake)
 	{
-		//clamp input values
+		// Clamp input values
 		throwTurn = Mathf.Clamp(throwTurn, -1, 1);
 		throwAccel = Mathf.Clamp(throwAccel, -1, 1);
 		throwBrake = -1 * Mathf.Clamp(throwBrake, -1, 0);
 
-		//Set the steer on the wheels.
-		m_TurnRate = throwTurn * m_MaximumTurnRate;
-
-		//SteerHelper();
 		ApplyDriveFlyByWire(throwAccel, throwTurn);
-		//CapSpeed();
-
-		//TractionControl();
 	}
 
 	void ApplyDriveFlyByWire(float throwAccel, float throwTurn)
