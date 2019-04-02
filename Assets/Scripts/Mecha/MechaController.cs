@@ -31,20 +31,12 @@ public class MechaController : MonoBehaviour
 	public void MoveFlyByWire(float throwAccel, float throwTurn, bool brakeButton)
 	{
 		// Clamp input values
-		throwTurn = Mathf.Clamp(throwTurn, -1, 1);
-		throwAccel = Mathf.Clamp(throwAccel, -1, 1);
+		throwTurn = Mathf.Clamp(throwTurn, -1.0f, 1.0f);
+		throwAccel = Mathf.Clamp(throwAccel, -1.0f, 1.0f);
 
-		TurnBody(throwTurn, turnTorque);
-		for(int i = 0; i < wheels.Count; i++)
-		{
-			wheels[i].Accelerate(throwAccel, accelerationTorque);
-
-			if(brakeButton) // TODO: should this be moved out of this function?
-				wheels[i].Brake(brakeTorque);
-
-			wheels[i].ApplyLocalPositionToVisuals(); // TODO: is there a way to decouple this mechanism from this function?
-		}
+		DriveWheels(throwAccel, throwTurn, brakeButton);
 	}
+
 
 	public void MoveManually(float throwLV, float throwRV, bool brakeButton)
 	{
@@ -52,9 +44,15 @@ public class MechaController : MonoBehaviour
 		throwLV = Mathf.Clamp(throwLV, -1.0f, 1.0f);
 		throwRV = Mathf.Clamp(throwRV, -1.0f, 1.0f);
 
+		// Remap gamepad joysticks to user intention
 		float throwAccel = (throwLV + throwRV) / 2.0f;
 		float throwTurn = (throwLV - throwRV) / 2.0f;
 
+		DriveWheels(throwAccel, throwTurn, brakeButton);
+	}
+
+	private void DriveWheels(float throwAccel, float throwTurn, bool brakeButton)
+	{
 		TurnBody(throwTurn, turnTorque);
 		for(int i = 0; i < wheels.Count; i++)
 		{

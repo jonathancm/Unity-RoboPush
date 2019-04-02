@@ -43,7 +43,7 @@ public class MechaPlayerController : MonoBehaviour
 		if(!m_MechaController)
 			return;
 
-		if(Mathf.Abs(throwAccel) > 0 || Mathf.Abs(throwTurn) > 0)
+		if(Mathf.Abs(throwAccel) > 0.0f || Mathf.Abs(throwTurn) > 0.0f)
 			m_MechaController.MoveFlyByWire(throwAccel, throwTurn, brakeButton);
 		else
 			m_MechaController.MoveManually(throwLV, throwRV, brakeButton);
