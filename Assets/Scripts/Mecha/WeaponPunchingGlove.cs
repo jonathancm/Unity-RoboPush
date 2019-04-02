@@ -6,9 +6,9 @@ using UnityEngine;
 public class WeaponPunchingGlove : MonoBehaviour
 {
 	// Configurable Parameters
-	[SerializeField] float basePunchingArmOffset = 0.8f;
+	[SerializeField] float basePunchingArmOffset = 0.0f;
 	[SerializeField] float punchingArmLength = 0.85f;
-	[Range(0.01f, 10)] [SerializeField] float punchExtensionSteps = 0.5f;
+	[Range(0.001f, 1.0f)] [SerializeField] float punchExtensionSteps = 0.1f;
 
 	enum WeaponState
 	{

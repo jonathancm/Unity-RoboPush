@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePunchingArmOffset: 0
   punchingArmLength: 1.65
-  punchExtensionSteps: 0.5
+  punchExtensionSteps: 0.1
 --- !u!1 &8231575135551796248
 GameObject:
   m_ObjectHideFlags: 0

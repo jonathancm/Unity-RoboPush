@@ -1671,7 +1671,7 @@ PrefabInstance:
     - target: {fileID: 8255106958816501403, guid: a32de8f98f049934ba73556b5f86760a,
         type: 3}
       propertyPath: m_Name
-      value: Mecha v3
+      value: Mecha
       objectReference: {fileID: 0}
     - target: {fileID: 8255106958816501397, guid: a32de8f98f049934ba73556b5f86760a,
         type: 3}

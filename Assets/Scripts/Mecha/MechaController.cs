@@ -12,9 +12,9 @@ public class MechaController : MonoBehaviour
 
 	[Header("Movement")]
 	[SerializeField] List<MechaWheel> wheels;
-	[SerializeField] float accelerationTorque;
-	[SerializeField] float brakeTorque;
-	[SerializeField] float turnTorque;
+	[SerializeField] float accelerationTorque = 800.0f;
+	[SerializeField] float brakeTorque = 3000.0f;
+	[SerializeField] float turnTorque = 3000.0f;
 
 	[Header("Physics")]
 	[SerializeField] Transform CenterOfMass;
@@ -34,10 +34,10 @@ public class MechaController : MonoBehaviour
 		throwTurn = Mathf.Clamp(throwTurn, -1, 1);
 		throwAccel = Mathf.Clamp(throwAccel, -1, 1);
 
+		TurnBody(throwTurn, turnTorque);
 		for(int i = 0; i < wheels.Count; i++)
 		{
 			wheels[i].Accelerate(throwAccel, accelerationTorque);
-			TurnBody(throwTurn, turnTorque);
 
 			if(brakeButton) // TODO: should this be moved out of this function?
 				wheels[i].Brake(brakeTorque);
@@ -49,19 +49,22 @@ public class MechaController : MonoBehaviour
 	public void MoveManually(float throwLV, float throwRV, bool brakeButton)
 	{
 		// Clamp input values
-		throwLV = Mathf.Clamp(throwLV, -1, 1);
-		throwRV = Mathf.Clamp(throwRV, -1, 1);
+		throwLV = Mathf.Clamp(throwLV, -1.0f, 1.0f);
+		throwRV = Mathf.Clamp(throwRV, -1.0f, 1.0f);
 
-		//float thrustPerLeftWheel = throwLV * (m_FullTorqueOverAllWheels / (m_LeftWheels.Length + m_RightWheels.Length));
-		//float thrustPerRightWheel = throwRV * (m_FullTorqueOverAllWheels / (m_LeftWheels.Length + m_RightWheels.Length));
-		//foreach(var wheel in m_LeftWheels)
-		//{
-		//	wheel.ApplyTorque(thrustPerLeftWheel);
-		//}
-		//foreach(var wheel in m_RightWheels)
-		//{
-		//	wheel.ApplyTorque(thrustPerRightWheel);
-		//}
+		float throwAccel = (throwLV + throwRV) / 2.0f;
+		float throwTurn = (throwLV - throwRV) / 2.0f;
+
+		TurnBody(throwTurn, turnTorque);
+		for(int i = 0; i < wheels.Count; i++)
+		{
+			wheels[i].Accelerate(throwAccel, accelerationTorque);
+
+			if(brakeButton) // TODO: should this be moved out of this function?
+				wheels[i].Brake(brakeTorque);
+
+			wheels[i].ApplyLocalPositionToVisuals(); // TODO: is there a way to decouple this mechanism from this function?
+		}
 	}
 
 	private void TurnBody(float throwTurn, float torqueAmount)
