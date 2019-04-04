@@ -1618,11 +1618,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8228501171590063419, guid: 6bf0f693564208a4b956f51b815ee48c,
-        type: 3}
-      propertyPath: punchingArmLength
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 9087634594335158709, guid: 6bf0f693564208a4b956f51b815ee48c,
         type: 3}
       propertyPath: m_Layer
@@ -1632,6 +1627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228501171590063419, guid: 6bf0f693564208a4b956f51b815ee48c,
+        type: 3}
+      propertyPath: punchingArmLength
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2943225971612728910, guid: 6bf0f693564208a4b956f51b815ee48c,
         type: 3}
@@ -1735,11 +1735,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8228501171590063419, guid: 6bf0f693564208a4b956f51b815ee48c,
-        type: 3}
-      propertyPath: punchingArmLength
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 9087634594335158709, guid: 6bf0f693564208a4b956f51b815ee48c,
         type: 3}
       propertyPath: m_Layer
@@ -1749,6 +1744,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228501171590063419, guid: 6bf0f693564208a4b956f51b815ee48c,
+        type: 3}
+      propertyPath: punchingArmLength
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2943225971612728910, guid: 6bf0f693564208a4b956f51b815ee48c,
         type: 3}
@@ -2053,11 +2053,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MechaWheelLeft (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 5646289317103278162, guid: bfdf74deecde5b342bb8d099a56de448,
-        type: 3}
-      propertyPath: isLeftWheel
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5543234387577102597, guid: bfdf74deecde5b342bb8d099a56de448,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2113,6 +2108,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5646289317103278162, guid: bfdf74deecde5b342bb8d099a56de448,
+        type: 3}
+      propertyPath: isLeftWheel
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfdf74deecde5b342bb8d099a56de448, type: 3}
 --- !u!4 &537160297955661530 stripped
@@ -2144,11 +2144,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MechaWheelLeft (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5646289317103278162, guid: bfdf74deecde5b342bb8d099a56de448,
-        type: 3}
-      propertyPath: isLeftWheel
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543234387577102597, guid: bfdf74deecde5b342bb8d099a56de448,
         type: 3}
@@ -2205,6 +2200,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5646289317103278162, guid: bfdf74deecde5b342bb8d099a56de448,
+        type: 3}
+      propertyPath: isLeftWheel
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfdf74deecde5b342bb8d099a56de448, type: 3}
 --- !u!4 &1598316122403147813 stripped
@@ -2236,11 +2236,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MechaWheelLeft (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5646289317103278162, guid: bfdf74deecde5b342bb8d099a56de448,
-        type: 3}
-      propertyPath: isLeftWheel
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543234387577102597, guid: bfdf74deecde5b342bb8d099a56de448,
         type: 3}
@@ -2296,6 +2291,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5646289317103278162, guid: bfdf74deecde5b342bb8d099a56de448,
+        type: 3}
+      propertyPath: isLeftWheel
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfdf74deecde5b342bb8d099a56de448, type: 3}

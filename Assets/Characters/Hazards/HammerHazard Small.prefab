@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7320045666160743754}
   - component: {fileID: 7320045666160743756}
   - component: {fileID: 7320045666160743757}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7320045666408309123}
   - component: {fileID: 7320045666408309122}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7320045666758103899}
   - component: {fileID: 7320045666758103901}
   - component: {fileID: 7320045666758103898}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7320045667241878600}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Meshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7320045667627790745}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7320045667874311387}
   - component: {fileID: 4205881985396805555}
-  m_Layer: 0
+  - component: {fileID: 1620035070}
+  m_Layer: 11
   m_Name: HammerHazard Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,10 +308,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc4a5e131509d643b4098fb5263aaff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hammer: {fileID: 0}
+  hammer: {fileID: 7320045667627790742}
   fallAngle: 85
-  hitSteps: 2
+  fallSteps: 2
   cooldownSteps: 2
+--- !u!54 &1620035070
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320045667874311384}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7320045668102767785
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +338,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7320045668102767784}
   - component: {fileID: 7320045668102767787}
-  m_Layer: 0
+  - component: {fileID: 5551370849778957713}
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,5 +371,18 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1, z: 1.5}
-  m_Center: {x: 0, y: 2.25, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 1.5}
+  m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!65 &5551370849778957713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320045668102767785}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 2.5, z: 0.25}
+  m_Center: {x: 0, y: 1.25, z: 0}

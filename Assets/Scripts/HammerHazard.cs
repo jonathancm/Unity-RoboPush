@@ -7,7 +7,7 @@ public class HammerHazard : MonoBehaviour
 	// Configurable Parameters
 	[SerializeField] GameObject hammer = null;
 	[SerializeField] float fallAngle = 85.0f;
-	[SerializeField] float hitSteps = 2;
+	[SerializeField] float fallSteps = 2;
 	[SerializeField] float cooldownSteps = 2;
 
 	enum HazardState
@@ -19,68 +19,88 @@ public class HammerHazard : MonoBehaviour
 
 	// State variables
 	HazardState hazardState = HazardState.Ready;
+	Vector3 initialDirection;
 	Vector3 initialRotation;
 
-	//void Start()
-	//{
-	//	initialRotation = transform.eulerAngles;
-	//}
 
-	//private void FixedUpdate()
-	//{
-	//	//initialPosition = transform.parent.transform.position; // Allows object to be moved at runtime
+	void Start()
+	{
+		initialDirection = hammer.transform.forward;
+		initialRotation = hammer.transform.localEulerAngles;
+	}
 
-	//	switch(hazardState)
-	//	{
-	//		case HazardState.Firing:
-	//			ExtendPiston();
-	//			break;
+	private void FixedUpdate()
+	{
+		switch(hazardState)
+		{
+			case HazardState.Firing:
+				FireHammer();
+				break;
 
-	//		case HazardState.CoolingDown:
-	//			RetractPiston();
-	//			break;
+			case HazardState.CoolingDown:
+				RetractHammer();
+				break;
 
-	//		default:
-	//			break;
-	//	}
-	//}
+			default:
+				break;
+		}
+	}
 
-	//private void ExtendPiston()
-	//{
-	//	Vector3 targetPosition = new Vector3();
+	private void FireHammer()
+	{
+		Vector3 currentRotation = hammer.transform.localEulerAngles;
+		Vector3 targetRotation = initialRotation;
+		targetRotation.x = fallAngle;
 
-	//	if(transform.position == targetPosition)
-	//	{
-	//		hazardState = HazardState.CoolingDown;
-	//	}
-	//	else
-	//	{
-	//		float maxDistanceStep = pistonTravelVector.magnitude / hitSteps;
-	//		transform.position = Vector3.MoveTowards(transform.position, targetPosition, maxDistanceStep);
-	//	}
-	//}
+		if(IsSameAngle(currentRotation, targetRotation))
+		{
+			hazardState = HazardState.CoolingDown;
+		}
+		else
+		{
+			float maxStepSize = Mathf.Abs(fallAngle - initialRotation.x) / fallSteps;
+			hammer.transform.localEulerAngles = Vector3.RotateTowards(currentRotation, targetRotation, maxStepSize, 1.0f);
+		}
+	}
 
-	//private void RetractPiston()
-	//{
-	//	if(transform.position == initialRotation)
-	//	{
-	//		hazardState = HazardState.Ready;
-	//	}
-	//	else
-	//	{
-	//		float maxDistanceStep = pistonTravelVector.magnitude / cooldownSteps;
-	//		transform.position = Vector3.MoveTowards(transform.position, initialRotation, maxDistanceStep);
-	//	}
-	//}
+	private void RetractHammer()
+	{
+		Vector3 currentDirection = hammer.transform.localEulerAngles;
 
-	//private void OnTriggerEnter(Collider other)
-	//{
-	//	Fire();
-	//}
+		if(IsSameAngle(currentDirection, initialRotation))
+		{
+			hazardState = HazardState.Ready;
+		}
+		else
+		{
+			float maxStepSize = (fallAngle - initialRotation.x) / cooldownSteps;
+			hammer.transform.localEulerAngles = Vector3.RotateTowards(currentDirection, initialRotation, maxStepSize, 1.0f);
+		}
+	}
 
-	//private void Fire()
-	//{
-	//	if(hazardState == HazardState.Ready)
-	//		hazardState = HazardState.Firing;
-	//}
+	bool IsSameDirection(Vector3 a, Vector3 b)
+	{
+		return Vector3.Dot(a, b) > 0.990f;
+	}
+
+	bool IsSameAngle(Vector3 a1, Vector3 a2)
+	{
+		Quaternion q1 = Quaternion.Euler(a1);
+		Quaternion q2 = Quaternion.Euler(a2);
+
+		float angle = Quaternion.Angle(q1, q2);
+
+		return (angle < 0.001f);
+	}
+
+	private void OnTriggerStay(Collider other)
+	{
+		Fire();
+	}
+
+	private void Fire()
+	{
+		if(hazardState == HazardState.Ready)
+			hazardState = HazardState.Firing;
+	}
 }
