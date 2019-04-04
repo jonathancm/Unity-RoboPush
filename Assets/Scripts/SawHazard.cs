@@ -16,16 +16,7 @@ public class SawHazard : MonoBehaviour
 			sawMesh.transform.Rotate(cosmeticTurnsPerSecond * 360.0f * Time.deltaTime, 0.0f, 0.0f);
 	}
 
-	//private void OnCollisionEnter(Collision other)
-	//{
-	//	Rigidbody otherBody = other.rigidbody;
-	//	if(!otherBody)
-	//		return;
-	//
-	//	otherBody.AddForceAtPosition(cuttingForce * other.contacts[0].normal, other.contacts[0].point, ForceMode.Impulse);
-	//}
-
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerStay(Collider other)
 	{
 		Rigidbody otherBody = other.attachedRigidbody;
 		if(!otherBody)

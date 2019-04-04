@@ -19,14 +19,11 @@ public class HammerHazard : MonoBehaviour
 
 	// State variables
 	HazardState hazardState = HazardState.Ready;
-	Vector3 initialDirection;
-	Vector3 initialRotation;
-
+	Quaternion initialRotation;
 
 	void Start()
 	{
-		initialDirection = hammer.transform.forward;
-		initialRotation = hammer.transform.localEulerAngles;
+		initialRotation = hammer.transform.rotation;
 	}
 
 	private void FixedUpdate()
@@ -48,46 +45,37 @@ public class HammerHazard : MonoBehaviour
 
 	private void FireHammer()
 	{
-		Vector3 currentRotation = hammer.transform.localEulerAngles;
-		Vector3 targetRotation = initialRotation;
-		targetRotation.x = fallAngle;
+		Quaternion currentRotation = hammer.transform.rotation;
+		Quaternion targetRotation = Quaternion.Euler(new Vector3(fallAngle, initialRotation.eulerAngles.y, initialRotation.eulerAngles.z));
 
-		if(IsSameAngle(currentRotation, targetRotation))
+		if(IsSameRotation(currentRotation, targetRotation))
 		{
 			hazardState = HazardState.CoolingDown;
 		}
 		else
 		{
-			float maxStepSize = Mathf.Abs(fallAngle - initialRotation.x) / fallSteps;
-			hammer.transform.localEulerAngles = Vector3.RotateTowards(currentRotation, targetRotation, maxStepSize, 1.0f);
+			float maxStepDeltaDegrees = Mathf.Abs(fallAngle - initialRotation.eulerAngles.x) / fallSteps;
+			hammer.transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, maxStepDeltaDegrees);
 		}
 	}
 
 	private void RetractHammer()
 	{
-		Vector3 currentDirection = hammer.transform.localEulerAngles;
+		Quaternion currentRotation = hammer.transform.rotation;
 
-		if(IsSameAngle(currentDirection, initialRotation))
+		if(IsSameRotation(currentRotation, initialRotation))
 		{
 			hazardState = HazardState.Ready;
 		}
 		else
 		{
-			float maxStepSize = (fallAngle - initialRotation.x) / cooldownSteps;
-			hammer.transform.localEulerAngles = Vector3.RotateTowards(currentDirection, initialRotation, maxStepSize, 1.0f);
+			float maxStepDeltaDegrees = Mathf.Abs(fallAngle - initialRotation.eulerAngles.x) / cooldownSteps;
+			hammer.transform.rotation = Quaternion.RotateTowards(currentRotation, initialRotation, maxStepDeltaDegrees);
 		}
 	}
 
-	bool IsSameDirection(Vector3 a, Vector3 b)
+	bool IsSameRotation(Quaternion q1, Quaternion q2)
 	{
-		return Vector3.Dot(a, b) > 0.990f;
-	}
-
-	bool IsSameAngle(Vector3 a1, Vector3 a2)
-	{
-		Quaternion q1 = Quaternion.Euler(a1);
-		Quaternion q2 = Quaternion.Euler(a2);
-
 		float angle = Quaternion.Angle(q1, q2);
 
 		return (angle < 0.001f);

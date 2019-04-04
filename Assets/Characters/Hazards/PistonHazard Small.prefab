@@ -123,8 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   piston: {fileID: 7762833576840613668}
   pistonTravelVector: {x: 0, y: 2, z: 0}
-  extendSteps: 20
-  retractSteps: 40
+  extendSteps: 10
+  retractSteps: 20
 --- !u!54 &7762833577435980249
 Rigidbody:
   m_ObjectHideFlags: 0
