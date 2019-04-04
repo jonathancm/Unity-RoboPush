@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[SelectionBase]
 public class MechaController : MonoBehaviour
 {
 	// Configuration Parameters
@@ -17,7 +17,7 @@ public class MechaController : MonoBehaviour
 	[SerializeField] float turnTorque = 3000.0f;
 
 	[Header("Physics")]
-	[SerializeField] Transform CenterOfMass;
+	[SerializeField] Transform CenterOfMass = null;
 
 	// Cached References
 	Rigidbody rigidBody;
@@ -25,7 +25,9 @@ public class MechaController : MonoBehaviour
 	private void Awake()
 	{
 		rigidBody = GetComponent<Rigidbody>();
-		rigidBody.centerOfMass = CenterOfMass.localPosition;
+
+		if(CenterOfMass)
+			rigidBody.centerOfMass = CenterOfMass.localPosition;
 	}
 
 	public void MoveFlyByWire(float throwAccel, float throwTurn, bool brakeButton)
