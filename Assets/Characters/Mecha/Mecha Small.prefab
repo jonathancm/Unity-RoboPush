@@ -1650,6 +1650,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MechaWheelLeft Small (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5646289317103278162, guid: ee879b0c72890384b9b6031438c96fb0,
+        type: 3}
+      propertyPath: isLeftWheel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5543234387577102597, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1705,30 +1710,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5646289317103278162, guid: ee879b0c72890384b9b6031438c96fb0,
+    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
-      propertyPath: isLeftWheel
-      value: 1
+      propertyPath: m_Mass
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
+        type: 3}
+      propertyPath: m_SuspensionSpring.targetPosition
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
+        type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4189469083140103880, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
       propertyPath: m_LocalScale.x
       value: -0.875
-      objectReference: {fileID: 0}
-    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
-        type: 3}
-      propertyPath: m_Mass
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
-        type: 3}
-      propertyPath: m_SuspensionSpring.spring
-      value: 7000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
-        type: 3}
-      propertyPath: m_SuspensionSpring.damper
-      value: 450
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee879b0c72890384b9b6031438c96fb0, type: 3}
@@ -1820,17 +1820,17 @@ PrefabInstance:
     - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
       propertyPath: m_Mass
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
-      propertyPath: m_SuspensionSpring.spring
-      value: 7000
+      propertyPath: m_SuspensionSpring.targetPosition
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
-      propertyPath: m_SuspensionSpring.damper
-      value: 450
+      propertyPath: m_SuspensionDistance
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee879b0c72890384b9b6031438c96fb0, type: 3}
@@ -1863,6 +1863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MechaWheelLeft Small (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5646289317103278162, guid: ee879b0c72890384b9b6031438c96fb0,
+        type: 3}
+      propertyPath: isLeftWheel
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543234387577102597, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
@@ -1919,30 +1924,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5646289317103278162, guid: ee879b0c72890384b9b6031438c96fb0,
+    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
-      propertyPath: isLeftWheel
-      value: 1
+      propertyPath: m_Mass
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
+        type: 3}
+      propertyPath: m_SuspensionSpring.targetPosition
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
+        type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4189469083140103880, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
       propertyPath: m_LocalScale.x
       value: -0.875
-      objectReference: {fileID: 0}
-    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
-        type: 3}
-      propertyPath: m_Mass
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
-        type: 3}
-      propertyPath: m_SuspensionSpring.spring
-      value: 7000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
-        type: 3}
-      propertyPath: m_SuspensionSpring.damper
-      value: 450
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee879b0c72890384b9b6031438c96fb0, type: 3}
@@ -2034,17 +2034,17 @@ PrefabInstance:
     - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
       propertyPath: m_Mass
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
-      propertyPath: m_SuspensionSpring.spring
-      value: 7000
+      propertyPath: m_SuspensionSpring.targetPosition
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
-      propertyPath: m_SuspensionSpring.damper
-      value: 450
+      propertyPath: m_SuspensionDistance
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee879b0c72890384b9b6031438c96fb0, type: 3}
@@ -2136,17 +2136,17 @@ PrefabInstance:
     - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
       propertyPath: m_Mass
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
-      propertyPath: m_SuspensionSpring.spring
-      value: 7000
+      propertyPath: m_SuspensionSpring.targetPosition
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
-      propertyPath: m_SuspensionSpring.damper
-      value: 450
+      propertyPath: m_SuspensionDistance
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee879b0c72890384b9b6031438c96fb0, type: 3}
@@ -2272,6 +2272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MechaWheelLeft Small (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5646289317103278162, guid: ee879b0c72890384b9b6031438c96fb0,
+        type: 3}
+      propertyPath: isLeftWheel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5543234387577102597, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2327,30 +2332,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5646289317103278162, guid: ee879b0c72890384b9b6031438c96fb0,
+    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
-      propertyPath: isLeftWheel
-      value: 1
+      propertyPath: m_Mass
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
+        type: 3}
+      propertyPath: m_SuspensionSpring.targetPosition
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
+        type: 3}
+      propertyPath: m_SuspensionDistance
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4189469083140103880, guid: ee879b0c72890384b9b6031438c96fb0,
         type: 3}
       propertyPath: m_LocalScale.x
       value: -0.875
-      objectReference: {fileID: 0}
-    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
-        type: 3}
-      propertyPath: m_Mass
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
-        type: 3}
-      propertyPath: m_SuspensionSpring.spring
-      value: 7000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2021131324907208914, guid: ee879b0c72890384b9b6031438c96fb0,
-        type: 3}
-      propertyPath: m_SuspensionSpring.damper
-      value: 450
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee879b0c72890384b9b6031438c96fb0, type: 3}

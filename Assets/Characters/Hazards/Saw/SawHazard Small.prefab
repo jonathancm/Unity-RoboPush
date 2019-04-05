@@ -434,7 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sawMesh: {fileID: 2098669466035653117}
   cosmeticTurnsPerSecond: 1
-  cuttingForce: 300
+  cuttingForce: 50
 --- !u!54 &2098669467576574917
 Rigidbody:
   m_ObjectHideFlags: 0
