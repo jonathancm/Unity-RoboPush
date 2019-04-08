@@ -5,65 +5,26 @@ using UnityEngine;
 public class MechaWheel : MonoBehaviour
 {
 	// Configurable Parameters
-	[SerializeField] WheelCollider wheelCollider = null;
-	[SerializeField] GameObject wheelMesh = null;
-	[SerializeField] bool isLeftWheel = false;
-	[SerializeField] float maxVisibleRPM = 125.0f;
-	[SerializeField] float decelerationForce = 150.0f;
+	[SerializeField] Rigidbody wheelBody = null;
+	[SerializeField] float maxWheelRPM = 500.0f;
 
-	// State Variable
-	Vector3 localEuler = Vector3.zero;
-
-	public void ApplyLocalPositionToVisuals()
+	private void Awake()
 	{
-		Vector3 position;
-		Quaternion rotation;
-
-		wheelCollider.GetWorldPose(out position, out rotation);
-		UpdateLocalEuler();
-
-		wheelMesh.transform.position = position;
-		wheelMesh.transform.localEulerAngles = localEuler;
-	}
-
-	void UpdateLocalEuler()
-	{
-		float degreesPerFixedStep;
-		Vector3 deltaLocalEuler;
-
-		if(Mathf.Abs(wheelCollider.rpm) > maxVisibleRPM)
-		{
-			degreesPerFixedStep = Mathf.Sign(wheelCollider.rpm) * maxVisibleRPM / 60.0f * Time.fixedDeltaTime * 360.0f;
-		}
-		else
-		{
-			degreesPerFixedStep = wheelCollider.rpm / 60.0f * Time.fixedDeltaTime * 360.0f;
-		}
-
-		deltaLocalEuler = Vector3.right * degreesPerFixedStep;
-		localEuler += deltaLocalEuler;
+		if(wheelBody)
+			wheelBody.maxAngularVelocity = (2.0f * Mathf.PI) * (maxWheelRPM / 60.0f);
 	}
 
 	public void Accelerate(float throwAccel, float torqueAmount)
 	{
-		if(throwAccel != 0f)
-		{
-			wheelCollider.brakeTorque = 0;
-			wheelCollider.motorTorque = throwAccel * torqueAmount;
-		}
-		else
-		{
-			Decelerate(decelerationForce);
-		}
-	}
+		if(wheelBody && throwAccel == 0.0f)
+			return;
 
-	public void Decelerate(float decelerationForce)
-	{
-		wheelCollider.brakeTorque = decelerationForce;
+		Vector3 torqueForce = throwAccel * torqueAmount * wheelBody.transform.right;
+		wheelBody.AddTorque(torqueForce, ForceMode.Force);
 	}
 
 	public void Brake(float brakeTorque)
 	{
-		wheelCollider.brakeTorque = brakeTorque;
+		
 	}
 }

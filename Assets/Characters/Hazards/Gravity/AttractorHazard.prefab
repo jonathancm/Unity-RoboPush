@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2651756231121323144}
   - component: {fileID: 8651634151302228071}
   - component: {fileID: 4170300727763425706}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4707,7 +4707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4751042437620971671}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Attractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4740,7 +4740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5425275613150112641}
   - component: {fileID: 4707592972342167248}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4784,7 +4784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483110123145653784}
   - component: {fileID: 5816241785871364387}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AreaOfEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4829,7 +4829,7 @@ GameObject:
   - component: {fileID: 6476241993215733247}
   - component: {fileID: 5789171598964572446}
   - component: {fileID: 4969281663713970860}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttractorHazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4881,8 +4881,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656656c339cec4342ac9bd505d927107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityStrength: 900
-  pulseFrequency: 0.5
+  gravityStrength: 200
+  pulseFrequency: 1
 --- !u!1 &8928807631586068725
 GameObject:
   m_ObjectHideFlags: 0
@@ -4894,7 +4894,7 @@ GameObject:
   - component: {fileID: 6166891207558645828}
   - component: {fileID: 226298975220949641}
   - component: {fileID: 8352589274050358497}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

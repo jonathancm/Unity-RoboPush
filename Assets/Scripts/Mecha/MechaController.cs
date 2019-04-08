@@ -12,22 +12,17 @@ public class MechaController : MonoBehaviour
 
 	[Header("Movement")]
 	[SerializeField] List<MechaWheel> wheels;
-	[SerializeField] float accelerationTorque = 800.0f;
-	[SerializeField] float brakeTorque = 3000.0f;
-	[SerializeField] float turnTorque = 3000.0f;
+	[SerializeField] float accelerationTorque = 3000.0f;
+	[SerializeField] float turnTorque = 450.0f;
 
 	[Header("Physics")]
+	[SerializeField] Rigidbody mainRigidBody = null;
 	[SerializeField] Transform CenterOfMass = null;
-
-	// Cached References
-	Rigidbody rigidBody;
 
 	private void Awake()
 	{
-		rigidBody = GetComponent<Rigidbody>();
-
-		if(CenterOfMass)
-			rigidBody.centerOfMass = CenterOfMass.localPosition;
+		if(mainRigidBody && CenterOfMass)
+			mainRigidBody.centerOfMass = CenterOfMass.localPosition;
 	}
 
 	public void MoveFlyByWire(float throwAccel, float throwTurn, bool brakeButton)
@@ -59,21 +54,16 @@ public class MechaController : MonoBehaviour
 		for(int i = 0; i < wheels.Count; i++)
 		{
 			wheels[i].Accelerate(throwAccel, accelerationTorque);
-
-			if(brakeButton) // TODO: should this be moved out of this function?
-				wheels[i].Brake(brakeTorque);
-
-			wheels[i].ApplyLocalPositionToVisuals(); // TODO: is there a way to decouple this mechanism from this function?
 		}
 	}
 
 	private void TurnBody(float throwTurn, float torqueAmount)
 	{
-		if(!rigidBody)
+		if(!mainRigidBody)
 			return;
 
 		Vector3 rotationVelocity = transform.up * throwTurn * torqueAmount;
-		rigidBody.AddTorque(rotationVelocity, ForceMode.Force);
+		mainRigidBody.AddTorque(rotationVelocity, ForceMode.Force);
 	}
 
 

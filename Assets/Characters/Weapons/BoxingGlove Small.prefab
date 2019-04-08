@@ -164,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114168841036202353}
   - component: {fileID: 8228501171590063419}
+  - component: {fileID: 7921367031524339102}
   m_Layer: 0
   m_Name: BoxingGlove Small
   m_TagString: Untagged
@@ -199,9 +200,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e827960ac8f9818429bcaf7455d56cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  punchStrength: 100
   basePunchingArmOffset: 0
-  punchingArmLength: 1.65
+  punchingArmLength: 1.5
   punchExtensionSteps: 0.1
+  mainRigidBody: {fileID: 0}
+--- !u!54 &7921367031524339102
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4394855445483779870}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8231575135551796248
 GameObject:
   m_ObjectHideFlags: 0

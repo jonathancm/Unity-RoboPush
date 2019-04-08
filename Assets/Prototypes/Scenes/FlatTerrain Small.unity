@@ -73,8 +73,8 @@ LightmapSettings:
     m_MixedBakeMode: 2
     m_BakeBackend: 1
     m_PVRSampling: 1
-    m_PVRDirectSampleCount: 8
-    m_PVRSampleCount: 32
+    m_PVRDirectSampleCount: 1
+    m_PVRSampleCount: 10
     m_PVRBounces: 2
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
@@ -371,6 +371,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7762833577435980251, guid: 15e147f0243c803409e452281b1dd09b,
+        type: 3}
+      propertyPath: pistonTravelVector.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15e147f0243c803409e452281b1dd09b, type: 3}
 --- !u!1001 &134834746
@@ -439,6 +444,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098669467576574906, guid: 5451d16e51a3a964a9f5de103ecf3e84,
+        type: 3}
+      propertyPath: cuttingForce
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5451d16e51a3a964a9f5de103ecf3e84, type: 3}
@@ -939,6 +949,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7762833577435980251, guid: 15e147f0243c803409e452281b1dd09b,
+        type: 3}
+      propertyPath: pistonTravelVector.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15e147f0243c803409e452281b1dd09b, type: 3}
 --- !u!1001 &784625398
@@ -1007,6 +1022,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098669467576574906, guid: 5451d16e51a3a964a9f5de103ecf3e84,
+        type: 3}
+      propertyPath: cuttingForce
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5451d16e51a3a964a9f5de103ecf3e84, type: 3}
@@ -1107,6 +1127,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762833577435980251, guid: 15e147f0243c803409e452281b1dd09b,
+        type: 3}
+      propertyPath: pistonTravelVector.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15e147f0243c803409e452281b1dd09b, type: 3}

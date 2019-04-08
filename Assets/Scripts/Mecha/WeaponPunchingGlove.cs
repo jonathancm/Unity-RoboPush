@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody))]
 public class WeaponPunchingGlove : MonoBehaviour
 {
 	// Configurable Parameters
-	[SerializeField] float basePunchingArmOffset = 0.0f;
 	[SerializeField] float punchingArmLength = 0.85f;
 	[Range(0.001f, 1.0f)] [SerializeField] float punchExtensionSteps = 0.1f;
+
+	[Header("Physics")]
+	[SerializeField] float knockbackStrength = 100.0f;
+	[SerializeField] float recoilStrength = 50.0f;
+	[SerializeField] Rigidbody mainRigidBody = null;
 
 	enum WeaponState
 	{
@@ -23,7 +27,7 @@ public class WeaponPunchingGlove : MonoBehaviour
 
 	private void Update()
 	{
-		originalPosition = transform.parent.transform.position + basePunchingArmOffset * transform.forward;
+		originalPosition = transform.parent.position;
 		switch(weaponState)
 		{
 			case WeaponState.Firing:
@@ -47,7 +51,7 @@ public class WeaponPunchingGlove : MonoBehaviour
 
 	private void ExtendArm()
 	{
-		Vector3 targetPosition = originalPosition + (punchingArmLength * transform.forward.normalized);
+		Vector3 targetPosition = originalPosition;
 
 		if(transform.position == targetPosition)
 		{
@@ -73,10 +77,17 @@ public class WeaponPunchingGlove : MonoBehaviour
 		}
 	}
 
-	private void OnCollisionEnter(Collision collision)
+	private void OnCollisionEnter(Collision other)
 	{
 		if(weaponState == WeaponState.Firing)
 		{
+			Rigidbody otherBody = other.rigidbody;
+			if(otherBody)
+				otherBody.AddForceAtPosition(knockbackStrength * transform.forward, other.contacts[0].point, ForceMode.Impulse);
+
+			if(mainRigidBody)
+				mainRigidBody.AddForceAtPosition(recoilStrength * -transform.forward, other.contacts[0].point, ForceMode.Impulse);
+
 			weaponState = WeaponState.CoolingDown;
 		}
 	}

@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 1, z: 5}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 2.5, y: 1, z: 2.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7762833576840613668
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7762833577435980250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35, y: 0.1, z: -25}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7762833576840613669}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   piston: {fileID: 7762833576840613668}
   pistonTravelVector: {x: 0, y: 2, z: 0}
-  extendSteps: 10
+  extendSteps: 20
   retractSteps: 20
 --- !u!54 &7762833577435980249
 Rigidbody:
@@ -169,7 +169,7 @@ Transform:
   m_GameObject: {fileID: 7762833577463048510}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -5, z: 0}
-  m_LocalScale: {x: 8, y: 10, z: 8}
+  m_LocalScale: {x: 4, y: 10, z: 4}
   m_Children: []
   m_Father: {fileID: 7762833576840613669}
   m_RootOrder: 0
