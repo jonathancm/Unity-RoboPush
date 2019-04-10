@@ -14,9 +14,14 @@ public class MechaPlayerController : MonoBehaviour
 	float throwRV = 0;
 	bool brakeButton = false;
 
+	// State Variable
+	bool isPlayer1 = true;
+
 	void Awake()
 	{
 		m_MechaController = GetComponent<MechaController>();
+		if(gameObject.tag == "Player2")
+			isPlayer1 = false;
 	}
 
 	void Update()
@@ -24,18 +29,33 @@ public class MechaPlayerController : MonoBehaviour
 		if(!m_MechaController)
 			return;
 
+		if(isPlayer1)
+			GetInputForPlayer1();
+		else
+			GetInputForPlayer2();
+	}
+
+	private void GetInputForPlayer1()
+	{
 		throwAccel = Input.GetAxis("IntendAccelerate");
 		throwTurn = Input.GetAxis("IntendTurn");
-		throwLV = Input.GetAxis("LeftVertical");
-		throwRV = Input.GetAxis("RightVertical");
-		brakeButton = Input.GetButton("Jump");
 
-		if(Input.GetButtonDown("Fire1"))
+		if(Input.GetButtonDown("P1-Fire1"))
 			m_MechaController.FirePrimaryWeapon();
-		if(Input.GetButtonDown("Fire2"))
+		if(Input.GetButtonDown("P1-Fire2"))
 			m_MechaController.FireSecondaryWeapon();
 	}
 
+	private void GetInputForPlayer2()
+	{
+		throwLV = Input.GetAxis("LeftVertical");
+		throwRV = Input.GetAxis("RightVertical");
+
+		if(Input.GetButtonDown("P2-Fire1"))
+			m_MechaController.FirePrimaryWeapon();
+		if(Input.GetButtonDown("P2-Fire2"))
+			m_MechaController.FireSecondaryWeapon();
+	}
 
 	void FixedUpdate()
 	{

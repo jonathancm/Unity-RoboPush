@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4751042437620971671}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Attractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5418089844465647587}
   - component: {fileID: 2353713346336502522}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5425275613150112641}
   - component: {fileID: 4707592972342167248}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483110123145653784}
   - component: {fileID: 5816241785871364387}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: AreaOfEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 6476241993215733247}
   - component: {fileID: 5789171598964572446}
   - component: {fileID: 4969281663713970860}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: AttractorHazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 6166891207558645828}
   - component: {fileID: 226298975220949641}
   - component: {fileID: 8352589274050358497}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,6 +343,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615266531653257846, guid: 2b6b4aa4ea402a7469eb0f86e320e8b3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8604704111155234046, guid: 2b6b4aa4ea402a7469eb0f86e320e8b3,
         type: 3}

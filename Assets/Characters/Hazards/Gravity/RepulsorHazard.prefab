@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2308232341644377682}
   - component: {fileID: 8556476783658063007}
   - component: {fileID: 465863369405422327}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 3205846273237441513}
   - component: {fileID: 2723001093982582536}
   - component: {fileID: 1940211824027273970}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: RepulsorHazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8298187892043896846}
   - component: {fileID: 2678022070341846837}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: AreaOfEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4528154582460816791}
   - component: {fileID: 3803840917577674950}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3779179898408570497}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Attractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6047858497116008466}
   - component: {fileID: 7152255992168132018}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,6 +343,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511610427029841100, guid: 1528c522b964a084ca2151618906e7a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5961070489348516420, guid: 1528c522b964a084ca2151618906e7a4,
         type: 3}

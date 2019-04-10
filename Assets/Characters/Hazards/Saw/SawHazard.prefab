@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2098669465840821934}
   - component: {fileID: 2098669465840821933}
   - component: {fileID: 2098669465840821932}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Blade (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098669466035653106}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2098669466278605310}
   - component: {fileID: 2098669466278605311}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 2098669466535852081}
   - component: {fileID: 2098669466535852084}
   - component: {fileID: 2098669466535852087}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Blade (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 2098669466592874184}
   - component: {fileID: 2098669466592874191}
   - component: {fileID: 2098669466592874190}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Blade (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 2098669467563403952}
   - component: {fileID: 2098669467563403959}
   - component: {fileID: 2098669467563403958}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Blade (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 2098669467576574906}
   - component: {fileID: 2098669467576574917}
   - component: {fileID: 4696481590188003237}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: SawHazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 3011525203229654308}
   - component: {fileID: 6109769321355566291}
   - component: {fileID: 6589220444217557442}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,6 +641,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sparks
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248891019836409520, guid: 19dc42add978f6e49b683e9cffbe47c2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6204882856118440205, guid: 19dc42add978f6e49b683e9cffbe47c2,
         type: 3}

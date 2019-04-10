@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7320045666160743754}
   - component: {fileID: 7320045666160743756}
   - component: {fileID: 7320045666160743757}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7320045666408309123}
   - component: {fileID: 7320045666408309122}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7320045666758103899}
   - component: {fileID: 7320045666758103901}
   - component: {fileID: 7320045666758103898}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7320045667241878600}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Meshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7320045667627790745}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 4205881985396805555}
   - component: {fileID: 1719956641}
   - component: {fileID: 2267730893170744429}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: HammerHazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 7320045668102767784}
   - component: {fileID: 7320045668102767787}
   - component: {fileID: 7037219627919436124}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
