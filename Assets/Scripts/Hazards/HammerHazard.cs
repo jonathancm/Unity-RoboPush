@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class HammerHazard : MonoBehaviour
 {
-	// Configurable Parameters
-	[SerializeField] GameObject hammer = null;
-	[SerializeField] float fallAngle = 85.0f;
-	[SerializeField] float fallSteps = 40;
-	[SerializeField] float cooldownSteps = 40;
-
 	enum HazardState
 	{
 		Ready,
@@ -17,12 +11,25 @@ public class HammerHazard : MonoBehaviour
 		CoolingDown
 	};
 
+	// Configurable Parameters
+	[SerializeField] GameObject hammer = null;
+	[SerializeField] float fallAngle = 85.0f;
+	[SerializeField] float fallSteps = 40;
+	[SerializeField] float cooldownSteps = 40;
+
+	[Header("Sound Effect")]
+	[SerializeField] float hammerHitVolume = 0.5f;
+
+	// Cached References
+	AudioSource audioSource = null;
+
 	// State variables
 	HazardState hazardState = HazardState.Ready;
 	Quaternion initialRotation;
 
 	void Start()
 	{
+		audioSource = GetComponent<AudioSource>();
 		initialRotation = hammer.transform.rotation;
 	}
 
@@ -76,19 +83,33 @@ public class HammerHazard : MonoBehaviour
 
 	bool IsSameRotation(Quaternion q1, Quaternion q2)
 	{
-		float angle = Quaternion.Angle(q1, q2);
-
-		return (angle < 0.001f);
+		return (Quaternion.Angle(q1, q2) < 0.001f);
 	}
 
 	private void OnTriggerStay(Collider other)
 	{
-		Fire();
-	}
-
-	private void Fire()
-	{
+		// Fire
 		if(hazardState == HazardState.Ready)
 			hazardState = HazardState.Firing;
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if(hazardState != HazardState.Firing)
+			return;
+
+		PlayHammerHitSound();
+	}
+
+	private void PlayHammerHitSound()
+	{
+		if(!audioSource)
+			return;
+
+		if(audioSource.isPlaying)
+			return;
+
+		audioSource.volume = hammerHitVolume;
+		audioSource.Play();
 	}
 }

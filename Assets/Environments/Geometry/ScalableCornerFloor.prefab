@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3086312588688408051}
   m_Layer: 12
-  m_Name: ScalableFloor
+  m_Name: ScalableCornerFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3086312588688408051
 Transform:

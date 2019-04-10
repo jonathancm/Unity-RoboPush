@@ -9,7 +9,20 @@ public class SawHazard : MonoBehaviour
 	[SerializeField] GameObject sawMesh = null;
 	[SerializeField] float cosmeticTurnsPerSecond = 1.0f;
 	[SerializeField] float cuttingForce = 30.0f;
+
+	[Header("Particle Effects")]
 	[SerializeField] ParticleSystem sparks = null;
+
+	[Header("Sound Effects")]
+	[SerializeField] float sawHitVolume = 0.5f;
+
+	// Cached References
+	AudioSource audioSource = null;
+
+	private void Awake()
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
 
 	void Update()
 	{
@@ -28,7 +41,25 @@ public class SawHazard : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		PlayParticleEffect();
+		PlaySawHitSound();
+	}
+
+	private void PlayParticleEffect()
+	{
 		if(sparks)
 			sparks.Play();
+	}
+
+	private void PlaySawHitSound()
+	{
+		if(!audioSource)
+			return;
+
+		if(audioSource.isPlaying)
+			return;
+
+		audioSource.volume = sawHitVolume;
+		audioSource.Play();
 	}
 }

@@ -11,6 +11,13 @@ public class PistonHazard : MonoBehaviour
 	[SerializeField] float extendSteps = 20;
 	[SerializeField] float retractSteps = 20;
 
+	[Header("Sound Effect")]
+	[SerializeField] AudioClip[] pistonSounds = null;
+	[SerializeField] float pistonLaunchVolume = 0.5f;
+
+	// Cached References
+	AudioSource audioSource = null;
+
 	enum HazardState
 	{
 		Ready,
@@ -22,7 +29,12 @@ public class PistonHazard : MonoBehaviour
 	HazardState hazardState = HazardState.Ready;
 	Vector3 initialPosition;
 
-    void Start()
+	private void Awake()
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
+
+	void Start()
     {
 		initialPosition = transform.position;
     }
@@ -76,12 +88,29 @@ public class PistonHazard : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		if(hazardState != HazardState.Ready)
+			return;
+
 		Fire();
+		PlayPistonLaunchSound();
 	}
 
 	private void Fire()
 	{
-		if(hazardState == HazardState.Ready)
-			hazardState = HazardState.Firing;
+		hazardState = HazardState.Firing;
+	}
+
+	private void PlayPistonLaunchSound()
+	{
+		if(!audioSource || pistonSounds.Length == 0)
+			return;
+
+		if(audioSource.isPlaying)
+			return;
+
+		int index = Random.Range(0, pistonSounds.Length);
+		audioSource.volume = pistonLaunchVolume;
+		audioSource.clip = pistonSounds[index];
+		audioSource.Play();
 	}
 }
