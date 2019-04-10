@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Flat Arena.unity
-    guid: b6cda1e80c32a654a8100e805819e088
+    path: Assets/Scenes/Flat Arena Small.unity
+    guid: e4f200f47b0a04a499c61c2c06ce7472
   m_configObjects: {}
