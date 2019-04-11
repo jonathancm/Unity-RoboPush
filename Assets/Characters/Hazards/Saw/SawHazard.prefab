@@ -396,9 +396,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098669467576574916}
-  - component: {fileID: 2098669467576574906}
   - component: {fileID: 2098669467576574917}
   - component: {fileID: 4696481590188003237}
+  - component: {fileID: 2098669467576574906}
+  - component: {fileID: 6015309749068476909}
   m_Layer: 12
   m_Name: SawHazard
   m_TagString: Untagged
@@ -423,23 +424,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2098669467576574906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098669467576574919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 964b8dbaf9e7c4443b3aa9c217459dcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sawMesh: {fileID: 2098669466035653117}
-  cosmeticTurnsPerSecond: 1
-  cuttingForce: 20
-  sparks: {fileID: 1206718125367329421}
-  sawHitVolume: 0.7
 --- !u!54 &2098669467576574917
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -553,6 +537,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2098669467576574906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098669467576574919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964b8dbaf9e7c4443b3aa9c217459dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sawMesh: {fileID: 2098669466035653117}
+  cosmeticTurnsPerSecond: 1
+  cuttingForce: 20
+  sparks: {fileID: 1206718125367329421}
+  sawHitVolume: 0.7
+--- !u!114 &6015309749068476909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098669467576574919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b5712373595da45a7c4c608a4d8939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
 --- !u!1 &8681768679586190035
 GameObject:
   m_ObjectHideFlags: 0

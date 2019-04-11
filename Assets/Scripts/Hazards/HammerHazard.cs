@@ -22,15 +22,17 @@ public class HammerHazard : MonoBehaviour
 
 	// Cached References
 	AudioSource audioSource = null;
+	DamageDealer damageDealer = null;
 
 	// State variables
 	HazardState hazardState = HazardState.Ready;
 	Quaternion initialRotation;
 
-	void Start()
+	private void Awake()
 	{
-		audioSource = GetComponent<AudioSource>();
 		initialRotation = hammer.transform.rotation;
+		audioSource = GetComponent<AudioSource>();
+		damageDealer = GetComponent<DamageDealer>();
 	}
 
 	private void FixedUpdate()
@@ -99,6 +101,8 @@ public class HammerHazard : MonoBehaviour
 			return;
 
 		PlayHammerHitSound();
+		if(damageDealer)
+			damageDealer.DealDamage(collision.gameObject);
 	}
 
 	private void PlayHammerHitSound()

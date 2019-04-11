@@ -271,9 +271,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7320045667874311387}
-  - component: {fileID: 4205881985396805555}
   - component: {fileID: 1719956641}
   - component: {fileID: 2267730893170744429}
+  - component: {fileID: 4205881985396805555}
+  - component: {fileID: 5050503188348920142}
   m_Layer: 12
   m_Name: HammerHazard
   m_TagString: Untagged
@@ -297,23 +298,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4205881985396805555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7320045667874311384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc4a5e131509d643b4098fb5263aaff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hammer: {fileID: 7320045667627790742}
-  fallAngle: 85
-  fallSteps: 40
-  cooldownSteps: 40
-  hammerHitVolume: 0.7
 --- !u!54 &1719956641
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -427,6 +411,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4205881985396805555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320045667874311384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc4a5e131509d643b4098fb5263aaff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hammer: {fileID: 7320045667627790742}
+  fallAngle: 85
+  fallSteps: 40
+  cooldownSteps: 120
+  hammerHitVolume: 0.7
+--- !u!114 &5050503188348920142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320045667874311384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b5712373595da45a7c4c608a4d8939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 5
 --- !u!1 &7320045668102767785
 GameObject:
   m_ObjectHideFlags: 0

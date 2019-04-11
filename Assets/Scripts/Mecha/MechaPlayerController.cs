@@ -4,24 +4,37 @@ using UnityEngine;
 
 public class MechaPlayerController : MonoBehaviour
 {
+	enum GameController
+	{
+		None,
+		Keyboard,
+		Gamepad1,
+		Gamepad2,
+		Gamepad3,
+		Gamepad4
+	};
+
+	enum PlayerNumber
+	{
+		Player1 = 1,
+		Player2 = 2,
+		Player3 = 3,
+		Player4 = 4
+	};
+
+	// Configurable Parameter
+	[SerializeField] GameController gameController = GameController.None;
+	[SerializeField] PlayerNumber playerNuber = PlayerNumber.Player1;
+
 	// Cached references
-	MechaController m_MechaController; // the controller we want to use
+	MechaController m_MechaController;
 
 	// User Input
-	float throwAccel = 0;
-	float throwTurn = 0;
-	float throwLV = 0;
-	float throwRV = 0;
-	bool brakeButton = false;
-
-	// State Variable
-	bool isPlayer1 = true;
+	Vector2 throwMovement;
 
 	void Awake()
 	{
 		m_MechaController = GetComponent<MechaController>();
-		if(gameObject.tag == "Player2")
-			isPlayer1 = false;
 	}
 
 	void Update()
@@ -29,31 +42,73 @@ public class MechaPlayerController : MonoBehaviour
 		if(!m_MechaController)
 			return;
 
-		if(isPlayer1)
-			GetInputForPlayer1();
-		else
-			GetInputForPlayer2();
+		switch(gameController)
+		{
+			case GameController.Keyboard:
+				GetInputKeyboard();
+				break;
+
+			case GameController.Gamepad1:
+				GetInputGamepad1();
+				break;
+
+			case GameController.Gamepad2:
+				GetInputGamepad2();
+				break;
+
+			case GameController.Gamepad3:
+				// Not supported
+				break;
+
+			case GameController.Gamepad4:
+				// Not supported
+				break;
+
+			default:
+				break;
+		}
 	}
 
-	private void GetInputForPlayer1()
+	private void GetInputKeyboard()
 	{
-		throwAccel = Input.GetAxis("IntendAccelerate");
-		throwTurn = Input.GetAxis("IntendTurn");
+		throwMovement.x = Input.GetAxis("KB-Turn");
+		throwMovement.y = Input.GetAxis("KB-Accelerate");
 
-		if(Input.GetButtonDown("P1-Fire1"))
+		if(Input.GetButtonDown("KB-Fire1"))
 			m_MechaController.FirePrimaryWeapon();
-		if(Input.GetButtonDown("P1-Fire2"))
+		if(Input.GetButtonDown("KB-Fire2"))
 			m_MechaController.FireSecondaryWeapon();
 	}
 
-	private void GetInputForPlayer2()
+	private void GetInputGamepad1()
 	{
-		throwLV = Input.GetAxis("LeftVertical");
-		throwRV = Input.GetAxis("RightVertical");
+		
 
-		if(Input.GetButtonDown("P2-Fire1"))
+		float leftStickY = Input.GetAxis("GP1-LeftStickY");
+		float rightStickY = Input.GetAxis("GP1-RightStickY");
+
+		// Remap gamepad joysticks to user intention
+		throwMovement.x = (leftStickY - rightStickY);
+		throwMovement.y = (leftStickY + rightStickY);
+
+		if(Input.GetButtonDown("GP1-Fire1"))
 			m_MechaController.FirePrimaryWeapon();
-		if(Input.GetButtonDown("P2-Fire2"))
+		if(Input.GetButtonDown("GP1-Fire2"))
+			m_MechaController.FireSecondaryWeapon();
+	}
+
+	private void GetInputGamepad2()
+	{
+		float leftStickY = Input.GetAxis("GP2-LeftStickY");
+		float rightStickY = Input.GetAxis("GP2-RightStickY");
+
+		// Remap gamepad joysticks to user intention
+		throwMovement.x = (leftStickY - rightStickY);
+		throwMovement.y = (leftStickY + rightStickY);
+
+		if(Input.GetButtonDown("GP2-Fire1"))
+			m_MechaController.FirePrimaryWeapon();
+		if(Input.GetButtonDown("GP2-Fire2"))
 			m_MechaController.FireSecondaryWeapon();
 	}
 
@@ -62,9 +117,7 @@ public class MechaPlayerController : MonoBehaviour
 		if(!m_MechaController)
 			return;
 
-		if(Mathf.Abs(throwAccel) > 0.0f || Mathf.Abs(throwTurn) > 0.0f)
-			m_MechaController.MoveFlyByWire(throwAccel, throwTurn, brakeButton);
-		else
-			m_MechaController.MoveManually(throwLV, throwRV, brakeButton);
+		if(throwMovement.magnitude > 0.0f)
+			m_MechaController.MoveFlyByWire(throwMovement.normalized.y, throwMovement.normalized.x);
 	}
 }

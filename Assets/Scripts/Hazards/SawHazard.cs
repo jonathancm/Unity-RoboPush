@@ -18,10 +18,12 @@ public class SawHazard : MonoBehaviour
 
 	// Cached References
 	AudioSource audioSource = null;
+	DamageDealer damageDealer = null;
 
 	private void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
+		damageDealer = GetComponent<DamageDealer>();
 	}
 
 	void Update()
@@ -43,6 +45,9 @@ public class SawHazard : MonoBehaviour
 	{
 		PlayParticleEffect();
 		PlaySawHitSound();
+
+		if(damageDealer)
+			damageDealer.DealDamage(other.gameObject);
 	}
 
 	private void PlayParticleEffect()

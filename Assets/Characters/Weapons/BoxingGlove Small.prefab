@@ -163,9 +163,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2114168841036202353}
-  - component: {fileID: 8228501171590063419}
   - component: {fileID: 7921367031524339102}
   - component: {fileID: 5900006246026578910}
+  - component: {fileID: 8228501171590063419}
+  - component: {fileID: 4619657339974424731}
   m_Layer: 0
   m_Name: BoxingGlove Small
   m_TagString: Untagged
@@ -189,27 +190,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8228501171590063419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4394855445483779870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e827960ac8f9818429bcaf7455d56cf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  punchingArmLength: 1.5
-  punchExtensionSteps: 0.1
-  knockbackStrength: 225
-  recoilStrength: 100
-  mainRigidBody: {fileID: 0}
-  punchSounds:
-  - {fileID: 8300000, guid: be974bb53350d284c952530b202c566e, type: 3}
-  - {fileID: 8300000, guid: 2c21371c6016a264f86e7a3926345bd8, type: 3}
-  punchVolume: 1
 --- !u!54 &7921367031524339102
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -323,6 +303,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8228501171590063419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4394855445483779870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e827960ac8f9818429bcaf7455d56cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  punchingArmLength: 1.5
+  punchExtensionSteps: 0.1
+  knockbackStrength: 225
+  recoilStrength: 100
+  mainRigidBody: {fileID: 0}
+  punchSounds:
+  - {fileID: 8300000, guid: be974bb53350d284c952530b202c566e, type: 3}
+  - {fileID: 8300000, guid: 2c21371c6016a264f86e7a3926345bd8, type: 3}
+  punchVolume: 1
+  punchDamage: 2
+--- !u!114 &4619657339974424731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4394855445483779870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b5712373595da45a7c4c608a4d8939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 2
 --- !u!1 &8231575135551796248
 GameObject:
   m_ObjectHideFlags: 0

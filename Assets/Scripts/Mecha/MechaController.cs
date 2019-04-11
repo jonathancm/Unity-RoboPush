@@ -23,32 +23,32 @@ public class MechaController : MonoBehaviour
 	{
 		if(mainRigidBody && CenterOfMass)
 			mainRigidBody.centerOfMass = CenterOfMass.localPosition;
+
+		IgnoreSelfCollisions();
 	}
 
-	public void MoveFlyByWire(float throwAccel, float throwTurn, bool brakeButton)
+	private void IgnoreSelfCollisions()
+	{
+		Collider[] colliders = GetComponentsInChildren<Collider>();
+		for(int i = 0; i < colliders.Length; i++)
+		{
+			for(int j = i; j < colliders.Length; j++)
+			{
+				Physics.IgnoreCollision(colliders[i], colliders[j]);
+			}
+		}
+	}
+
+	public void MoveFlyByWire(float throwAccel, float throwTurn)
 	{
 		// Clamp input values
 		throwTurn = Mathf.Clamp(throwTurn, -1.0f, 1.0f);
 		throwAccel = Mathf.Clamp(throwAccel, -1.0f, 1.0f);
 
-		DriveWheels(throwAccel, throwTurn, brakeButton);
+		DriveWheels(throwAccel, throwTurn);
 	}
 
-
-	public void MoveManually(float throwLV, float throwRV, bool brakeButton)
-	{
-		// Clamp input values
-		throwLV = Mathf.Clamp(throwLV, -1.0f, 1.0f);
-		throwRV = Mathf.Clamp(throwRV, -1.0f, 1.0f);
-
-		// Remap gamepad joysticks to user intention
-		float throwAccel = (throwLV + throwRV) / 2.0f;
-		float throwTurn = (throwLV - throwRV) / 2.0f;
-
-		DriveWheels(throwAccel, throwTurn, brakeButton);
-	}
-
-	private void DriveWheels(float throwAccel, float throwTurn, bool brakeButton)
+	private void DriveWheels(float throwAccel, float throwTurn)
 	{
 		TurnBody(throwTurn, turnTorque);
 		for(int i = 0; i < wheels.Count; i++)

@@ -27,6 +27,7 @@ public class WeaponPunchingGlove : MonoBehaviour
 
 	// Cached References
 	AudioSource audioSource = null;
+	DamageDealer damageDealer = null;
 
 	// State variables
 	WeaponState weaponState = WeaponState.Ready;
@@ -41,6 +42,7 @@ public class WeaponPunchingGlove : MonoBehaviour
 	private void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
+		damageDealer = GetComponent<DamageDealer>();
 	}
 
 	private void Update()
@@ -96,6 +98,9 @@ public class WeaponPunchingGlove : MonoBehaviour
 			CreatePhysicalImpact(other);
 			PlayPunchHitSound();
 
+			if(damageDealer)
+				damageDealer.DealDamage(other.gameObject);
+
 			weaponState = WeaponState.CoolingDown;
 		}
 	}
@@ -114,9 +119,6 @@ public class WeaponPunchingGlove : MonoBehaviour
 	{
 		if(!audioSource || punchSounds.Length == 0)
 			return;
-
-		//if(audioSource.isPlaying)
-		//	return;
 
 		int index = Random.Range(0, punchSounds.Length);
 		audioSource.volume = punchVolume;
