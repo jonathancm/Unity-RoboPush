@@ -11,7 +11,7 @@ public class MechaController : MonoBehaviour
 	[SerializeField] private MechaWeapon m_RightWeapon = null;
 
 	[Header("Movement")]
-	[SerializeField] List<MechaWheel> wheels;
+	[SerializeField] List<MechaWheel> wheels = null;
 	[SerializeField] float accelerationTorque = 3000.0f;
 	[SerializeField] float turnTorque = 450.0f;
 

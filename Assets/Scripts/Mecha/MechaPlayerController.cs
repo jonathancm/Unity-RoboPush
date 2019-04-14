@@ -24,7 +24,7 @@ public class MechaPlayerController : MonoBehaviour
 
 	// Configurable Parameter
 	[SerializeField] GameController gameController = GameController.None;
-	[SerializeField] PlayerNumber playerNuber = PlayerNumber.Player1;
+	[SerializeField] PlayerNumber playerNumber = PlayerNumber.Player1;
 
 	// Cached references
 	MechaController m_MechaController;
@@ -120,4 +120,7 @@ public class MechaPlayerController : MonoBehaviour
 		if(throwMovement.magnitude > 0.0f)
 			m_MechaController.MoveFlyByWire(throwMovement.normalized.y, throwMovement.normalized.x);
 	}
+
+	GameController GetAssignedGameController() { return gameController; }
+	PlayerNumber GetAssignedPlayerNumber() { return playerNumber; }
 }

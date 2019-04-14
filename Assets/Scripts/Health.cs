@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+	public enum HealthLevel
+	{
+		High = 0,
+		Mid = 1,
+		Low = 2
+	};
+
 	[SerializeField] float baseMaxHealth = 20.0f;
+	[Range(1.0f, 10.0f)] [SerializeField] float healthThresholdMid = 14.0f;
+	[Range(11.0f, 19.0f)] [SerializeField] float healthThresholdLow = 7.0f;
 	[SerializeField] float healthRegenPerSecond = 1.0f;
 
 	// State Variables
 	float currentMaxHealth = 1.0f;
 	float currentHealth = 1.0f;
+	HealthLevel healthLevel = HealthLevel.High;
 
 	private void Awake()
 	{
+		healthLevel = HealthLevel.High;
 		currentMaxHealth = baseMaxHealth;
 		currentHealth = currentMaxHealth;
 	}
@@ -38,6 +49,16 @@ public class Health : MonoBehaviour
 		{
 			KillCharacter();
 		}
+		else if(currentHealth < healthThresholdLow)
+		{
+			healthLevel = HealthLevel.Low;
+			currentMaxHealth = healthThresholdLow;
+		}
+		else if(currentHealth < healthThresholdMid)
+		{
+			healthLevel = HealthLevel.Mid;
+			currentMaxHealth = healthThresholdMid;
+		}
 	}
 
 	void KillCharacter()
@@ -47,6 +68,9 @@ public class Health : MonoBehaviour
 	}
 
 	public float GetBaseMaxHealth() { return baseMaxHealth; }
+	public float GetHealthThresholdMid() { return healthThresholdMid; }
+	public float GetHealthThresholdLow() { return healthThresholdLow; }
 	public float GetCurrentMaxHealth() { return currentMaxHealth; }
 	public float GetCurrentHealth() { return currentHealth; }
+	public HealthLevel GetHealthLevel() { return healthLevel; }
 }

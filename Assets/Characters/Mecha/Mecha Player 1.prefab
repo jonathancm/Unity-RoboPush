@@ -1486,6 +1486,7 @@ GameObject:
   - component: {fileID: 8255106958816501397}
   - component: {fileID: 8970630334268309808}
   - component: {fileID: 1111356473465250119}
+  - component: {fileID: 8695019802703889780}
   m_Layer: 9
   m_Name: Mecha Player 1
   m_TagString: Untagged
@@ -1548,6 +1549,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: 1
   playerNuber: 1
+--- !u!114 &8695019802703889780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8255106958816501403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d810524a931e148bc83acee200d72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaxHealth: 20
+  healthRegenPerSecond: 1
 --- !u!1001 &55733888714371462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1769,6 +1784,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: fd9e6b08b91b3ec4e950fb053a219178, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 846f926f8694edc48855a0bda868be34, type: 3}
+--- !u!4 &1780066323736792214 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2114168841036202353, guid: 846f926f8694edc48855a0bda868be34,
+    type: 3}
+  m_PrefabInstance: {fileID: 424211101989604839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8634134443996276956 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8228501171590063419, guid: 846f926f8694edc48855a0bda868be34,
@@ -1781,12 +1802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e827960ac8f9818429bcaf7455d56cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1780066323736792214 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2114168841036202353, guid: 846f926f8694edc48855a0bda868be34,
-    type: 3}
-  m_PrefabInstance: {fileID: 424211101989604839}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1738234604499973807
 PrefabInstance:
   m_ObjectHideFlags: 0

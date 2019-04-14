@@ -6,7 +6,6 @@ using UnityEngine;
 public class PistonHazard : MonoBehaviour
 {
 	// Configurable Parameters
-	[SerializeField] GameObject piston = null;
 	[SerializeField] Vector3 pistonTravelVector = new Vector3(0.0f, 2.0f, 0.0f);
 	[SerializeField] float extendSteps = 20;
 	[SerializeField] float retractSteps = 20;
