@@ -21,6 +21,10 @@ public class Health : MonoBehaviour
 	float currentHealth = 1.0f;
 	HealthLevel healthLevel = HealthLevel.High;
 
+	// Delegates & Events
+	public delegate void OnHealthThresholdAction();
+	public event OnHealthThresholdAction onHealthThreshold;
+
 	private void Awake()
 	{
 		healthLevel = HealthLevel.High;
@@ -53,11 +57,17 @@ public class Health : MonoBehaviour
 		{
 			healthLevel = HealthLevel.Low;
 			currentMaxHealth = healthThresholdLow;
+
+			if(onHealthThreshold != null)
+				onHealthThreshold();
 		}
 		else if(currentHealth < healthThresholdMid)
 		{
 			healthLevel = HealthLevel.Mid;
 			currentMaxHealth = healthThresholdMid;
+
+			if(onHealthThreshold != null)
+				onHealthThreshold();
 		}
 	}
 
