@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 0
+  m_CurrentQuality: 4
   m_QualitySettings:
   - serializedVersion: 2
     name: Very Low
@@ -25,7 +25,7 @@ QualitySettings:
     softParticles: 0
     softVegetation: 0
     realtimeReflectionProbes: 0
-    billboardsFaceCameraPosition: 0
+    billboardsFaceCameraPosition: 1
     vSyncCount: 0
     lodBias: 0.3
     maximumLODLevel: 0
@@ -60,7 +60,7 @@ QualitySettings:
     softParticles: 0
     softVegetation: 0
     realtimeReflectionProbes: 0
-    billboardsFaceCameraPosition: 0
+    billboardsFaceCameraPosition: 1
     vSyncCount: 0
     lodBias: 0.4
     maximumLODLevel: 0
@@ -95,7 +95,7 @@ QualitySettings:
     softParticles: 0
     softVegetation: 0
     realtimeReflectionProbes: 0
-    billboardsFaceCameraPosition: 0
+    billboardsFaceCameraPosition: 1
     vSyncCount: 1
     lodBias: 0.7
     maximumLODLevel: 0
@@ -117,7 +117,7 @@ QualitySettings:
     shadows: 2
     shadowResolution: 1
     shadowProjection: 1
-    shadowCascades: 2
+    shadowCascades: 1
     shadowDistance: 70
     shadowNearPlaneOffset: 3
     shadowCascade2Split: 0.33333334
@@ -152,7 +152,7 @@ QualitySettings:
     shadows: 2
     shadowResolution: 2
     shadowProjection: 1
-    shadowCascades: 2
+    shadowCascades: 1
     shadowDistance: 120
     shadowNearPlaneOffset: 3
     shadowCascade2Split: 0.33333334
@@ -187,7 +187,7 @@ QualitySettings:
     shadows: 2
     shadowResolution: 3
     shadowProjection: 1
-    shadowCascades: 4
+    shadowCascades: 1
     shadowDistance: 150
     shadowNearPlaneOffset: 3
     shadowCascade2Split: 0.33333334
@@ -223,8 +223,8 @@ QualitySettings:
     Nintendo Switch: 5
     PS4: 5
     PSP2: 2
-    Standalone: 5
-    WebGL: 3
+    Standalone: 4
+    WebGL: 4
     Windows Store Apps: 5
     XboxOne: 5
     iPhone: 2
