@@ -2,14 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MechaWeapon : MonoBehaviour
+public abstract class MechaWeapon : MonoBehaviour
 {
-	// Configurable Parameters
-	[SerializeField] WeaponPunchingGlove punchingGlove = null;
-
-	public void OnFire()
-	{
-		punchingGlove.Fire();
-	}
-
+	public abstract void OnFire();
 }

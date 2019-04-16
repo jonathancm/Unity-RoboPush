@@ -324,7 +324,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: be974bb53350d284c952530b202c566e, type: 3}
   - {fileID: 8300000, guid: 2c21371c6016a264f86e7a3926345bd8, type: 3}
   punchVolume: 1
-  punchDamage: 2
 --- !u!114 &4619657339974424731
 MonoBehaviour:
   m_ObjectHideFlags: 0

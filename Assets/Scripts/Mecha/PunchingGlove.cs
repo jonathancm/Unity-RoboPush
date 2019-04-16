@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class WeaponPunchingGlove : MonoBehaviour
+public class PunchingGlove : MechaWeapon
 {
 	enum WeaponState
 	{
@@ -33,7 +33,7 @@ public class WeaponPunchingGlove : MonoBehaviour
 	WeaponState weaponState = WeaponState.Ready;
 	Vector3 originalPosition;
 
-	public void Fire()
+	public override void OnFire()
 	{
 		if(weaponState == WeaponState.Ready)
 			weaponState = WeaponState.Firing;
