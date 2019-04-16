@@ -11,10 +11,15 @@ public class Health : MonoBehaviour
 		Low = 2
 	};
 
-	[SerializeField] float baseMaxHealth = 20.0f;
+	[Header("Health Stats")]
+	[Min(1.0f)] [SerializeField] float baseMaxHealth = 20.0f;
+	[SerializeField] float healthRegenPerSecond = 1.0f;
 	[Range(1.0f, 10.0f)] [SerializeField] float healthThresholdMid = 14.0f;
 	[Range(11.0f, 19.0f)] [SerializeField] float healthThresholdLow = 7.0f;
-	[SerializeField] float healthRegenPerSecond = 1.0f;
+
+	[Header("Damage visuals")]
+	[SerializeField] GameObject particlesThresholdMid = null;
+	[SerializeField] GameObject particlesThresholdLow = null;
 
 	// State Variables
 	float currentMaxHealth = 1.0f;
@@ -58,6 +63,9 @@ public class Health : MonoBehaviour
 			healthLevel = HealthLevel.Low;
 			currentMaxHealth = healthThresholdLow;
 
+			if(particlesThresholdMid)
+				particlesThresholdLow.SetActive(true);
+
 			if(onHealthThreshold != null)
 				onHealthThreshold();
 		}
@@ -65,6 +73,9 @@ public class Health : MonoBehaviour
 		{
 			healthLevel = HealthLevel.Mid;
 			currentMaxHealth = healthThresholdMid;
+
+			if(particlesThresholdMid)
+				particlesThresholdMid.SetActive(true);
 
 			if(onHealthThreshold != null)
 				onHealthThreshold();
