@@ -85,9 +85,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7762833577435980248}
-  - component: {fileID: 7762833577435980251}
   - component: {fileID: 7762833577435980249}
   - component: {fileID: 6383805942067185570}
+  - component: {fileID: 7762833577435980251}
+  - component: {fileID: 5256848963623567199}
   m_Layer: 12
   m_Name: PistonHazard
   m_TagString: Untagged
@@ -110,26 +111,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7762833577435980251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7762833577435980250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9460749e1daf7f741939a67479dd0bbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  piston: {fileID: 7762833576840613668}
-  pistonTravelVector: {x: 0, y: 2, z: 0}
-  extendSteps: 20
-  retractSteps: 20
-  pistonSounds:
-  - {fileID: 8300000, guid: ef7cfe2f189adbf468a6d43ece66d84e, type: 3}
-  - {fileID: 8300000, guid: 2e3a8493d4b5e6440973440774706d8c, type: 3}
-  pistonLaunchVolume: 1
 --- !u!54 &7762833577435980249
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -243,6 +224,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7762833577435980251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7762833577435980250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9460749e1daf7f741939a67479dd0bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pistonTravelVector: {x: 0, y: 2, z: 0}
+  extendSteps: 20
+  retractSteps: 20
+  pistonSounds:
+  - {fileID: 8300000, guid: ef7cfe2f189adbf468a6d43ece66d84e, type: 3}
+  - {fileID: 8300000, guid: 2e3a8493d4b5e6440973440774706d8c, type: 3}
+  pistonLaunchVolume: 1
+--- !u!114 &5256848963623567199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7762833577435980250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b5712373595da45a7c4c608a4d8939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 0
 --- !u!1 &7762833577463048510
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,13 +17,9 @@ public class MechaController : MonoBehaviour
 
 	[Header("Physics")]
 	[SerializeField] Rigidbody mainRigidBody = null;
-	[SerializeField] Transform CenterOfMass = null;
 
 	private void Awake()
 	{
-		if(mainRigidBody && CenterOfMass)
-			mainRigidBody.centerOfMass = CenterOfMass.localPosition;
-
 		IgnoreSelfCollisions();
 	}
 

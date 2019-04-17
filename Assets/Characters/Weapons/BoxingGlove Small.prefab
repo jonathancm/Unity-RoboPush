@@ -315,9 +315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e827960ac8f9818429bcaf7455d56cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coolDownPeriodInSeconds: 0.75
   punchingArmLength: 1.5
   punchExtensionSteps: 0.1
-  knockbackStrength: 225
+  knockbackStrength: 60
   recoilStrength: 100
   mainRigidBody: {fileID: 0}
   punchSounds:
@@ -379,7 +380,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.375, y: 0.375, z: 0.75}
+  m_Size: {x: 0.6, y: 0.6, z: 0.75}
   m_Center: {x: 0, y: 0, z: 0.15}
 --- !u!1 &9087634594335158709
 GameObject:

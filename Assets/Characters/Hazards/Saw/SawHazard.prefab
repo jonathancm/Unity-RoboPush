@@ -551,7 +551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sawMesh: {fileID: 2098669466035653117}
   cosmeticTurnsPerSecond: 1
-  cuttingForce: 20
+  cuttingForce: 5
   sparks: {fileID: 1206718125367329421}
   sawHitVolume: 0.7
 --- !u!114 &6015309749068476909
@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b5712373595da45a7c4c608a4d8939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 0.7
 --- !u!1 &8681768679586190035
 GameObject:
   m_ObjectHideFlags: 0

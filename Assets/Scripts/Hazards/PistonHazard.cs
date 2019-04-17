@@ -16,6 +16,7 @@ public class PistonHazard : MonoBehaviour
 
 	// Cached References
 	AudioSource audioSource = null;
+	DamageDealer damageDealer = null;
 
 	enum HazardState
 	{
@@ -31,6 +32,7 @@ public class PistonHazard : MonoBehaviour
 	private void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
+		damageDealer = GetComponent<DamageDealer>();
 	}
 
 	void Start()
@@ -92,6 +94,15 @@ public class PistonHazard : MonoBehaviour
 
 		Fire();
 		PlayPistonLaunchSound();
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if(hazardState == HazardState.Ready)
+			return;
+
+		if(damageDealer)
+			damageDealer.DealDamage(other.gameObject);
 	}
 
 	private void Fire()

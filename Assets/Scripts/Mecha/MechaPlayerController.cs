@@ -82,14 +82,19 @@ public class MechaPlayerController : MonoBehaviour
 
 	private void GetInputGamepad1()
 	{
-		
+		//float leftStickY = Input.GetAxis("GP1-LeftStickY");
+		//float rightStickY = Input.GetAxis("GP1-RightStickY");
+
+		//// Remap gamepad joysticks to user intention
+		//throwMovement.x = (leftStickY - rightStickY);
+		//throwMovement.y = (leftStickY + rightStickY);
 
 		float leftStickY = Input.GetAxis("GP1-LeftStickY");
-		float rightStickY = Input.GetAxis("GP1-RightStickY");
+		float rightStickX = Input.GetAxis("GP1-RightStickX");
 
 		// Remap gamepad joysticks to user intention
-		throwMovement.x = (leftStickY - rightStickY);
-		throwMovement.y = (leftStickY + rightStickY);
+		throwMovement.x = rightStickX;
+		throwMovement.y = leftStickY;
 
 		if(Input.GetButtonDown("GP1-Fire1"))
 			m_MechaController.FirePrimaryWeapon();

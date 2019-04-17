@@ -9,10 +9,12 @@ public class PunchingGlove : MechaWeapon
 	{
 		Ready,
 		Firing,
+		Rearming,
 		CoolingDown
 	};
 
 	// Configurable Parameters
+	[SerializeField] float coolDownPeriodInSeconds = 1.5f;
 	[SerializeField] float punchingArmLength = 0.85f;
 	[Range(0.001f, 1.0f)] [SerializeField] float punchExtensionSteps = 0.1f;
 
@@ -32,6 +34,7 @@ public class PunchingGlove : MechaWeapon
 	// State variables
 	WeaponState weaponState = WeaponState.Ready;
 	Vector3 originalPosition;
+	float timeStamp = 0.0f;
 
 	public override void OnFire()
 	{
@@ -54,8 +57,12 @@ public class PunchingGlove : MechaWeapon
 				ExtendArm();
 				break;
 
-			case WeaponState.CoolingDown:
+			case WeaponState.Rearming:
 				RetractArm();
+				break;
+
+			case WeaponState.CoolingDown:
+				CoolDown();
 				break;
 
 			default:
@@ -69,7 +76,7 @@ public class PunchingGlove : MechaWeapon
 
 		if(transform.position == targetPosition)
 		{
-			weaponState = WeaponState.CoolingDown;
+			weaponState = WeaponState.Rearming;
 		}
 		else
 		{
@@ -82,12 +89,22 @@ public class PunchingGlove : MechaWeapon
 	{
 		if(transform.position == originalPosition)
 		{
-			weaponState = WeaponState.Ready;
+			timeStamp = Time.time + coolDownPeriodInSeconds;
+			weaponState = WeaponState.CoolingDown;
 		}
 		else
 		{
 			float maxDistanceStep = punchingArmLength / punchExtensionSteps;
 			transform.position = Vector3.MoveTowards(transform.position, originalPosition, maxDistanceStep * Time.deltaTime);
+		}
+	}
+
+	private void CoolDown()
+	{
+		if(timeStamp <= Time.time)
+		{
+			timeStamp = 0.0f;
+			weaponState = WeaponState.Ready;
 		}
 	}
 
@@ -101,7 +118,7 @@ public class PunchingGlove : MechaWeapon
 			if(damageDealer)
 				damageDealer.DealDamage(other.gameObject);
 
-			weaponState = WeaponState.CoolingDown;
+			weaponState = WeaponState.Rearming;
 		}
 	}
 

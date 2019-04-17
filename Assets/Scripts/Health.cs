@@ -21,6 +21,9 @@ public class Health : MonoBehaviour
 	[SerializeField] GameObject particlesThresholdMid = null;
 	[SerializeField] GameObject particlesThresholdLow = null;
 
+	// Cached References
+	MovingCenterMass movingCenterMass = null;
+
 	// State Variables
 	float currentMaxHealth = 1.0f;
 	float currentHealth = 1.0f;
@@ -35,6 +38,8 @@ public class Health : MonoBehaviour
 		healthLevel = HealthLevel.High;
 		currentMaxHealth = baseMaxHealth;
 		currentHealth = currentMaxHealth;
+
+		movingCenterMass = GetComponent<MovingCenterMass>();
 	}
 
 	private void Update()
@@ -80,6 +85,9 @@ public class Health : MonoBehaviour
 			if(onHealthThreshold != null)
 				onHealthThreshold();
 		}
+
+		if(movingCenterMass)
+			movingCenterMass.KickBackCenterOfMass();
 	}
 
 	void KillCharacter()
