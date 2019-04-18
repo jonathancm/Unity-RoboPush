@@ -20,10 +20,18 @@ public class SawHazard : MonoBehaviour
 	AudioSource audioSource = null;
 	DamageDealer damageDealer = null;
 
+	// State variables
+	bool isPaused = false;
+
 	private void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
 		damageDealer = GetComponent<DamageDealer>();
+	}
+
+	private void Start()
+	{
+		//AssignGameModeDelegates();
 	}
 
 	void Update()
@@ -66,5 +74,25 @@ public class SawHazard : MonoBehaviour
 
 		audioSource.volume = sawHitVolume;
 		audioSource.Play();
+	}
+
+	private void AssignGameModeDelegates()
+	{
+		GameModeLogic gameModeLogic = FindObjectOfType<GameModeLogic>();
+		if(gameModeLogic)
+		{
+			gameModeLogic.onPause += OnPause;
+			gameModeLogic.onResume += OnResume;
+		}
+	}
+
+	private void OnPause()
+	{
+		isPaused = true;
+	}
+
+	private void OnResume()
+	{
+		isPaused = false;
 	}
 }

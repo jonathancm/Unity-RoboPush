@@ -32,6 +32,15 @@ public class Health : MonoBehaviour
 	// Delegates & Events
 	public delegate void OnHealthThresholdAction();
 	public event OnHealthThresholdAction onHealthThreshold;
+	public delegate void OnDeathAction();
+	public event OnDeathAction onDeath;
+
+	public float GetBaseMaxHealth() { return baseMaxHealth; }
+	public float GetHealthThresholdMid() { return healthThresholdMid; }
+	public float GetHealthThresholdLow() { return healthThresholdLow; }
+	public float GetCurrentMaxHealth() { return currentMaxHealth; }
+	public float GetCurrentHealth() { return currentHealth; }
+	public HealthLevel GetHealthLevel() { return healthLevel; }
 
 	private void Awake()
 	{
@@ -94,12 +103,7 @@ public class Health : MonoBehaviour
 	{
 		currentHealth = 0.0f;
 		healthRegenPerSecond = 0.0f;
+		if(onDeath != null)
+			onDeath();
 	}
-
-	public float GetBaseMaxHealth() { return baseMaxHealth; }
-	public float GetHealthThresholdMid() { return healthThresholdMid; }
-	public float GetHealthThresholdLow() { return healthThresholdLow; }
-	public float GetCurrentMaxHealth() { return currentMaxHealth; }
-	public float GetCurrentHealth() { return currentHealth; }
-	public HealthLevel GetHealthLevel() { return healthLevel; }
 }

@@ -5,6 +5,13 @@ using UnityEngine;
 [SelectionBase]
 public class PistonHazard : MonoBehaviour
 {
+	enum HazardState
+	{
+		Ready,
+		Firing,
+		CoolingDown
+	};
+
 	// Configurable Parameters
 	[SerializeField] Vector3 pistonTravelVector = new Vector3(0.0f, 2.0f, 0.0f);
 	[SerializeField] float extendSteps = 20;
@@ -18,16 +25,10 @@ public class PistonHazard : MonoBehaviour
 	AudioSource audioSource = null;
 	DamageDealer damageDealer = null;
 
-	enum HazardState
-	{
-		Ready,
-		Firing,
-		CoolingDown
-	};
-
 	// State variables
 	HazardState hazardState = HazardState.Ready;
 	Vector3 initialPosition;
+	bool isPaused = false;
 
 	private void Awake()
 	{
@@ -35,14 +36,16 @@ public class PistonHazard : MonoBehaviour
 		damageDealer = GetComponent<DamageDealer>();
 	}
 
-	void Start()
+	private void Start()
     {
 		initialPosition = transform.position;
-    }
+		//AssignGameModeDelegates();
+	}
 
 	private void FixedUpdate()
 	{
-		//initialPosition = transform.parent.transform.position; // Allows object to be moved at runtime
+		if(isPaused)
+			return;
 
 		switch(hazardState)
 		{
@@ -122,5 +125,25 @@ public class PistonHazard : MonoBehaviour
 		audioSource.volume = pistonLaunchVolume;
 		audioSource.clip = pistonSounds[index];
 		audioSource.Play();
+	}
+
+	private void AssignGameModeDelegates()
+	{
+		GameModeLogic gameModeLogic = FindObjectOfType<GameModeLogic>();
+		if(gameModeLogic)
+		{
+			gameModeLogic.onPause += OnPause;
+			gameModeLogic.onResume += OnResume;
+		}
+	}
+
+	private void OnPause()
+	{
+		isPaused = true;
+	}
+
+	private void OnResume()
+	{
+		isPaused = false;
 	}
 }

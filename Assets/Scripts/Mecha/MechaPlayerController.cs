@@ -27,19 +27,30 @@ public class MechaPlayerController : MonoBehaviour
 	[SerializeField] PlayerNumber playerNumber = PlayerNumber.Player1;
 
 	// Cached references
-	MechaController m_MechaController;
+	MechaController m_MechaController = null;
 
-	// User Input
+	// State variables
 	Vector2 throwMovement;
+	bool gameIsPaused = false;
 
+	// Public Methods
+	GameController GetAssignedGameController() { return gameController; }
+	PlayerNumber GetAssignedPlayerNumber() { return playerNumber; }
+
+	// Private Methods
 	void Awake()
 	{
 		m_MechaController = GetComponent<MechaController>();
 	}
 
+	private void Start()
+	{
+		// AssignGameModeDelegates();
+	}
+
 	void Update()
 	{
-		if(!m_MechaController)
+		if(!m_MechaController || gameIsPaused)
 			return;
 
 		switch(gameController)
@@ -69,7 +80,7 @@ public class MechaPlayerController : MonoBehaviour
 		}
 	}
 
-	private void GetInputKeyboard()
+	void GetInputKeyboard()
 	{
 		throwMovement.x = Input.GetAxis("KB-Turn");
 		throwMovement.y = Input.GetAxis("KB-Accelerate");
@@ -80,21 +91,10 @@ public class MechaPlayerController : MonoBehaviour
 			m_MechaController.FireSecondaryWeapon();
 	}
 
-	private void GetInputGamepad1()
+	void GetInputGamepad1()
 	{
-		//float leftStickY = Input.GetAxis("GP1-LeftStickY");
-		//float rightStickY = Input.GetAxis("GP1-RightStickY");
-
-		//// Remap gamepad joysticks to user intention
-		//throwMovement.x = (leftStickY - rightStickY);
-		//throwMovement.y = (leftStickY + rightStickY);
-
-		float leftStickY = Input.GetAxis("GP1-LeftStickY");
-		float rightStickX = Input.GetAxis("GP1-RightStickX");
-
-		// Remap gamepad joysticks to user intention
-		throwMovement.x = rightStickX;
-		throwMovement.y = leftStickY;
+		throwMovement.x = Input.GetAxis("GP1-RightStickX");
+		throwMovement.y = Input.GetAxis("GP1-LeftStickY");
 
 		if(Input.GetButtonDown("GP1-Fire1"))
 			m_MechaController.FirePrimaryWeapon();
@@ -104,12 +104,8 @@ public class MechaPlayerController : MonoBehaviour
 
 	private void GetInputGamepad2()
 	{
-		float leftStickY = Input.GetAxis("GP2-LeftStickY");
-		float rightStickY = Input.GetAxis("GP2-RightStickY");
-
-		// Remap gamepad joysticks to user intention
-		throwMovement.x = (leftStickY - rightStickY);
-		throwMovement.y = (leftStickY + rightStickY);
+		throwMovement.x = Input.GetAxis("GP2-RightStickX");
+		throwMovement.y = Input.GetAxis("GP2-LeftStickY");
 
 		if(Input.GetButtonDown("GP2-Fire1"))
 			m_MechaController.FirePrimaryWeapon();
@@ -119,13 +115,32 @@ public class MechaPlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if(!m_MechaController)
+		if(!m_MechaController || gameIsPaused)
 			return;
 
 		if(throwMovement.magnitude > 0.0f)
 			m_MechaController.MoveFlyByWire(throwMovement.normalized.y, throwMovement.normalized.x);
 	}
 
-	GameController GetAssignedGameController() { return gameController; }
-	PlayerNumber GetAssignedPlayerNumber() { return playerNumber; }
+	private void AssignGameModeDelegates()
+	{
+		GameModeLogic gameModeLogic = FindObjectOfType<GameModeLogic>();
+		if(gameModeLogic)
+		{
+			gameModeLogic.onPause += OnPause;
+			gameModeLogic.onResume += OnResume;
+		}
+	}
+
+	void OnPause()
+	{
+		gameIsPaused = true;
+		Debug.Log("Game is paused: " + gameIsPaused);
+	}
+
+	void OnResume()
+	{
+		gameIsPaused = false;
+		Debug.Log("Game is paused: " + gameIsPaused);
+	}
 }

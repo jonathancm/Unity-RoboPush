@@ -27,6 +27,7 @@ public class HammerHazard : MonoBehaviour
 	// State variables
 	HazardState hazardState = HazardState.Ready;
 	Quaternion initialRotation;
+	bool isPaused = false;
 
 	private void Awake()
 	{
@@ -35,8 +36,16 @@ public class HammerHazard : MonoBehaviour
 		damageDealer = GetComponent<DamageDealer>();
 	}
 
+	private void Start()
+	{
+		//AssignGameModeDelegates();
+	}
+
 	private void FixedUpdate()
 	{
+		if(isPaused)
+			return;
+
 		switch(hazardState)
 		{
 			case HazardState.Firing:
@@ -83,7 +92,7 @@ public class HammerHazard : MonoBehaviour
 		}
 	}
 
-	bool IsSameRotation(Quaternion q1, Quaternion q2)
+	private bool IsSameRotation(Quaternion q1, Quaternion q2)
 	{
 		return (Quaternion.Angle(q1, q2) < 0.001f);
 	}
@@ -115,5 +124,25 @@ public class HammerHazard : MonoBehaviour
 
 		audioSource.volume = hammerHitVolume;
 		audioSource.Play();
+	}
+
+	private void AssignGameModeDelegates()
+	{
+		GameModeLogic gameModeLogic = FindObjectOfType<GameModeLogic>();
+		if(gameModeLogic)
+		{
+			gameModeLogic.onPause += OnPause;
+			gameModeLogic.onResume += OnResume;
+		}
+	}
+
+	private void OnPause()
+	{
+		isPaused = true;
+	}
+
+	private void OnResume()
+	{
+		isPaused = false;
 	}
 }

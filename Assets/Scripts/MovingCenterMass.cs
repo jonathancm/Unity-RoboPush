@@ -9,8 +9,6 @@ public class MovingCenterMass : MonoBehaviour
 	[SerializeField] Rigidbody mainRigidBody = null;
 	[SerializeField] Transform centerOfMassLow = null;
 	[SerializeField] Transform centerOfMassHigh = null;
-
-	[Header("")]
 	[SerializeField] float kickBackSpeed = 0.5f;
 	[SerializeField] float settleBackSpeed = 0.5f;
 
