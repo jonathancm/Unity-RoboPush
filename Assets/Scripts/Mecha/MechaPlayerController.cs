@@ -21,12 +21,10 @@ public class MechaPlayerController : MonoBehaviour
 
 	// State variables
 	Vector2 throwMovement;
-	bool gameIsPaused = false;
-
-	private Player rewiredPlayer;
-	[System.NonSerialized] private bool rewiredInitialized; // Don't serialize this so the value is lost on an editor script recompile.
 	private bool fire1;
 	private bool fire2;
+	bool gameIsPaused = false;
+	private Player rewiredPlayer;
 
 	PlayerNumber GetAssignedPlayerNumber()
 	{
@@ -40,6 +38,7 @@ public class MechaPlayerController : MonoBehaviour
 
 	private void Start()
 	{
+		InitializeRewired(); // Reinitialize after a recompile in the editor
 		// AssignGameModeDelegates();
 	}
 
@@ -49,18 +48,15 @@ public class MechaPlayerController : MonoBehaviour
 
 		// Rewired
 		if(!ReInput.isReady) { return; }
-		if(!rewiredInitialized)
-			Initialize(); // Reinitialize after a recompile in the editor
+			
 
 		GetPlayerInput();
 	}
 
-	private void Initialize()
+	private void InitializeRewired()
 	{
 		// Get the Rewired Player object for this player.
 		rewiredPlayer = ReInput.players.GetPlayer((int)playerNumber);
-
-		rewiredInitialized = true;
 	}
 
 	private void GetPlayerInput()
@@ -111,12 +107,10 @@ public class MechaPlayerController : MonoBehaviour
 	void OnPause()
 	{
 		gameIsPaused = true;
-		Debug.Log("Game is paused: " + gameIsPaused);
 	}
 
 	void OnResume()
 	{
 		gameIsPaused = false;
-		Debug.Log("Game is paused: " + gameIsPaused);
 	}
 }

@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class CanvasPauseGame : MonoBehaviour
 {
+	// Cached References
+	Canvas canvas = null;
+
 	// State variables
 	bool isPaused = false;
 
 	private void Awake()
 	{
-
-	}
-
-	private void Start()
-	{
+		// Enable and Hide
 		AssignGameModeDelegates();
+
+		canvas = GetComponent<Canvas>();
 		Hide();
 	}
 
@@ -28,13 +29,13 @@ public class CanvasPauseGame : MonoBehaviour
 		}
 	}
 
-	private void OnPause()
+	void OnPause()
 	{
 		isPaused = true;
 		Show();
 	}
 
-	private void OnResume()
+	void OnResume()
 	{
 		isPaused = false;
 		Hide();
@@ -43,10 +44,12 @@ public class CanvasPauseGame : MonoBehaviour
 	private void Show()
 	{
 		gameObject.SetActive(true);
+		canvas.enabled = true;
 	}
 
 	private void Hide()
 	{
+		canvas.enabled = false;
 		gameObject.SetActive(false);
 	}
 }

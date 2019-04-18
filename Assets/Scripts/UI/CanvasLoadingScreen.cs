@@ -21,6 +21,7 @@ public class CanvasLoadingScreen : MonoBehaviour
 	bool isLoading;
 	float timeElapsed = 0.0f;
 	bool didTriggerFadeOutAnimation;
+	bool gameIsPaused = false;
 
 	private void Awake()
 	{

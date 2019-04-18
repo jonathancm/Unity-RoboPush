@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class GameModeLogic : MonoBehaviour
 {
@@ -11,12 +12,12 @@ public class GameModeLogic : MonoBehaviour
 		Over
 	};
 
-	// Configurable Parameters
-	[SerializeField] string startAxisName = "UI-Start";
-
 	// State Variables
 	GameState gameState;
 	MechaController[] players = null;
+	Player player1Input = null;
+	Player player2Input = null;
+	bool startButton = false;
 
 	// Delegates and events
 	public delegate void OnPauseAction();
@@ -31,32 +32,47 @@ public class GameModeLogic : MonoBehaviour
 
 	void Start()
     {
-		
-    }
+		player1Input = ReInput.players.GetPlayer(0);
+		player2Input = ReInput.players.GetPlayer(1);
+	}
 
 	private void Update()
 	{
-		if(Input.GetAxis(startAxisName) > 0.0f)
+		GetPlayerInput();
+		ProcessPlayerInput();
+	}
+
+	private void ProcessPlayerInput()
+	{
+		if(startButton)
 		{
 			switch(gameState)
 			{
 				case GameState.Playing:
 					// TODO: Un-comment
-					//gameState = GameState.Paused;
-					//if(onPause != null)
-					//	onPause();
+					gameState = GameState.Paused;
+					Debug.Log("Game is paused: " + gameState.ToString());
+					if(onPause != null)
+						onPause();
 					break;
 
 				case GameState.Paused:
 					// TODO: un-comment
-					//gameState = GameState.Playing;
-					//if(onResume != null)
-					//	onResume();
+					gameState = GameState.Playing;
+					Debug.Log("Game is paused: " + gameState.ToString());
+					if(onResume != null)
+						onResume();
 					break;
 
 				default:
 					break;
 			}
+			startButton = false;
 		}
+	}
+
+	private void GetPlayerInput()
+	{
+		startButton = player1Input.GetButtonDown("Start") || player2Input.GetButtonDown("Start");
 	}
 }

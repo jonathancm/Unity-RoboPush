@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4024762956042693589}
   - component: {fileID: 4024762956042693586}
   - component: {fileID: 4024762956042693587}
+  - component: {fileID: 79636554}
+  - component: {fileID: 79636555}
   m_Layer: 5
   m_Name: Canvas_PauseGame
   m_TagString: Untagged
@@ -50,7 +52,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4024762956042693584}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -103,6 +105,30 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &79636554
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024762956042693584}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &79636555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024762956042693584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e921215222faa4fa6c1d24f6fecac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4024762956432299060
 GameObject:
   m_ObjectHideFlags: 0
