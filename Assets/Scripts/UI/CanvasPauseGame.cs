@@ -2,54 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasPauseGame : MonoBehaviour
+public class CanvasPauseGame : GameTimeObject
 {
 	// Cached References
 	Canvas canvas = null;
 
-	// State variables
-	bool isPaused = false;
-
 	private void Awake()
 	{
-		// Enable and Hide
-		AssignGameModeDelegates();
-
 		canvas = GetComponent<Canvas>();
 		Hide();
 	}
 
-	private void AssignGameModeDelegates()
+	public override void OnPause()
 	{
-		GameModeLogic gameModeLogic = FindObjectOfType<GameModeLogic>();
-		if(gameModeLogic)
-		{
-			gameModeLogic.onPause += OnPause;
-			gameModeLogic.onResume += OnResume;
-		}
-	}
-
-	void OnPause()
-	{
-		isPaused = true;
 		Show();
 	}
 
-	void OnResume()
+	public override void OnResume()
 	{
-		isPaused = false;
 		Hide();
 	}
 
 	private void Show()
 	{
-		gameObject.SetActive(true);
 		canvas.enabled = true;
 	}
 
 	private void Hide()
 	{
 		canvas.enabled = false;
-		gameObject.SetActive(false);
 	}
 }

@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9460749e1daf7f741939a67479dd0bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hazardTrigger: {fileID: 7762833576692673742}
   pistonTravelVector: {x: 0, y: 2, z: 0}
   extendSteps: 20
   retractSteps: 20

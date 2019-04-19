@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PunchingGlove : MechaWeapon
 {
+	// TODO: Derive this class from GameTimeObject
 	enum WeaponState
 	{
 		Ready,

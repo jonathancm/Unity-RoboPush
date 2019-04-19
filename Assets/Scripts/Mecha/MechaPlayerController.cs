@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
-public class MechaPlayerController : MonoBehaviour
+public class MechaPlayerController : GameTimeObject
 {
-	enum PlayerNumber
+	public enum PlayerNumber
 	{
 		Player1 = 0,
 		Player2 = 1,
@@ -20,43 +20,27 @@ public class MechaPlayerController : MonoBehaviour
 	MechaController m_MechaController = null;
 
 	// State variables
+	bool isGamePaused = false;
+	Player rewiredPlayer;
 	Vector2 throwMovement;
-	private bool fire1;
-	private bool fire2;
-	bool gameIsPaused = false;
-	private Player rewiredPlayer;
+	bool fire1;
+	bool fire2;
 
-	PlayerNumber GetAssignedPlayerNumber()
-	{
-		return playerNumber;
-	}
+	public PlayerNumber GetAssignedPlayerNumber() { return playerNumber; }
 
 	private void Awake()
 	{
 		m_MechaController = GetComponent<MechaController>();
+		rewiredPlayer = ReInput.players.GetPlayer((int)playerNumber);
 	}
 
-	private void Start()
+	private void FixedUpdate()
 	{
-		InitializeRewired(); // Reinitialize after a recompile in the editor
-		// AssignGameModeDelegates();
-	}
-
-	private void Update()
-	{
-		if(!m_MechaController || gameIsPaused) { return; }
-
-		// Rewired
+		if(!m_MechaController || isGamePaused) { return; }
 		if(!ReInput.isReady) { return; }
-			
 
 		GetPlayerInput();
-	}
-
-	private void InitializeRewired()
-	{
-		// Get the Rewired Player object for this player.
-		rewiredPlayer = ReInput.players.GetPlayer((int)playerNumber);
+		ProcessMechaInput();
 	}
 
 	private void GetPlayerInput()
@@ -68,18 +52,10 @@ public class MechaPlayerController : MonoBehaviour
 		fire2 = rewiredPlayer.GetButtonDown("Fire2");
 	}
 
-	private void FixedUpdate()
-	{
-		if(!m_MechaController || gameIsPaused)
-			return;
-
-		ProcessMechaInput();
-	}
-
 	private void ProcessMechaInput()
 	{
 		if(throwMovement.magnitude > 0.0f)
-			m_MechaController.MoveFlyByWire(throwMovement.normalized.y, throwMovement.normalized.x);
+			m_MechaController.Move(throwMovement.normalized.y, throwMovement.normalized.x);
 
 		if(fire1)
 		{
@@ -94,23 +70,13 @@ public class MechaPlayerController : MonoBehaviour
 		}
 	}
 
-	private void AssignGameModeDelegates()
+	public override void OnPause()
 	{
-		GameModeLogic gameModeLogic = FindObjectOfType<GameModeLogic>();
-		if(gameModeLogic)
-		{
-			gameModeLogic.onPause += OnPause;
-			gameModeLogic.onResume += OnResume;
-		}
+		isGamePaused = true;
 	}
 
-	void OnPause()
+	public override void OnResume()
 	{
-		gameIsPaused = true;
-	}
-
-	void OnResume()
-	{
-		gameIsPaused = false;
+		isGamePaused = false;
 	}
 }

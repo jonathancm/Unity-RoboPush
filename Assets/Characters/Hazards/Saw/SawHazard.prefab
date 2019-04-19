@@ -550,6 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sawMesh: {fileID: 2098669466035653117}
+  hazardTrigger: {fileID: 2098669466278605311}
   cosmeticTurnsPerSecond: 1
   cuttingForce: 5
   sparks: {fileID: 1206718125367329421}

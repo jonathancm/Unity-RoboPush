@@ -21,7 +21,6 @@ public class CanvasLoadingScreen : MonoBehaviour
 	bool isLoading;
 	float timeElapsed = 0.0f;
 	bool didTriggerFadeOutAnimation;
-	bool gameIsPaused = false;
 
 	private void Awake()
 	{
@@ -53,7 +52,7 @@ public class CanvasLoadingScreen : MonoBehaviour
 		if(!isLoading)
 			return;
 		
-		// Get the progress and update the UI. Goes from 0 (start) to 1 (end):
+		// Get the progress and update the UI. Goes from 0 (start) to 1 (end)
 		SetProgress(currentLoadingOperation.progress);
 		if(currentLoadingOperation.isDone && !didTriggerFadeOutAnimation)
 		{
@@ -79,7 +78,6 @@ public class CanvasLoadingScreen : MonoBehaviour
 
 	public void Show(AsyncOperation loadingOperation)
 	{
-		Debug.Log("Insde Show method");
 		gameObject.SetActive(true);
 		
 		// Stop the loading operation from finishing, even if it technically did

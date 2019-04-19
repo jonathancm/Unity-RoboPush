@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [SelectionBase]
-public class SawHazard : MonoBehaviour
+public class SawHazard : GameTimeObject
 {
 	// Configurable Parameters
 	[SerializeField] GameObject sawMesh = null;
+	[SerializeField] BoxCollider hazardTrigger = null;
 	[SerializeField] float cosmeticTurnsPerSecond = 1.0f;
 	[SerializeField] float cuttingForce = 30.0f;
 
@@ -20,18 +21,11 @@ public class SawHazard : MonoBehaviour
 	AudioSource audioSource = null;
 	DamageDealer damageDealer = null;
 
-	// State variables
-	bool isPaused = false;
 
 	private void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
 		damageDealer = GetComponent<DamageDealer>();
-	}
-
-	private void Start()
-	{
-		//AssignGameModeDelegates();
 	}
 
 	void Update()
@@ -76,23 +70,39 @@ public class SawHazard : MonoBehaviour
 		audioSource.Play();
 	}
 
-	private void AssignGameModeDelegates()
+	public override void OnPause()
 	{
-		GameModeLogic gameModeLogic = FindObjectOfType<GameModeLogic>();
-		if(gameModeLogic)
-		{
-			gameModeLogic.onPause += OnPause;
-			gameModeLogic.onResume += OnResume;
-		}
+		// Disable Update() and FixedUpdate()
+		this.enabled = false;
+
+		// Disable trigger volume
+		if(hazardTrigger)
+			hazardTrigger.enabled = false;
+
+		// Pause Particles
+		if(sparks && sparks.isPlaying)
+			sparks.Pause();
+
+		// Pause Audio
+		if(audioSource && audioSource.isPlaying)
+			audioSource.Pause();
 	}
 
-	private void OnPause()
+	public override void OnResume()
 	{
-		isPaused = true;
-	}
+		// Enable Update()
+		this.enabled = true;
 
-	private void OnResume()
-	{
-		isPaused = false;
+		// Enable trigger volume
+		if(hazardTrigger)
+			hazardTrigger.enabled = true;
+
+		// Resume Particles
+		if(sparks && sparks.isPaused)
+			sparks.Play();
+
+		// Resume Audio
+		if(audioSource)
+			audioSource.UnPause();
 	}
 }

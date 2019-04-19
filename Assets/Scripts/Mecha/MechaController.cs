@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [SelectionBase]
-public class MechaController : MonoBehaviour
+public class MechaController : GameTimeObject
 {
 	// Configuration Parameters
 	[Header("Weapons")]
@@ -17,6 +17,10 @@ public class MechaController : MonoBehaviour
 
 	[Header("Physics")]
 	[SerializeField] Rigidbody mainRigidBody = null;
+
+	// State variables
+	Vector3 savedVelocity;
+	Vector3 savedAngularVelocity;
 
 	private void Awake()
 	{
@@ -35,22 +39,14 @@ public class MechaController : MonoBehaviour
 		}
 	}
 
-	public void MoveFlyByWire(float throwAccel, float throwTurn)
+	public void Move(float throwAccel, float throwTurn)
 	{
 		// Clamp input values
-		throwTurn = Mathf.Clamp(throwTurn, -1.0f, 1.0f);
 		throwAccel = Mathf.Clamp(throwAccel, -1.0f, 1.0f);
+		throwTurn = Mathf.Clamp(throwTurn, -1.0f, 1.0f);
 
-		DriveWheels(throwAccel, throwTurn);
-	}
-
-	private void DriveWheels(float throwAccel, float throwTurn)
-	{
 		TurnBody(throwTurn, turnTorque);
-		for(int i = 0; i < wheels.Count; i++)
-		{
-			wheels[i].Accelerate(throwAccel, accelerationTorque);
-		}
+		DriveWheels(throwAccel, throwTurn);
 	}
 
 	private void TurnBody(float throwTurn, float torqueAmount)
@@ -62,6 +58,13 @@ public class MechaController : MonoBehaviour
 		mainRigidBody.AddTorque(rotationVelocity, ForceMode.Force);
 	}
 
+	private void DriveWheels(float throwAccel, float throwTurn)
+	{
+		for(int i = 0; i < wheels.Count; i++)
+		{
+			wheels[i].Accelerate(throwAccel, accelerationTorque);
+		}
+	}
 
 	public void FirePrimaryWeapon()
 	{
@@ -77,5 +80,25 @@ public class MechaController : MonoBehaviour
 			return;
 
 		m_RightWeapon.OnFire();
+	}
+
+	public override void OnPause()
+	{
+		if(mainRigidBody)
+		{
+			savedAngularVelocity = mainRigidBody.angularVelocity;
+			savedVelocity = mainRigidBody.velocity;
+			mainRigidBody.isKinematic = true;
+		}
+	}
+
+	public override void OnResume()
+	{
+		if(mainRigidBody)
+		{
+			mainRigidBody.isKinematic = false;
+			mainRigidBody.velocity = savedVelocity;
+			mainRigidBody.angularVelocity = savedAngularVelocity;
+		}
 	}
 }

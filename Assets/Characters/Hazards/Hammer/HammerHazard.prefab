@@ -424,6 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hammer: {fileID: 7320045667627790742}
+  hazardTrigger: {fileID: 7320045666408309122}
   fallAngle: 85
   fallSteps: 40
   cooldownSteps: 120

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [SelectionBase]
-public class PistonHazard : MonoBehaviour
+public class PistonHazard : GameTimeObject
 {
 	enum HazardState
 	{
@@ -13,6 +13,7 @@ public class PistonHazard : MonoBehaviour
 	};
 
 	// Configurable Parameters
+	[SerializeField] BoxCollider hazardTrigger = null;
 	[SerializeField] Vector3 pistonTravelVector = new Vector3(0.0f, 2.0f, 0.0f);
 	[SerializeField] float extendSteps = 20;
 	[SerializeField] float retractSteps = 20;
@@ -28,7 +29,6 @@ public class PistonHazard : MonoBehaviour
 	// State variables
 	HazardState hazardState = HazardState.Ready;
 	Vector3 initialPosition;
-	bool isPaused = false;
 
 	private void Awake()
 	{
@@ -39,14 +39,10 @@ public class PistonHazard : MonoBehaviour
 	private void Start()
     {
 		initialPosition = transform.position;
-		//AssignGameModeDelegates();
 	}
 
 	private void FixedUpdate()
 	{
-		if(isPaused)
-			return;
-
 		switch(hazardState)
 		{
 			case HazardState.Firing:
@@ -127,23 +123,31 @@ public class PistonHazard : MonoBehaviour
 		audioSource.Play();
 	}
 
-	private void AssignGameModeDelegates()
+	public override void OnPause()
 	{
-		GameModeLogic gameModeLogic = FindObjectOfType<GameModeLogic>();
-		if(gameModeLogic)
-		{
-			gameModeLogic.onPause += OnPause;
-			gameModeLogic.onResume += OnResume;
-		}
+		// Disable Update() and FixedUpdate()
+		this.enabled = false;
+
+		// Disable trigger volume
+		if(hazardTrigger)
+			hazardTrigger.enabled = false;
+
+		// Pause Audio
+		if(audioSource && audioSource.isPlaying)
+			audioSource.Pause();
 	}
 
-	private void OnPause()
+	public override void OnResume()
 	{
-		isPaused = true;
-	}
+		// Enable Update() and FixedUpdate()
+		this.enabled = true;
 
-	private void OnResume()
-	{
-		isPaused = false;
+		// Enable trigger volume
+		if(hazardTrigger)
+			hazardTrigger.enabled = true;
+
+		// Resume Audio
+		if(audioSource)
+			audioSource.UnPause();
 	}
 }

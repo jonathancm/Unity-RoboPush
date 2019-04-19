@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelBody: {fileID: 6275474024929167860}
+  springBody: {fileID: 2077542039830938229}
   maxWheelRPM: 500
 --- !u!1 &6596533762814495807
 GameObject:

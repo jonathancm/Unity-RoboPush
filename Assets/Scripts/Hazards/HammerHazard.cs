@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HammerHazard : MonoBehaviour
+public class HammerHazard : GameTimeObject
 {
 	enum HazardState
 	{
@@ -13,6 +13,7 @@ public class HammerHazard : MonoBehaviour
 
 	// Configurable Parameters
 	[SerializeField] GameObject hammer = null;
+	[SerializeField] BoxCollider hazardTrigger = null;
 	[SerializeField] float fallAngle = 85.0f;
 	[SerializeField] float fallSteps = 40;
 	[SerializeField] float cooldownSteps = 40;
@@ -27,7 +28,6 @@ public class HammerHazard : MonoBehaviour
 	// State variables
 	HazardState hazardState = HazardState.Ready;
 	Quaternion initialRotation;
-	bool isPaused = false;
 
 	private void Awake()
 	{
@@ -36,16 +36,8 @@ public class HammerHazard : MonoBehaviour
 		damageDealer = GetComponent<DamageDealer>();
 	}
 
-	private void Start()
-	{
-		//AssignGameModeDelegates();
-	}
-
 	private void FixedUpdate()
 	{
-		if(isPaused)
-			return;
-
 		switch(hazardState)
 		{
 			case HazardState.Firing:
@@ -126,23 +118,31 @@ public class HammerHazard : MonoBehaviour
 		audioSource.Play();
 	}
 
-	private void AssignGameModeDelegates()
+	public override void OnPause()
 	{
-		GameModeLogic gameModeLogic = FindObjectOfType<GameModeLogic>();
-		if(gameModeLogic)
-		{
-			gameModeLogic.onPause += OnPause;
-			gameModeLogic.onResume += OnResume;
-		}
+		// Disable Update() and FixedUpdate()
+		this.enabled = false;
+
+		// Disable trigger volume
+		if(hazardTrigger)
+			hazardTrigger.enabled = false;
+
+		// Pause Audio
+		if(audioSource && audioSource.isPlaying)
+			audioSource.Pause();
 	}
 
-	private void OnPause()
+	public override void OnResume()
 	{
-		isPaused = true;
-	}
+		// Enable Update() and FixedUpdate()
+		this.enabled = true;
 
-	private void OnResume()
-	{
-		isPaused = false;
+		// Enable trigger volume
+		if(hazardTrigger)
+			hazardTrigger.enabled = true;
+
+		// Resume Audio
+		if(audioSource)
+			audioSource.UnPause();
 	}
 }
