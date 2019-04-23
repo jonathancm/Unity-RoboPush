@@ -2060,6 +2060,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b02ea957d87a71c4e99306ee445828ca, type: 3}
+--- !u!114 &955494812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7709389582115613033, guid: b02ea957d87a71c4e99306ee445828ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 955494811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164ed310e3d24524f93ced8d9e4c246e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &990606452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4705,6 +4717,86 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4024762957008219424, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 955494812}
+    - target: {fileID: 4024762957008219424, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4024762956042693589, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474235028464983875, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474235028464983875, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2474235028464983875, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736449105865799455, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736449105865799455, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736449105865799455, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293378721531499250, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293378721531499250, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970379699770693770, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970379699770693770, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025646421822649027, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 955494812}
+    - target: {fileID: 5025646421822649027, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025646421822649027, guid: 75a231ae87510ca4da857dc719bc54bc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75a231ae87510ca4da857dc719bc54bc, type: 3}
 --- !u!1001 &4051218277045363683
@@ -4856,6 +4948,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameAppManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419517144517439429, guid: 5b21705ce4d6d4a4aa0479b7712bb07c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4419517144517439428, guid: 5b21705ce4d6d4a4aa0479b7712bb07c,
         type: 3}
@@ -5199,5 +5296,40 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 1889389652}
+    - target: {fileID: 7232850829055050400, guid: 3229e4312d493e5418ddbd72e0bd985e,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387907516799972953, guid: 3229e4312d493e5418ddbd72e0bd985e,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387907516799972953, guid: 3229e4312d493e5418ddbd72e0bd985e,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387907516799972953, guid: 3229e4312d493e5418ddbd72e0bd985e,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410167236047127307, guid: 3229e4312d493e5418ddbd72e0bd985e,
+        type: 3}
+      propertyPath: m_inputSource
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410167236047127307, guid: 3229e4312d493e5418ddbd72e0bd985e,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410167236047127307, guid: 3229e4312d493e5418ddbd72e0bd985e,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3229e4312d493e5418ddbd72e0bd985e, type: 3}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Rewired;
 
 public class GameAppManager : MonoBehaviour
@@ -28,15 +29,12 @@ public class GameAppManager : MonoBehaviour
 	public GameState GetGameState() { return gameState; }
 	public bool IsGamePaused() { return (gameState == GameState.Paused); }
 
-	public void SetGameMode(GameMode newGameMode)
-	{
-		gameMode = newGameMode;
-	}
-
 	private void Awake()
 	{
 		SetupSingleton();
 		sceneLoader = FindObjectOfType<SceneLoader>();
+		SceneManager.sceneLoaded += OnSceneLoaded;
+		SceneManager.activeSceneChanged += OnActiveSceneChanged;
 	}
 
 	private void SetupSingleton()
@@ -78,13 +76,11 @@ public class GameAppManager : MonoBehaviour
 		switch(gameState)
 		{
 			case GameState.Playing:
-				gameState = GameState.Paused;
-				PauseAllObjects();
+				PauseGame();
 				break;
 
 			case GameState.Paused:
-				gameState = GameState.Playing;
-				UnPauseAllObjects();
+				UnPauseGame();
 				break;
 
 			default:
@@ -93,10 +89,12 @@ public class GameAppManager : MonoBehaviour
 		startButton = false;
 	}
 
-	private void PauseAllObjects()
+	private void PauseGame()
 	{
 		if(!gameMode || gameMode.canBePaused != true)
 			return;
+
+		gameState = GameState.Paused;
 
 		GameTimeObject[] timedOjects = FindObjectsOfType<GameTimeObject>();
 		foreach(var timedObject in timedOjects)
@@ -105,15 +103,39 @@ public class GameAppManager : MonoBehaviour
 		}
 	}
 
-	private void UnPauseAllObjects()
+	private void UnPauseGame()
 	{
 		if(!gameMode || gameMode.canBePaused != true)
 			return;
+
+		gameState = GameState.Playing;
 
 		GameTimeObject[] timedOjects = FindObjectsOfType<GameTimeObject>();
 		foreach(var timedObject in timedOjects)
 		{
 			timedObject.OnResume();
 		}
+	}
+
+	// TODO: Should this be placed in SceneLoader instead?
+	public void OnActiveSceneChanged(Scene current, Scene next)
+	{
+		ClearGameMode();
+	}
+
+	// TODO: Should this be placed in SceneLoader instead?
+	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		SetGameMode();
+	}
+
+	private void SetGameMode()
+	{
+		gameMode = FindObjectOfType<GameMode>();
+	}
+
+	private void ClearGameMode()
+	{
+		gameMode = null;
 	}
 }

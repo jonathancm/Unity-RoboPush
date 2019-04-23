@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CanvasLoadingScreen : MonoBehaviour
 {
 	// Configurable Parameters
 	[SerializeField] Image loadingBarForeground = null;
-	[SerializeField] Text textLoadingPercent = null;
+	[SerializeField] TextMeshProUGUI textLoadingPercent = null;
 
 	// Singleton interface
 	public static CanvasLoadingScreen instance = null;

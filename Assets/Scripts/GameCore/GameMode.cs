@@ -9,13 +9,4 @@ public class GameMode : MonoBehaviour
 	public bool canBePaused = false;
 	public bool isTimed = false;
 	public float timeLimitInSeconds = 0.0f;
-
-	// Cached references
-	GameAppManager gameAppManager = null;
-
-	private void Awake()
-	{
-		gameAppManager = FindObjectOfType<GameAppManager>();
-		gameAppManager.SetGameMode(this);
-	}
 }
