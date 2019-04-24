@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameMap_FlatArena.unity
     guid: e4f200f47b0a04a499c61c2c06ce7472
+  - enabled: 1
+    path: Assets/Scenes/Menu_MainSettingsVideo.unity
+    guid: b6f06cb3a17e63840bea649b22c630dd
+  - enabled: 1
+    path: Assets/Scenes/Menu_MainSettingsAudio.unity
+    guid: 0f0697438964c7442bb38d082cf0f125
+  - enabled: 1
+    path: Assets/Scenes/Menu_MainSettingsControls.unity
+    guid: c6273e39994b86b488944199c3afbde4
   m_configObjects: {}

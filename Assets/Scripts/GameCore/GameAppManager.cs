@@ -13,8 +13,6 @@ public class GameAppManager : MonoBehaviour
 		Over
 	};
 
-	public static GameAppManager instance = null;
-
 	// Cached References
 	SceneLoader sceneLoader = null;
 	GameMode gameMode = null;
@@ -31,24 +29,9 @@ public class GameAppManager : MonoBehaviour
 
 	private void Awake()
 	{
-		SetupSingleton();
 		sceneLoader = FindObjectOfType<SceneLoader>();
 		SceneManager.sceneLoaded += OnSceneLoaded;
 		SceneManager.activeSceneChanged += OnActiveSceneChanged;
-	}
-
-	private void SetupSingleton()
-	{
-		if(instance == null)
-		{
-			instance = this;
-			DontDestroyOnLoad(gameObject);
-		}
-		else if(instance != this)
-		{
-			gameObject.SetActive(false);
-			Destroy(gameObject);
-		}
 	}
 
 	void Start()
@@ -89,7 +72,7 @@ public class GameAppManager : MonoBehaviour
 		startButton = false;
 	}
 
-	private void PauseGame()
+	public void PauseGame()
 	{
 		if(!gameMode || gameMode.canBePaused != true)
 			return;
@@ -103,7 +86,7 @@ public class GameAppManager : MonoBehaviour
 		}
 	}
 
-	private void UnPauseGame()
+	public void UnPauseGame()
 	{
 		if(!gameMode || gameMode.canBePaused != true)
 			return;

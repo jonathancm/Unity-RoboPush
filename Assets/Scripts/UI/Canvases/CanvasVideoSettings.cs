@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamepadButton : MonoBehaviour
+public class CanvasVideoSettings : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
