@@ -101,4 +101,9 @@ public class MechaController : GameTimeObject
 			mainRigidBody.angularVelocity = savedAngularVelocity;
 		}
 	}
+
+	public override void OnGameOver()
+	{
+		// Nothing special
+	}
 }

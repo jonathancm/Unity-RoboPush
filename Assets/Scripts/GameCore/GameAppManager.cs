@@ -19,7 +19,6 @@ public class GameAppManager : MonoBehaviour
 
 	// State Variables
 	GameState gameState = GameState.Playing;
-	MechaController[] players = null; // Detect player death and trigger victory condition
 	Player player1Input = null;
 	Player player2Input = null;
 	bool startButton = false;
@@ -100,25 +99,31 @@ public class GameAppManager : MonoBehaviour
 		}
 	}
 
-	// TODO: Should this be placed in SceneLoader instead?
+	public void EndGame()
+	{
+		List<Health> remainingPlayers = new List<Health>();
+
+		gameState = GameState.Over;
+		GameTimeObject[] timedOjects = FindObjectsOfType<GameTimeObject>();
+		foreach(var timedObject in timedOjects)
+		{
+			timedObject.OnGameOver();
+		}
+	}
+
 	public void OnActiveSceneChanged(Scene current, Scene next)
 	{
-		ClearGameMode();
+		gameMode = null;
 	}
 
-	// TODO: Should this be placed in SceneLoader instead?
 	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
-		SetGameMode();
-	}
-
-	private void SetGameMode()
-	{
 		gameMode = FindObjectOfType<GameMode>();
+		gameState = GameState.Playing;
 	}
 
-	private void ClearGameMode()
+	public void ExitApplication()
 	{
-		gameMode = null;
+		Application.Quit();
 	}
 }

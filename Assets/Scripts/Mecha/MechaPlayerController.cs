@@ -79,4 +79,10 @@ public class MechaPlayerController : GameTimeObject
 	{
 		isGamePaused = false;
 	}
+
+	public override void OnGameOver()
+	{
+		// Stop getting player input
+		isGamePaused = true;
+	}
 }

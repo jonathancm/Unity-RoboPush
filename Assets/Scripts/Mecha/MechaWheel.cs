@@ -63,4 +63,9 @@ public class MechaWheel : GameTimeObject
 			wheelBody.angularVelocity = savedWheelAngularVelocity;
 		}
 	}
+
+	public override void OnGameOver()
+	{
+		// Nothing special
+	}
 }

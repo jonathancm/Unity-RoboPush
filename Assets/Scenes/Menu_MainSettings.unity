@@ -685,22 +685,27 @@ PrefabInstance:
     - target: {fileID: 5509334902362039429, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5509334902362039429, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5509334902362039429, guid: a298233d2ba2845419977e7881c8a99b,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5719110934390970529, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5719110934390970529, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3197390472004677414, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
@@ -750,32 +755,32 @@ PrefabInstance:
     - target: {fileID: 1078514063015102099, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1078514063015102099, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6442298308296778552, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6442298308296778552, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4874165445676914389, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4874165445676914389, guid: a298233d2ba2845419977e7881c8a99b,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a298233d2ba2845419977e7881c8a99b, type: 3}

@@ -150,4 +150,14 @@ public class PistonHazard : GameTimeObject
 		if(audioSource)
 			audioSource.UnPause();
 	}
+
+	public override void OnGameOver()
+	{
+		// Disable Update() and FixedUpdate()
+		this.enabled = false;
+
+		// Disable trigger volume
+		if(hazardTrigger)
+			hazardTrigger.enabled = false;
+	}
 }
