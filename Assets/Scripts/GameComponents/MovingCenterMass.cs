@@ -7,15 +7,17 @@ public class MovingCenterMass : MonoBehaviour
 	// Configurable Parameters
 	[Header("Setup")]
 	[SerializeField] Rigidbody mainRigidBody = null;
-	[SerializeField] Transform centerOfMassLow = null;
 	[SerializeField] Transform centerOfMassHigh = null;
 	[SerializeField] float kickBackSpeed = 0.5f;
 	[SerializeField] float settleBackSpeed = 0.5f;
 
-	private void Awake()
+	// State variable
+	Vector3 initialCenterOfMass;
+
+	private void Start()
 	{
-		if(mainRigidBody && centerOfMassLow)
-			mainRigidBody.centerOfMass = centerOfMassLow.localPosition;
+		if(mainRigidBody)
+			initialCenterOfMass = mainRigidBody.centerOfMass;
 	}
 
     void Update()
@@ -25,13 +27,13 @@ public class MovingCenterMass : MonoBehaviour
 
 	void SettleBackCenterOfMass()
 	{
-		if(!mainRigidBody || !centerOfMassLow)
+		if(!mainRigidBody)
 			return;
 
-		if(mainRigidBody.centerOfMass == centerOfMassLow.localPosition)
+		if(mainRigidBody.centerOfMass == initialCenterOfMass)
 			return;
 
-		mainRigidBody.centerOfMass = Vector3.MoveTowards(mainRigidBody.centerOfMass, centerOfMassLow.localPosition, settleBackSpeed * Time.deltaTime);
+		mainRigidBody.centerOfMass = Vector3.MoveTowards(mainRigidBody.centerOfMass, initialCenterOfMass, settleBackSpeed * Time.deltaTime);
 	}
 
 	public void KickBackCenterOfMass()

@@ -13,10 +13,11 @@ public class MechaController : GameTimeObject
 	[Header("Movement")]
 	[SerializeField] List<MechaWheel> wheels = null;
 	[SerializeField] float accelerationTorque = 3000.0f;
-	[SerializeField] float turnTorque = 450.0f;
+	[SerializeField] float turnSpeed = 5.0f;
 
 	[Header("Physics")]
 	[SerializeField] Rigidbody mainRigidBody = null;
+	[SerializeField] Transform centerOfMass = null;
 
 	// State variables
 	Vector3 savedVelocity;
@@ -24,6 +25,9 @@ public class MechaController : GameTimeObject
 
 	private void Awake()
 	{
+		if(mainRigidBody && centerOfMass)
+			mainRigidBody.centerOfMass = centerOfMass.localPosition;
+
 		IgnoreSelfCollisions();
 	}
 
@@ -45,20 +49,24 @@ public class MechaController : GameTimeObject
 		throwAccel = Mathf.Clamp(throwAccel, -1.0f, 1.0f);
 		throwTurn = Mathf.Clamp(throwTurn, -1.0f, 1.0f);
 
-		TurnBody(throwTurn, turnTorque);
-		DriveWheels(throwAccel, throwTurn);
+		TurnBody(throwTurn);
+		DriveWheels(throwAccel);
 	}
 
-	private void TurnBody(float throwTurn, float torqueAmount)
+	private void TurnBody(float throwTurn)
 	{
 		if(!mainRigidBody)
 			return;
 
-		Vector3 rotationVelocity = transform.up * throwTurn * torqueAmount;
-		mainRigidBody.AddTorque(rotationVelocity, ForceMode.Force);
+		Vector3 rotationVelocity = mainRigidBody.transform.up * throwTurn * turnSpeed;
+		mainRigidBody.AddTorque(rotationVelocity, ForceMode.VelocityChange);
+
+		//Quaternion baseRotation = mainRigidBody.transform.rotation;
+		//Quaternion deltaRotation = Quaternion.Euler(mainRigidBody.transform.up * throwTurn * turnSpeed * Time.fixedDeltaTime);
+		//mainRigidBody.MoveRotation(deltaRotation * baseRotation);
 	}
 
-	private void DriveWheels(float throwAccel, float throwTurn)
+	private void DriveWheels(float throwAccel)
 	{
 		for(int i = 0; i < wheels.Count; i++)
 		{
