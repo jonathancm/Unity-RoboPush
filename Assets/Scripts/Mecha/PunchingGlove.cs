@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PunchingGlove : MechaWeapon
 {
-	// TODO: Derive this class from GameTimeObject
 	enum WeaponState
 	{
 		Ready,
@@ -15,14 +14,19 @@ public class PunchingGlove : MechaWeapon
 	};
 
 	// Configurable Parameters
+	[Header("Setup")]
+	[SerializeField] Rigidbody mainRigidBody = null;
+
+	[Header("Animation")]
 	[SerializeField] float coolDownPeriodInSeconds = 1.5f;
 	[SerializeField] float punchingArmLength = 0.85f;
-	[Range(0.001f, 1.0f)] [SerializeField] float punchExtensionSteps = 0.1f;
+	[SerializeField] [Range(0.001f, 1.0f)] float punchExtensionSteps = 0.1f;
+	[SerializeField] PunchingGloveEmission emissionController = null;
 
 	[Header("Physics")]
 	[SerializeField] float knockbackStrength = 100.0f;
+	[SerializeField] float chargedKnockbackStrength = 250.0f;
 	[SerializeField] float recoilStrength = 50.0f;
-	[SerializeField] Rigidbody mainRigidBody = null;
 
 	[Header("Sound Effects")]
 	[SerializeField] AudioClip[] punchSounds = null;
@@ -31,39 +35,66 @@ public class PunchingGlove : MechaWeapon
 	// Cached References
 	AudioSource audioSource = null;
 	DamageDealer damageDealer = null;
+	Rigidbody gloveRigidbody = null;
 
 	// State variables
 	WeaponState weaponState = WeaponState.Ready;
 	Vector3 originalPosition;
 	float timeStamp = 0.0f;
+	bool isCharged = false;
+	float currentKnockbackStrength = 0.0f;
 
 	public override void OnFire()
 	{
 		if(weaponState == WeaponState.Ready)
+		{
+			currentKnockbackStrength = knockbackStrength;
 			weaponState = WeaponState.Firing;
+		}
+	}
+
+	public override void OnCharge()
+	{
+		isCharged = true;
+		emissionController.StartColorEmission();
+	}
+
+	public override void OnRelease()
+	{
+		if(!isCharged)
+			return;
+
+		if(weaponState == WeaponState.Ready)
+		{
+			currentKnockbackStrength = chargedKnockbackStrength;
+			weaponState = WeaponState.Firing;
+		}
+		isCharged = false;
+		emissionController.StopColorEmission();
 	}
 
 	private void Awake()
 	{
 		audioSource = GetComponent<AudioSource>();
 		damageDealer = GetComponent<DamageDealer>();
+		gloveRigidbody = GetComponent<Rigidbody>();
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		originalPosition = transform.parent.position;
 		switch(weaponState)
 		{
 			case WeaponState.Firing:
-				ExtendArm();
+				FiringRoutine();
 				break;
 
 			case WeaponState.Rearming:
-				RetractArm();
+				RearmingRoutine();
 				break;
 
 			case WeaponState.CoolingDown:
-				CoolDown();
+				CoolDownRoutine();
 				break;
 
 			default:
@@ -71,7 +102,7 @@ public class PunchingGlove : MechaWeapon
 		}
 	}
 
-	private void ExtendArm()
+	private void FiringRoutine()
 	{
 		Vector3 targetPosition = originalPosition + (punchingArmLength * transform.forward);
 
@@ -82,11 +113,11 @@ public class PunchingGlove : MechaWeapon
 		else
 		{
 			float maxDistanceStep = punchingArmLength / punchExtensionSteps;
-			transform.position = Vector3.MoveTowards(transform.position, targetPosition, maxDistanceStep * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, targetPosition, maxDistanceStep * Time.fixedDeltaTime);
 		}
 	}
 
-	private void RetractArm()
+	private void RearmingRoutine()
 	{
 		if(transform.position == originalPosition)
 		{
@@ -96,11 +127,11 @@ public class PunchingGlove : MechaWeapon
 		else
 		{
 			float maxDistanceStep = punchingArmLength / punchExtensionSteps;
-			transform.position = Vector3.MoveTowards(transform.position, originalPosition, maxDistanceStep * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, originalPosition, maxDistanceStep * Time.fixedDeltaTime);
 		}
 	}
 
-	private void CoolDown()
+	private void CoolDownRoutine()
 	{
 		if(timeStamp <= Time.time)
 		{
@@ -113,13 +144,27 @@ public class PunchingGlove : MechaWeapon
 	{
 		if(weaponState == WeaponState.Firing)
 		{
+			weaponState = WeaponState.Rearming;
+
 			CreatePhysicalImpact(other);
 			PlayPunchHitSound();
 
 			if(damageDealer)
 				damageDealer.DealDamage(other.gameObject);
+		}
+	}
 
+	private void OnCollisionStay(Collision other)
+	{
+		if(weaponState == WeaponState.Firing)
+		{
 			weaponState = WeaponState.Rearming;
+
+			CreatePhysicalImpact(other);
+			PlayPunchHitSound();
+
+			if(damageDealer)
+				damageDealer.DealDamage(other.gameObject);
 		}
 	}
 
@@ -127,10 +172,12 @@ public class PunchingGlove : MechaWeapon
 	{
 		Rigidbody otherBody = other.rigidbody;
 		if(otherBody)
-			otherBody.AddForceAtPosition(knockbackStrength * transform.forward, other.contacts[0].point, ForceMode.Impulse);
+			otherBody.AddForceAtPosition(currentKnockbackStrength * transform.forward, other.contacts[0].point, ForceMode.Impulse);
 
 		if(mainRigidBody)
 			mainRigidBody.AddForceAtPosition(recoilStrength * -transform.forward, other.contacts[0].point, ForceMode.Impulse);
+
+		currentKnockbackStrength = knockbackStrength;
 	}
 
 	private void PlayPunchHitSound()

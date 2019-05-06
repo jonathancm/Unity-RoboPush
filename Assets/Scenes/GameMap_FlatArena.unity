@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 18227069}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Stage Flat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 47628000}
   - component: {fileID: 47627999}
   - component: {fileID: 47627998}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: WallWest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -887,7 +887,7 @@ GameObject:
   - component: {fileID: 220132021}
   - component: {fileID: 220132020}
   - component: {fileID: 220132019}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: WallNorth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1053,7 @@ GameObject:
   - component: {fileID: 340775423}
   - component: {fileID: 340775422}
   - component: {fileID: 340775421}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: WallEast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1236,11 +1236,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8970630334268309808, guid: 30e1647a4358ffe4681d1a1cb4c9de9f,
-        type: 3}
-      propertyPath: turnTorque
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30e1647a4358ffe4681d1a1cb4c9de9f, type: 3}
@@ -2230,7 +2225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1086305633}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Stadium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3474,6 +3469,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5634265622564983332, guid: 211c1fb21f62ca24ebca49a810b52d47,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451919022194462556, guid: 211c1fb21f62ca24ebca49a810b52d47,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451919022194462556, guid: 211c1fb21f62ca24ebca49a810b52d47,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154293006878915108, guid: 211c1fb21f62ca24ebca49a810b52d47,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140243616455952423, guid: 211c1fb21f62ca24ebca49a810b52d47,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140243616455952423, guid: 211c1fb21f62ca24ebca49a810b52d47,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2554740876508123153, guid: 211c1fb21f62ca24ebca49a810b52d47,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2554740876508123153, guid: 211c1fb21f62ca24ebca49a810b52d47,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.375
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 211c1fb21f62ca24ebca49a810b52d47, type: 3}
 --- !u!1001 &1744423431
@@ -3824,7 +3859,7 @@ GameObject:
   - component: {fileID: 1810082868}
   - component: {fileID: 1810082867}
   - component: {fileID: 1810082866}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: WallSouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4030,7 +4065,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1906221721}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Arena Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4508,6 +4543,25 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!1 &2101562904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3086312588850302864, guid: ceb8cd10a389c2546bc8484603765173,
+    type: 3}
+  m_PrefabInstance: {fileID: 649896034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2101562906
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101562904}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2119438379
 PrefabInstance:
   m_ObjectHideFlags: 0

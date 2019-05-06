@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a08aca39ee79e234391f55c41f15b75c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -427,7 +427,9 @@ MonoBehaviour:
   hazardTrigger: {fileID: 7320045666408309122}
   fallAngle: 85
   fallSteps: 40
-  cooldownSteps: 120
+  rearmingSteps: 120
+  coolDownPeriodInSeconds: 1.5
+  knockbackStrength: 500
   hammerHitVolume: 0.7
 --- !u!114 &5050503188348920142
 MonoBehaviour:
@@ -441,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b5712373595da45a7c4c608a4d8939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 5
+  damageAmount: 7
 --- !u!1 &7320045668102767785
 GameObject:
   m_ObjectHideFlags: 0

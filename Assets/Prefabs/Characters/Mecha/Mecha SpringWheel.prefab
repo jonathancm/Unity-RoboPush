@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6275474024929167860}
   - component: {fileID: 5648923507051540004}
   - component: {fileID: 7631132211873280669}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 8676699401227131560}
   - component: {fileID: 2077542039830938229}
   - component: {fileID: 5689998058170557346}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.375, y: 0.15, z: -0.375}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -312,7 +312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5543234387577102597}
   - component: {fileID: 5482714933528871765}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mecha SpringWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ Transform:
   m_GameObject: {fileID: 6596533762814495807}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.875, y: 0.5, z: 0.5}
+  m_LocalScale: {x: -0.875, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 2685484987062827129}
   m_RootOrder: 0

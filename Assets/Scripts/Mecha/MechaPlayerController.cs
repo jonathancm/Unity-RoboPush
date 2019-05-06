@@ -23,8 +23,8 @@ public class MechaPlayerController : GameTimeObject
 	bool isGamePaused = false;
 	Player rewiredPlayer;
 	Vector2 throwMovement;
-	bool fire1;
-	bool fire2;
+	MechaWeapon.WeaponFunction fireLeft;
+	MechaWeapon.WeaponFunction fireRight;
 
 	public PlayerNumber GetAssignedPlayerNumber() { return playerNumber; }
 
@@ -48,25 +48,56 @@ public class MechaPlayerController : GameTimeObject
 		throwMovement.x = rewiredPlayer.GetAxis("Turn");
 		throwMovement.y = rewiredPlayer.GetAxis("Accelerate");
 
-		fire1 = rewiredPlayer.GetButtonDown("Fire1");
-		fire2 = rewiredPlayer.GetButtonDown("Fire2");
+		if(rewiredPlayer.GetButtonLongPressUp("Fire1"))
+		{
+			fireLeft = MechaWeapon.WeaponFunction.Release;
+		}
+		else if(rewiredPlayer.GetButtonLongPressDown("Fire1"))
+		{
+			fireLeft = MechaWeapon.WeaponFunction.Charge;
+		}
+		else if(rewiredPlayer.GetButtonShortPressDown("Fire1"))
+		{
+			fireLeft = MechaWeapon.WeaponFunction.Fire;
+		}
+		else
+		{
+			fireLeft = MechaWeapon.WeaponFunction.None;
+		}
+
+		if(rewiredPlayer.GetButtonLongPressUp("Fire2"))
+		{
+			fireRight = MechaWeapon.WeaponFunction.Release;
+		}
+		else if(rewiredPlayer.GetButtonLongPressDown("Fire2"))
+		{
+			fireRight = MechaWeapon.WeaponFunction.Charge;
+		}
+		else if(rewiredPlayer.GetButtonShortPressDown("Fire2"))
+		{
+			fireRight = MechaWeapon.WeaponFunction.Fire;
+		}
+		else
+		{
+			fireRight = MechaWeapon.WeaponFunction.None;
+		}
 	}
 
 	private void ProcessMechaInput()
 	{
 		if(throwMovement.magnitude > 0.0f)
-			m_MechaController.Move(throwMovement.normalized.y, throwMovement.normalized.x);
+			m_MechaController.Move(throwMovement.y, throwMovement.x);
 
-		if(fire1)
+		if(fireLeft != MechaWeapon.WeaponFunction.None)
 		{
-			m_MechaController.FirePrimaryWeapon();
-			fire1 = false;
+			m_MechaController.FireLeftWeapon(fireLeft);
+			fireLeft = MechaWeapon.WeaponFunction.None;
 		}
 
-		if(fire2)
+		if(fireRight != MechaWeapon.WeaponFunction.None)
 		{
-			m_MechaController.FireSecondaryWeapon();
-			fire2 = false;
+			m_MechaController.FireRightWeapon(fireRight);
+			fireRight = MechaWeapon.WeaponFunction.None;
 		}
 	}
 

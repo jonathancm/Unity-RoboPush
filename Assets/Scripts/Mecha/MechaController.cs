@@ -74,20 +74,46 @@ public class MechaController : GameTimeObject
 		}
 	}
 
-	public void FirePrimaryWeapon()
+	public void FireLeftWeapon(MechaWeapon.WeaponFunction function)
 	{
 		if(!m_LeftWeapon)
 			return;
 
-		m_LeftWeapon.OnFire();
+		switch(function)
+		{
+			case MechaWeapon.WeaponFunction.Fire:
+				m_LeftWeapon.OnFire();
+				break;
+
+			case MechaWeapon.WeaponFunction.Charge:
+				m_LeftWeapon.OnCharge();
+				break;
+
+			case MechaWeapon.WeaponFunction.Release:
+				m_LeftWeapon.OnRelease();
+				break;
+		}
 	}
 
-	public void FireSecondaryWeapon()
+	public void FireRightWeapon(MechaWeapon.WeaponFunction function)
 	{
 		if(!m_RightWeapon)
 			return;
 
-		m_RightWeapon.OnFire();
+		switch(function)
+		{
+			case MechaWeapon.WeaponFunction.Fire:
+				m_RightWeapon.OnFire();
+				break;
+
+			case MechaWeapon.WeaponFunction.Charge:
+				m_RightWeapon.OnCharge();
+				break;
+
+			case MechaWeapon.WeaponFunction.Release:
+				m_RightWeapon.OnRelease();
+				break;
+		}
 	}
 
 	public override void OnPause()

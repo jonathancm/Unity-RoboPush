@@ -8,15 +8,23 @@ public class HammerHazard : GameTimeObject
 	{
 		Ready,
 		Firing,
+		Rearming,
 		CoolingDown
 	};
 
 	// Configurable Parameters
+	[Header("Setup")]
 	[SerializeField] GameObject hammer = null;
 	[SerializeField] BoxCollider hazardTrigger = null;
+
+	[Header("Animation")]
 	[SerializeField] float fallAngle = 85.0f;
 	[SerializeField] float fallSteps = 40;
-	[SerializeField] float cooldownSteps = 40;
+	[SerializeField] float rearmingSteps = 120;
+	[SerializeField] float coolDownPeriodInSeconds = 1.5f;
+
+	[Header("Physics")]
+	[SerializeField] float knockbackStrength = 100.0f;
 
 	[Header("Sound Effect")]
 	[SerializeField] float hammerHitVolume = 0.5f;
@@ -28,6 +36,7 @@ public class HammerHazard : GameTimeObject
 	// State variables
 	HazardState hazardState = HazardState.Ready;
 	Quaternion initialRotation;
+	float timeStamp = 0.0f;
 
 	private void Awake()
 	{
@@ -44,8 +53,12 @@ public class HammerHazard : GameTimeObject
 				FireHammer();
 				break;
 
-			case HazardState.CoolingDown:
+			case HazardState.Rearming:
 				RetractHammer();
+				break;
+
+			case HazardState.CoolingDown:
+				CoolDown();
 				break;
 
 			default:
@@ -60,7 +73,7 @@ public class HammerHazard : GameTimeObject
 
 		if(IsSameRotation(currentRotation, targetRotation))
 		{
-			hazardState = HazardState.CoolingDown;
+			hazardState = HazardState.Rearming;
 		}
 		else
 		{
@@ -75,11 +88,12 @@ public class HammerHazard : GameTimeObject
 
 		if(IsSameRotation(currentRotation, initialRotation))
 		{
-			hazardState = HazardState.Ready;
+			timeStamp = Time.time + coolDownPeriodInSeconds;
+			hazardState = HazardState.CoolingDown;
 		}
 		else
 		{
-			float maxStepDeltaDegrees = Mathf.Abs(fallAngle - initialRotation.eulerAngles.x) / cooldownSteps;
+			float maxStepDeltaDegrees = Mathf.Abs(fallAngle - initialRotation.eulerAngles.x) / rearmingSteps;
 			hammer.transform.rotation = Quaternion.RotateTowards(currentRotation, initialRotation, maxStepDeltaDegrees);
 		}
 	}
@@ -87,6 +101,15 @@ public class HammerHazard : GameTimeObject
 	private bool IsSameRotation(Quaternion q1, Quaternion q2)
 	{
 		return (Quaternion.Angle(q1, q2) < 0.001f);
+	}
+
+	private void CoolDown()
+	{
+		if(timeStamp <= Time.time)
+		{
+			timeStamp = 0.0f;
+			hazardState = HazardState.Ready;
+		}
 	}
 
 	private void OnTriggerStay(Collider other)
@@ -101,9 +124,13 @@ public class HammerHazard : GameTimeObject
 		if(hazardState != HazardState.Firing)
 			return;
 
+		CreatePhysicalImpact(collision);
 		PlayHammerHitSound();
+
 		if(damageDealer)
 			damageDealer.DealDamage(collision.gameObject);
+
+		hazardState = HazardState.Rearming;
 	}
 
 	private void PlayHammerHitSound()
@@ -116,6 +143,13 @@ public class HammerHazard : GameTimeObject
 
 		audioSource.volume = hammerHitVolume;
 		audioSource.Play();
+	}
+
+	private void CreatePhysicalImpact(Collision other)
+	{
+		Rigidbody otherBody = other.rigidbody;
+		if(otherBody && hammer)
+			otherBody.AddForceAtPosition(knockbackStrength * hammer.transform.forward, other.contacts[0].point, ForceMode.Impulse);
 	}
 
 	public override void OnPause()
