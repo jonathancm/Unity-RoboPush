@@ -23,6 +23,9 @@ public class HammerHazard : GameTimeObject
 	[SerializeField] float rearmingSteps = 120;
 	[SerializeField] float coolDownPeriodInSeconds = 1.5f;
 
+	[Header("Damage")]
+	[SerializeField] float damageAmount = 7.0f;
+
 	[Header("Physics")]
 	[SerializeField] float knockbackStrength = 100.0f;
 
@@ -128,7 +131,7 @@ public class HammerHazard : GameTimeObject
 		PlayHammerHitSound();
 
 		if(damageDealer)
-			damageDealer.DealDamage(collision.gameObject);
+			damageDealer.DealDamage(collision.gameObject, damageAmount, false);
 
 		hazardState = HazardState.Rearming;
 	}
@@ -152,6 +155,9 @@ public class HammerHazard : GameTimeObject
 			otherBody.AddForceAtPosition(knockbackStrength * hammer.transform.forward, other.contacts[0].point, ForceMode.Impulse);
 	}
 
+	/// <summary>
+	/// Pause game object activity.
+	/// </summary>
 	public override void OnPause()
 	{
 		// Disable Update() and FixedUpdate()
@@ -166,6 +172,9 @@ public class HammerHazard : GameTimeObject
 			audioSource.Pause();
 	}
 
+	/// <summary>
+	/// Un-pause game object activity.
+	/// </summary>
 	public override void OnResume()
 	{
 		// Enable Update() and FixedUpdate()
@@ -180,6 +189,9 @@ public class HammerHazard : GameTimeObject
 			audioSource.UnPause();
 	}
 
+	/// <summary>
+	/// Prepare game object for game end.
+	/// </summary>
 	public override void OnGameOver()
 	{
 		// Disable Update() and FixedUpdate()

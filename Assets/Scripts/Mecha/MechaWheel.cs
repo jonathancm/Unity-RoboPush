@@ -21,15 +21,22 @@ public class MechaWheel : GameTimeObject
 			wheelBody.maxAngularVelocity = (2.0f * Mathf.PI) * (maxWheelRPM / 60.0f);
 	}
 
-	public void Accelerate(float throwAccel, float torqueAmount)
+	/// <summary>
+	/// Rotate wheel to generate vehicle acceleration.
+	/// </summary>
+	/// <param name="torqueAmount">Amount of torque provided by motor. More torque means more movement power.</param>
+	public void Accelerate(float torqueAmount)
 	{
-		if(wheelBody && throwAccel == 0.0f)
+		if(!wheelBody || torqueAmount == 0.0f)
 			return;
 
-		Vector3 torqueForce = throwAccel * torqueAmount * wheelBody.transform.right;
+		Vector3 torqueForce = torqueAmount * wheelBody.transform.right;
 		wheelBody.AddTorque(torqueForce, ForceMode.Force);
 	}
 
+	/// <summary>
+	/// Pause game object activity.
+	/// </summary>
 	public override void OnPause()
 	{
 		if(springBody)
@@ -47,6 +54,9 @@ public class MechaWheel : GameTimeObject
 		}
 	}
 
+	/// <summary>
+	/// Un-pause game object activity.
+	/// </summary>
 	public override void OnResume()
 	{
 		if(springBody)
@@ -64,6 +74,9 @@ public class MechaWheel : GameTimeObject
 		}
 	}
 
+	/// <summary>
+	/// Prepare game object for game end.
+	/// </summary>
 	public override void OnGameOver()
 	{
 		// Nothing special

@@ -36,18 +36,23 @@ public class MechaPlayerController : GameTimeObject
 
 	private void FixedUpdate()
 	{
-		if(!m_MechaController || isGamePaused) { return; }
+		if(!m_MechaController) { return; }
 		if(!ReInput.isReady) { return; }
 
-		GetPlayerInput();
-		ProcessMechaInput();
+		if(!isGamePaused)
+		{
+			GetPlayerInput();
+			ProcessMechaInput();
+		}
 	}
 
 	private void GetPlayerInput()
 	{
+		// Movement input
 		throwMovement.x = rewiredPlayer.GetAxis("Turn");
 		throwMovement.y = rewiredPlayer.GetAxis("Accelerate");
 
+		// Left weapon input
 		if(rewiredPlayer.GetButtonLongPressUp("Fire1"))
 		{
 			fireLeft = MechaWeapon.WeaponFunction.Release;
@@ -65,6 +70,7 @@ public class MechaPlayerController : GameTimeObject
 			fireLeft = MechaWeapon.WeaponFunction.None;
 		}
 
+		// Right weapon input
 		if(rewiredPlayer.GetButtonLongPressUp("Fire2"))
 		{
 			fireRight = MechaWeapon.WeaponFunction.Release;
@@ -85,15 +91,18 @@ public class MechaPlayerController : GameTimeObject
 
 	private void ProcessMechaInput()
 	{
+		// Movement
 		if(throwMovement.magnitude > 0.0f)
 			m_MechaController.Move(throwMovement.y, throwMovement.x);
 
+		// Left weapon
 		if(fireLeft != MechaWeapon.WeaponFunction.None)
 		{
 			m_MechaController.FireLeftWeapon(fireLeft);
 			fireLeft = MechaWeapon.WeaponFunction.None;
 		}
 
+		// Right weapon
 		if(fireRight != MechaWeapon.WeaponFunction.None)
 		{
 			m_MechaController.FireRightWeapon(fireRight);
@@ -101,19 +110,27 @@ public class MechaPlayerController : GameTimeObject
 		}
 	}
 
+	/// <summary>
+	/// Pause game object activity.
+	/// </summary>
 	public override void OnPause()
 	{
 		isGamePaused = true;
 	}
 
+	/// <summary>
+	/// Un-pause game object activity.
+	/// </summary>
 	public override void OnResume()
 	{
 		isGamePaused = false;
 	}
 
+	/// <summary>
+	/// Prepare game object for game end.
+	/// </summary>
 	public override void OnGameOver()
 	{
-		// Stop getting player input
 		isGamePaused = true;
 	}
 }

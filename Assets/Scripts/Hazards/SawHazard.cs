@@ -6,8 +6,14 @@ using UnityEngine;
 public class SawHazard : GameTimeObject
 {
 	// Configurable Parameters
+	[Header("Setup")]
 	[SerializeField] GameObject sawMesh = null;
 	[SerializeField] BoxCollider hazardTrigger = null;
+
+	[Header("Damage")]
+	[SerializeField] float damageAmount = 0.7f;
+
+	[Header("Animation")]
 	[SerializeField] float cosmeticTurnsPerSecond = 1.0f;
 	[SerializeField] float cuttingForce = 30.0f;
 
@@ -49,7 +55,7 @@ public class SawHazard : GameTimeObject
 		PlaySawHitSound();
 
 		if(damageDealer)
-			damageDealer.DealDamage(other.gameObject);
+			damageDealer.DealDamage(other.gameObject, damageAmount, false);
 	}
 
 	private void PlayParticleEffect()
@@ -70,6 +76,9 @@ public class SawHazard : GameTimeObject
 		audioSource.Play();
 	}
 
+	/// <summary>
+	/// Pause game object activity.
+	/// </summary>
 	public override void OnPause()
 	{
 		// Disable Update() and FixedUpdate()
@@ -88,6 +97,9 @@ public class SawHazard : GameTimeObject
 			audioSource.Pause();
 	}
 
+	/// <summary>
+	/// Un-pause game object activity.
+	/// </summary>
 	public override void OnResume()
 	{
 		// Enable Update()
@@ -106,6 +118,9 @@ public class SawHazard : GameTimeObject
 			audioSource.UnPause();
 	}
 
+	/// <summary>
+	/// Prepare game object for game end.
+	/// </summary>
 	public override void OnGameOver()
 	{
 		// Disable Update() and FixedUpdate()

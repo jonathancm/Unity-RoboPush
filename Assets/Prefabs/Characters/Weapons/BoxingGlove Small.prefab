@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1241506c2b9d31f4f8e2c0d5b291a83d, type: 2}
+  - {fileID: 2100000, guid: c1c6e307ef6e79b44bf5da071b7aff9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 5900006246026578910}
   - component: {fileID: 8228501171590063419}
   - component: {fileID: 4619657339974424731}
+  - component: {fileID: 5981030845282583792}
   m_Layer: 9
   m_Name: BoxingGlove Small
   m_TagString: Untagged
@@ -329,11 +330,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e827960ac8f9818429bcaf7455d56cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainRigidBody: {fileID: 0}
+  normalDamage: 1
+  chargedDamage: 3
+  emissionController: {fileID: 4571166218187304581}
   coolDownPeriodInSeconds: 0
   punchingArmLength: 1.5
   punchExtensionSteps: 0.1
-  emissionController: {fileID: 4571166218187304581}
+  mainRigidBody: {fileID: 0}
   knockbackStrength: 80
   chargedKnockbackStrength: 250
   recoilStrength: 60
@@ -353,7 +356,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b5712373595da45a7c4c608a4d8939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+--- !u!95 &5981030845282583792
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4394855445483779870}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8bf64e12730708c4baa997e488963c6e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8231575135551796248
 GameObject:
   m_ObjectHideFlags: 0

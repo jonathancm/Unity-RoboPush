@@ -13,7 +13,13 @@ public class PistonHazard : GameTimeObject
 	};
 
 	// Configurable Parameters
+	[Header("Setup")]
 	[SerializeField] BoxCollider hazardTrigger = null;
+
+	[Header("Damage")]
+	[SerializeField] float damageAmount = 0.0f;
+
+	[Header("Animation")]
 	[SerializeField] Vector3 pistonTravelVector = new Vector3(0.0f, 2.0f, 0.0f);
 	[SerializeField] float extendSteps = 20;
 	[SerializeField] float retractSteps = 20;
@@ -101,7 +107,7 @@ public class PistonHazard : GameTimeObject
 			return;
 
 		if(damageDealer)
-			damageDealer.DealDamage(other.gameObject);
+			damageDealer.DealDamage(other.gameObject, damageAmount, false);
 	}
 
 	private void Fire()
@@ -123,6 +129,9 @@ public class PistonHazard : GameTimeObject
 		audioSource.Play();
 	}
 
+	/// <summary>
+	/// Pause game object activity.
+	/// </summary>
 	public override void OnPause()
 	{
 		// Disable Update() and FixedUpdate()
@@ -137,6 +146,9 @@ public class PistonHazard : GameTimeObject
 			audioSource.Pause();
 	}
 
+	/// <summary>
+	/// Un-pause game object activity.
+	/// </summary>
 	public override void OnResume()
 	{
 		// Enable Update() and FixedUpdate()
@@ -151,6 +163,9 @@ public class PistonHazard : GameTimeObject
 			audioSource.UnPause();
 	}
 
+	/// <summary>
+	/// Prepare game object for game end.
+	/// </summary>
 	public override void OnGameOver()
 	{
 		// Disable Update() and FixedUpdate()

@@ -43,6 +43,11 @@ public class MechaController : GameTimeObject
 		}
 	}
 
+	/// <summary>
+	/// Connect player input into the movement controls.
+	/// </summary>
+	/// <param name="throwAccel">Amount of acceleration to apply. Provided by player input.</param>
+	/// <param name="throwAccel">Amount of turn to apply. Provided by player input.</param>
 	public void Move(float throwAccel, float throwTurn)
 	{
 		// Clamp input values
@@ -60,20 +65,20 @@ public class MechaController : GameTimeObject
 
 		Vector3 rotationVelocity = mainRigidBody.transform.up * throwTurn * turnSpeed;
 		mainRigidBody.AddTorque(rotationVelocity, ForceMode.VelocityChange);
-
-		//Quaternion baseRotation = mainRigidBody.transform.rotation;
-		//Quaternion deltaRotation = Quaternion.Euler(mainRigidBody.transform.up * throwTurn * turnSpeed * Time.fixedDeltaTime);
-		//mainRigidBody.MoveRotation(deltaRotation * baseRotation);
 	}
 
 	private void DriveWheels(float throwAccel)
 	{
 		for(int i = 0; i < wheels.Count; i++)
 		{
-			wheels[i].Accelerate(throwAccel, accelerationTorque);
+			wheels[i].Accelerate(throwAccel * accelerationTorque);
 		}
 	}
 
+	/// <summary>
+	/// Connect player input to the left weapon controls.
+	/// </summary>
+	/// <param name="function">Type of weapon action to perform.</param>
 	public void FireLeftWeapon(MechaWeapon.WeaponFunction function)
 	{
 		if(!m_LeftWeapon)
@@ -95,6 +100,10 @@ public class MechaController : GameTimeObject
 		}
 	}
 
+	/// <summary>
+	/// Connect player input to the right weapon controls.
+	/// </summary>
+	/// <param name="function">Type of weapon action to perform.</param>
 	public void FireRightWeapon(MechaWeapon.WeaponFunction function)
 	{
 		if(!m_RightWeapon)
@@ -116,6 +125,9 @@ public class MechaController : GameTimeObject
 		}
 	}
 
+	/// <summary>
+	/// Pause game object activity.
+	/// </summary>
 	public override void OnPause()
 	{
 		if(mainRigidBody)
@@ -126,6 +138,9 @@ public class MechaController : GameTimeObject
 		}
 	}
 
+	/// <summary>
+	/// Un-pause game object activity.
+	/// </summary>
 	public override void OnResume()
 	{
 		if(mainRigidBody)
@@ -136,6 +151,9 @@ public class MechaController : GameTimeObject
 		}
 	}
 
+	/// <summary>
+	/// Prepare game object for game end.
+	/// </summary>
 	public override void OnGameOver()
 	{
 		// Nothing special

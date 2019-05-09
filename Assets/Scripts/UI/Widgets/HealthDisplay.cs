@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Events;
 
 public class HealthDisplay : MonoBehaviour
 {
 	// Configurable Parameters
+	[Header("Setup")]
 	[SerializeField] Health playerHealth = null;
 	[SerializeField] GameObject healthBarLevel = null;
+	[SerializeField] TextMeshProUGUI healthText = null;
+
+	[Header("Layout")]
 	[SerializeField] float framePadding = 10.0f;
+
+	[Header("Colors")]
 	[SerializeField] Color healthColorHigh = Color.green;
 	[SerializeField] Color healthColorMid = Color.yellow;
 	[SerializeField] Color healthColorLow = Color.red;
@@ -49,6 +56,7 @@ public class HealthDisplay : MonoBehaviour
 	void Update()
     {
 		SetHealthBarLevelWidth();
+		SetHealthTextValue();
 	}
 
 	void SetHealthBarLevelWidth()
@@ -59,6 +67,14 @@ public class HealthDisplay : MonoBehaviour
 		float healthPercentage = playerHealth.GetCurrentHealth() / playerHealth.GetBaseMaxHealth();
 		float healthWidth = healthPercentage * healthBarStartSize.x;
 		healthBarLevelTransform.sizeDelta = new Vector2(healthWidth, healthBarStartSize.y);
+	}
+
+	void SetHealthTextValue()
+	{
+		if(!playerHealth || !healthText)
+			return;
+
+		healthText.text = (int)playerHealth.GetCurrentHealth() + "/" + (int)playerHealth.GetCurrentMaxHealth();
 	}
 
 	void SetHealthBarFrameWidth()
