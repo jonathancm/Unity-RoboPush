@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
-  DefaultRotInfluence: {x: 0.3, y: 0.3, z: 0.3}
+  DefaultPosInfluence: {x: 0.3, y: 0.3, z: 0.3}
+  DefaultRotInfluence: {x: 0.15, y: 0.15, z: 0.15}
 --- !u!1 &3406035231636105478
 GameObject:
   m_ObjectHideFlags: 0

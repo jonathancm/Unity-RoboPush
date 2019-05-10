@@ -13,6 +13,6 @@ public class DamageDealer : MonoBehaviour
 
 		damageable.TakeDamage(damageAmount);
 		if(shakeScreen)
-			CameraShaker.Instance.ShakeOnce(3f, 2f, 0.5f, 0.5f);
+			CameraShaker.Instance.ShakeOnce(3f, 3f, 0.5f, 0.5f);
 	}
 }
