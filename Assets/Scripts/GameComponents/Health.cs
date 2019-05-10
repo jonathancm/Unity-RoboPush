@@ -65,6 +65,10 @@ public class Health : MonoBehaviour
 			currentHealth += (healthRegenPerSecond * Time.deltaTime);
 	}
 
+	/// <summary>
+	/// Receive damage from a DamageDealer. Reduce max life when damage thresholds are reached.
+	/// </summary>
+	/// <param name="amount">Amount of damage received.</param>
 	public void TakeDamage(float amount)
 	{
 		currentHealth -= amount;
@@ -74,32 +78,42 @@ public class Health : MonoBehaviour
 		}
 		else if(currentHealth < healthThresholdLow)
 		{
-			healthLevel = HealthLevel.Low;
-			currentMaxHealth = healthThresholdLow;
-
-			if(particlesThresholdMid)
-				particlesThresholdLow.SetActive(true);
-
-			if(onHealthThreshold != null)
-				onHealthThreshold();
+			SetMaxLifeToLow();
 		}
 		else if(currentHealth < healthThresholdMid)
 		{
-			healthLevel = HealthLevel.Mid;
-			currentMaxHealth = healthThresholdMid;
-
-			if(particlesThresholdMid)
-				particlesThresholdMid.SetActive(true);
-
-			if(onHealthThreshold != null)
-				onHealthThreshold();
+			SetMaxLifeToMedium();
 		}
 
 		if(movingCenterMass)
 			movingCenterMass.KickBackCenterOfMass();
 	}
 
-	void KillCharacter()
+	private void SetMaxLifeToMedium()
+	{
+		healthLevel = HealthLevel.Mid;
+		currentMaxHealth = healthThresholdMid;
+
+		if(particlesThresholdMid)
+			particlesThresholdMid.SetActive(true);
+
+		if(onHealthThreshold != null)
+			onHealthThreshold();
+	}
+
+	private void SetMaxLifeToLow()
+	{
+		healthLevel = HealthLevel.Low;
+		currentMaxHealth = healthThresholdLow;
+
+		if(particlesThresholdMid)
+			particlesThresholdLow.SetActive(true);
+
+		if(onHealthThreshold != null)
+			onHealthThreshold();
+	}
+
+	private void KillCharacter()
 	{
 		currentHealth = 0.0f;
 		healthRegenPerSecond = 0.0f;

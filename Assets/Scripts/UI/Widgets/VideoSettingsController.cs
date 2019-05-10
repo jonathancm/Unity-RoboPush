@@ -31,11 +31,17 @@ public class VideoSettingsController : MonoBehaviour
 	int resolutionIndex = 0;
 	FullScreenMode fullscreenMode = FullScreenMode.Windowed;
 
+	/// <summary>
+	/// [Delegate] Increase resolution level (from list of supported resolutions) and save to persistent memory.
+	/// </summary>
 	public void IncreaseResolution()
 	{
 		resolutionIndex = SetResolution(resolutionIndex + 1);
 	}
 
+	/// <summary>
+	/// [Delegate] Decrease resolution level (from list of supported resolutions) and save to persistent memory.
+	/// </summary>
 	public void DecreaseResolution()
 	{
 		resolutionIndex = SetResolution(resolutionIndex - 1);
@@ -53,6 +59,9 @@ public class VideoSettingsController : MonoBehaviour
 		return index;
 	}
 
+	/// <summary>
+	/// [Delegate] Increase fullscreen mode type (from list of supported modes) and save to persistent memory.
+	/// </summary>
 	public void IncreaseFullscreenMode()
 	{
 		switch(fullscreenMode)
@@ -69,6 +78,9 @@ public class VideoSettingsController : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// [Delegate] Decrease fullscreen mode type (from list of supported modes) and save to persistent memory.
+	/// </summary>
 	public void DecreaseFullscreenMode()
 	{
 		switch(fullscreenMode)
@@ -97,11 +109,17 @@ public class VideoSettingsController : MonoBehaviour
 		return mode;
 	}
 
+	/// <summary>
+	/// [Delegate] Increase graphics quality level (from list of supported quality levels) and save to persistent memory.
+	/// </summary>
 	public void IncreaseGraphicsQuality()
 	{
 		qualityLevel = SetGraphicsQualityLevel(qualityLevel + 1);
 	}
 
+	/// <summary>
+	/// [Delegate] Decrease graphics quality level (from list of supported quality levels) and save to persistent memory.
+	/// </summary>
 	public void DecreaseGraphicsQuality()
 	{
 		qualityLevel = SetGraphicsQualityLevel(qualityLevel - 1);
@@ -119,6 +137,9 @@ public class VideoSettingsController : MonoBehaviour
 		return index;
 	}
 
+	/// <summary>
+	/// Initialize UI to stored video settings.
+	/// </summary>
 	public void InitVideoSettings()
 	{
 		// Create PlayerPrefs if they don't exist
@@ -146,6 +167,9 @@ public class VideoSettingsController : MonoBehaviour
 		Screen.SetResolution(supportedResolutions[resolutionIndex].x, supportedResolutions[resolutionIndex].y, fullscreenMode);
 	}
 
+	/// <summary>
+	/// Reset video settings to defaults.
+	/// </summary>
 	public void ResetSettingsToDefaults()
 	{
 		qualityLevel = SetGraphicsQualityLevel(4); // Very High

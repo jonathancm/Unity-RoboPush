@@ -19,16 +19,25 @@ public class CanvasGameOver : GameTimeObject
 		Hide();
 	}
 
+	/// <summary>
+	/// Pause game object activity.
+	/// </summary>
 	public override void OnPause()
 	{
 		// Do nothing
 	}
 
+	/// <summary>
+	/// Un-pause game object activity.
+	/// </summary>
 	public override void OnResume()
 	{
 		// Do nothing
 	}
 
+	/// <summary>
+	/// Prepares game object for game end.
+	/// </summary>
 	public override void OnGameOver()
 	{
 		DetermineWinner();

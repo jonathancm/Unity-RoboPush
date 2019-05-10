@@ -17,16 +17,25 @@ public class CanvasPauseGame : GameTimeObject
 		Hide();
 	}
 
+	/// <summary>
+	/// Enable canvas and display to player.
+	/// </summary>
 	public override void OnPause()
 	{
 		Show();
 	}
 
+	/// <summary>
+	/// Disable canvas and hide from player.
+	/// </summary>
 	public override void OnResume()
 	{
 		Hide();
 	}
 
+	/// <summary>
+	/// Prepare game object for end game.
+	/// </summary>
 	public override void OnGameOver()
 	{
 		// Nothing special

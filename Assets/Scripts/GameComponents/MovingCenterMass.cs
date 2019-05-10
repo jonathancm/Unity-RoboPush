@@ -20,12 +20,12 @@ public class MovingCenterMass : MonoBehaviour
 			initialCenterOfMass = mainRigidBody.centerOfMass;
 	}
 
-    void Update()
+	private void Update()
     {
 		SettleBackCenterOfMass();
     }
 
-	void SettleBackCenterOfMass()
+	private void SettleBackCenterOfMass()
 	{
 		if(!mainRigidBody)
 			return;
@@ -36,6 +36,9 @@ public class MovingCenterMass : MonoBehaviour
 		mainRigidBody.centerOfMass = Vector3.MoveTowards(mainRigidBody.centerOfMass, initialCenterOfMass, settleBackSpeed * Time.deltaTime);
 	}
 
+	/// <summary>
+	/// Move game object's center of mass to make it tumble more easily. Settles back to normal over time.
+	/// </summary>
 	public void KickBackCenterOfMass()
 	{
 		if(!mainRigidBody || !centerOfMassHigh)

@@ -53,13 +53,13 @@ public class HealthDisplay : MonoBehaviour
 		}
 	}
 
-	void Update()
+	private void Update()
     {
 		SetHealthBarLevelWidth();
 		SetHealthTextValue();
 	}
 
-	void SetHealthBarLevelWidth()
+	private void SetHealthBarLevelWidth()
 	{
 		if(!playerHealth)
 			return;
@@ -69,7 +69,7 @@ public class HealthDisplay : MonoBehaviour
 		healthBarLevelTransform.sizeDelta = new Vector2(healthWidth, healthBarStartSize.y);
 	}
 
-	void SetHealthTextValue()
+	private void SetHealthTextValue()
 	{
 		if(!playerHealth || !healthText)
 			return;
@@ -77,7 +77,7 @@ public class HealthDisplay : MonoBehaviour
 		healthText.text = (int)playerHealth.GetCurrentHealth() + "/" + (int)playerHealth.GetCurrentMaxHealth();
 	}
 
-	void SetHealthBarFrameWidth()
+	private void SetHealthBarFrameWidth()
 	{
 		if(!playerHealth)
 			return;
@@ -87,7 +87,7 @@ public class HealthDisplay : MonoBehaviour
 		healthBarFrameTransform.sizeDelta = new Vector2(frameWidth, healthBarFrameStartSize.y);
 	}
 
-	void SetHealthBarLevelColor()
+	private void SetHealthBarLevelColor()
 	{
 		if(!playerHealth)
 			return;

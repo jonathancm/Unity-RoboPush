@@ -6,12 +6,12 @@ public class GraphicsQuality : MonoBehaviour
 {
 	public string qualityString = ""; // example on how to get the quality setting as a string, to display to the user
 
-	void Start()
+	private void Start()
 	{
 		qualityString = QualityString;
 	}
 
-	void Update()
+	private void Update()
 	{
 		if(Input.GetKeyDown(KeyCode.Equals)) // PLUS key
 		{

@@ -33,7 +33,7 @@ public class GameAppManager : MonoBehaviour
 		SceneManager.activeSceneChanged += OnActiveSceneChanged;
 	}
 
-	void Start()
+	private void Start()
 	{
 		player1Input = ReInput.players.GetPlayer(0);
 		player2Input = ReInput.players.GetPlayer(1);
@@ -71,6 +71,9 @@ public class GameAppManager : MonoBehaviour
 		startButton = false;
 	}
 
+	/// <summary>
+	/// Find all GameTimeObject and call their Pause routine.
+	/// </summary>
 	public void PauseGame()
 	{
 		if(!gameMode || gameMode.canBePaused != true)
@@ -85,6 +88,9 @@ public class GameAppManager : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Find all GameTimeObject and call their UnPause routine.
+	/// </summary>
 	public void UnPauseGame()
 	{
 		if(!gameMode || gameMode.canBePaused != true)
@@ -99,6 +105,9 @@ public class GameAppManager : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Find all GameTimeObject and call their EndGame routine.
+	/// </summary>
 	public void EndGame()
 	{
 		List<Health> remainingPlayers = new List<Health>();
@@ -111,17 +120,26 @@ public class GameAppManager : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Discard the current scene's game mode. Automatically called by the SceneManager before changing scene.
+	/// </summary>
 	public void OnActiveSceneChanged(Scene current, Scene next)
 	{
 		gameMode = null;
 	}
 
+	/// <summary>
+	/// Get the current scene's game mode. Automatically called by the SceneManager after loading a new scene.
+	/// </summary>
 	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
 		gameMode = FindObjectOfType<GameMode>();
 		gameState = GameState.Playing;
 	}
 
+	/// <summary>
+	/// Exit the software application. Only works for certain plaftorms.
+	/// </summary>
 	public void ExitApplication()
 	{
 		Application.Quit();

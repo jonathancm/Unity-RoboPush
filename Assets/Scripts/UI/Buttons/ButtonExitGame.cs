@@ -17,6 +17,9 @@ public class ButtonExitGame : MonoBehaviour
 			button.onClick.AddListener(OnClickAction);
 	}
 
+	/// <summary>
+	/// [Delegate] Exit the application.
+	/// </summary>
 	public void OnClickAction()
 	{
 		GameAppManager gameAppManager = FindObjectOfType<GameAppManager>();

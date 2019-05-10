@@ -34,6 +34,10 @@ public class AudioMixerController : MonoBehaviour
 	// State Variables
 	AudioVolumes audioSliderVolumes = new AudioVolumes();
 
+	/// <summary>
+	/// [Delegate] Adjust master volume and save setting to persistent memory.
+	/// </summary>
+	/// <param name="volume">Volume level to set.</param>
 	public void SetMasterVolume(float volume)
 	{
 		audioSliderVolumes.masterVolume = volume;
@@ -42,6 +46,10 @@ public class AudioMixerController : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
+	/// <summary>
+	/// [Delegate] Adjust music volume and save setting to persistent memory.
+	/// </summary>
+	/// <param name="volume">Volume level to set.</param>
 	public void SetMusicVolume(float volume)
 	{
 		audioSliderVolumes.musicVolume = volume;
@@ -50,6 +58,10 @@ public class AudioMixerController : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
+	/// <summary>
+	/// [Delegate] Adjust ambient volume and save setting to persistent memory.
+	/// </summary>
+	/// <param name="volume">Volume level to set.</param>
 	public void SetAmbientVolume(float volume)
 	{
 		audioSliderVolumes.ambientVolume = volume;
@@ -58,6 +70,10 @@ public class AudioMixerController : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
+	/// <summary>
+	/// [Delegate] Adjust announcer volume and save setting to persistent memory.
+	/// </summary>
+	/// <param name="volume">Volume level to set.</param>
 	public void SetAnnouncerVolume(float volume)
 	{
 		audioSliderVolumes.announcerVolume = volume;
@@ -66,6 +82,10 @@ public class AudioMixerController : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
+	/// <summary>
+	/// [Delegate] Adjust SFX volume and save setting to persistent memory.
+	/// </summary>
+	/// <param name="volume">Volume level to set.</param>
 	public void SetSFXVolume(float volume)
 	{
 		audioSliderVolumes.sfxVolume = volume;
@@ -80,6 +100,9 @@ public class AudioMixerController : MonoBehaviour
 			audioMixer.SetFloat(name, value);
 	}
 
+	/// <summary>
+	/// Initialize UI volume sliders to stored values.
+	/// </summary>
 	public void InitMixerSliders()
 	{
 		if(!PlayerPrefs.HasKey(masterVolumeName))
@@ -99,6 +122,9 @@ public class AudioMixerController : MonoBehaviour
 		sfxVolumeSlider.value = PlayerPrefs.GetFloat(sfxVolumeName, 0.0f);
 	}
 
+	/// <summary>
+	/// Reset game volumes to defaults.
+	/// </summary>
 	public void ApplyDefaultMixerSettings()
 	{
 		masterVolumeSlider.value = 0.0f;

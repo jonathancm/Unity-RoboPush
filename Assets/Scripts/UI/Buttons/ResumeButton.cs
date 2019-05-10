@@ -12,6 +12,9 @@ public class ResumeButton : MonoBehaviour
 			button.onClick.AddListener(OnClickAction);
 	}
 
+	/// <summary>
+	/// [Delegate] Resume game from pause.
+	/// </summary>
 	public void OnClickAction()
 	{
 		GameAppManager gameAppManager = FindObjectOfType<GameAppManager>();

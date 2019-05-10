@@ -18,7 +18,7 @@ public class ParticleRobotSparks : MonoBehaviour
 		robotSparks = GetComponent<ParticleSystem>();
 	}
 
-	void Update()
+	private void Update()
 	{
 		if(Time.time > nextActionTime)
 		{
@@ -27,7 +27,7 @@ public class ParticleRobotSparks : MonoBehaviour
 		}
 	}
 
-	void PlaySparks()
+	private void PlaySparks()
 	{
 		if(!robotSparks)
 			return;

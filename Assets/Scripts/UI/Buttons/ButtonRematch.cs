@@ -12,6 +12,9 @@ public class ButtonRematch : MonoBehaviour
 			button.onClick.AddListener(LoadNewScene);
 	}
 
+	/// <summary>
+	/// [Delegate] Reload the current scene.
+	/// </summary>
 	public void LoadNewScene()
 	{
 		SceneLoader sceneLoader = FindObjectOfType<SceneLoader>();

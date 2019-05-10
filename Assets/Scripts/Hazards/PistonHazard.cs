@@ -5,7 +5,7 @@ using UnityEngine;
 [SelectionBase]
 public class PistonHazard : GameTimeObject
 {
-	enum HazardState
+	public enum HazardState
 	{
 		Ready,
 		Firing,

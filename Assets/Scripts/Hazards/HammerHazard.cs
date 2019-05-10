@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HammerHazard : GameTimeObject
 {
-	enum HazardState
+	public enum HazardState
 	{
 		Ready,
 		Firing,

@@ -77,6 +77,10 @@ public class CanvasLoadingScreen : MonoBehaviour
 			textLoadingPercent.text = Mathf.CeilToInt(progress * 100).ToString() + "%";
 	}
 
+	/// <summary>
+	/// Enable and show canvas. Start monitoring ongoing loading operation.
+	/// </summary>
+	/// <param name="loadingOperation">Ongoing loading operation.</param>
 	public void Show(AsyncOperation loadingOperation)
 	{
 		gameObject.SetActive(true);
@@ -95,7 +99,10 @@ public class CanvasLoadingScreen : MonoBehaviour
 
 		isLoading = true;
 	}
-	
+
+	/// <summary>
+	/// Disable and hide canvas.
+	/// </summary>
 	public void Hide()
 	{
 		gameObject.SetActive(false);

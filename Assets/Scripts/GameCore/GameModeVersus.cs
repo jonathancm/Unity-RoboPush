@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameModeVersus : GameMode
 {
-    void Start()
+	private void Start()
     {
 		Health[] players = FindObjectsOfType<Health>();
 		if(players == null)
@@ -16,7 +16,7 @@ public class GameModeVersus : GameMode
 		}
 	}
 
-	void TriggerVictoryCondition()
+	private void TriggerVictoryCondition()
 	{
 		GameAppManager gameAppManager = FindObjectOfType<GameAppManager>();
 		if(!gameAppManager)

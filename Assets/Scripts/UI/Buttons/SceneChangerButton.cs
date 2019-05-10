@@ -16,6 +16,9 @@ public class SceneChangerButton : MonoBehaviour
 			button.onClick.AddListener(LoadNewScene);
 	}
 
+	/// <summary>
+	/// [Delegate] Load specified scene.
+	/// </summary>
 	public void LoadNewScene()
 	{
 		SceneLoader sceneLoader = FindObjectOfType<SceneLoader>();
