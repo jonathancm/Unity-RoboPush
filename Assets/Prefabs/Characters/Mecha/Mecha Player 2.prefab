@@ -1378,6 +1378,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PunchingGlove Left
       objectReference: {fileID: 0}
+    - target: {fileID: 2322609223181942162, guid: 7fdc7b44a41a6e14eaef9adc5fc6f6e5,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 079a56fe3b1a2cd4799e73dca804a174,
+        type: 2}
     - target: {fileID: 1277436574664186233, guid: 7fdc7b44a41a6e14eaef9adc5fc6f6e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2051,6 +2057,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PunchingGlove Right
       objectReference: {fileID: 0}
+    - target: {fileID: 2322609223181942162, guid: 7fdc7b44a41a6e14eaef9adc5fc6f6e5,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 079a56fe3b1a2cd4799e73dca804a174,
+        type: 2}
     - target: {fileID: 1277436574664186233, guid: 7fdc7b44a41a6e14eaef9adc5fc6f6e5,
         type: 3}
       propertyPath: m_LocalPosition.x
