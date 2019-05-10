@@ -9,7 +9,7 @@ public class HealthDisplay : MonoBehaviour
 {
 	// Configurable Parameters
 	[Header("Setup")]
-	[SerializeField] Health playerHealth = null;
+	[SerializeField] Damageable playerHealth = null;
 	[SerializeField] GameObject healthBarLevel = null;
 	[SerializeField] TextMeshProUGUI healthText = null;
 
@@ -94,10 +94,10 @@ public class HealthDisplay : MonoBehaviour
 
 		switch(playerHealth.GetHealthLevel())
 		{
-			case Health.HealthLevel.High:
+			case Damageable.HealthLevel.High:
 				healthBarLevelImage.color = healthColorHigh;
 				break;
-			case Health.HealthLevel.Mid:
+			case Damageable.HealthLevel.Mid:
 				healthBarLevelImage.color = healthColorMid;
 				break;
 			default:

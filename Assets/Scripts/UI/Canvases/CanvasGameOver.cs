@@ -58,9 +58,9 @@ public class CanvasGameOver : GameTimeObject
 
 	private void DetermineWinner()
 	{
-		List<Health> remainingPlayers = new List<Health>();
+		List<Damageable> remainingPlayers = new List<Damageable>();
 
-		Health[] players = FindObjectsOfType<Health>();
+		Damageable[] players = FindObjectsOfType<Damageable>();
 		foreach(var player in players)
 		{
 			if(player.GetCurrentHealth() > 0)

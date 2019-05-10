@@ -6,7 +6,7 @@ public class GameModeVersus : GameMode
 {
 	private void Start()
     {
-		Health[] players = FindObjectsOfType<Health>();
+		Damageable[] players = FindObjectsOfType<Damageable>();
 		if(players == null)
 			return;
 

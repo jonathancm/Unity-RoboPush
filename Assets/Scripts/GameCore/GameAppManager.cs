@@ -110,7 +110,7 @@ public class GameAppManager : MonoBehaviour
 	/// </summary>
 	public void EndGame()
 	{
-		List<Health> remainingPlayers = new List<Health>();
+		List<Damageable> remainingPlayers = new List<Damageable>();
 
 		gameState = GameState.Over;
 		GameTimeObject[] timedOjects = FindObjectsOfType<GameTimeObject>();

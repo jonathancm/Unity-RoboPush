@@ -13,7 +13,7 @@ public class DamageDealer : MonoBehaviour
 	/// <param name="shakeScreen">Triggers a screen shake if set to true.</param>
 	public void DealDamage(GameObject gameObject, float damageAmount, bool shakeScreen)
 	{
-		Health damageable = gameObject.GetComponentInParent<Health>();
+		Damageable damageable = gameObject.GetComponentInParent<Damageable>();
 		if(!damageable)
 			return;
 
