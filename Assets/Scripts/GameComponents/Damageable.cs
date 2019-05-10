@@ -21,9 +21,6 @@ public class Damageable : MonoBehaviour
 	[SerializeField] GameObject particlesThresholdMid = null;
 	[SerializeField] GameObject particlesThresholdLow = null;
 
-	// Cached References
-	MovingCenterMass movingCenterMass = null;
-
 	// State Variables
 	float currentMaxHealth = 1.0f;
 	float currentHealth = 1.0f;
@@ -47,8 +44,6 @@ public class Damageable : MonoBehaviour
 		healthLevel = HealthLevel.High;
 		currentMaxHealth = baseMaxHealth;
 		currentHealth = currentMaxHealth;
-
-		movingCenterMass = GetComponent<MovingCenterMass>();
 	}
 
 	private void Update()
@@ -84,9 +79,6 @@ public class Damageable : MonoBehaviour
 		{
 			SetMaxLifeToMedium();
 		}
-
-		if(movingCenterMass)
-			movingCenterMass.KickBackCenterOfMass();
 	}
 
 	private void SetMaxLifeToMedium()

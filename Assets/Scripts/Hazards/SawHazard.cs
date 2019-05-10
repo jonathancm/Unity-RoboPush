@@ -12,10 +12,10 @@ public class SawHazard : GameTimeObject
 
 	[Header("Damage")]
 	[SerializeField] float damageAmount = 0.7f;
+	[SerializeField] float cuttingForce = 30.0f;
 
 	[Header("Animation")]
 	[SerializeField] float cosmeticTurnsPerSecond = 1.0f;
-	[SerializeField] float cuttingForce = 30.0f;
 
 	[Header("Particle Effects")]
 	[SerializeField] ParticleSystem sparks = null;

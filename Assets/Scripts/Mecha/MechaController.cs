@@ -6,18 +6,15 @@ using UnityEngine;
 public class MechaController : GameTimeObject
 {
 	// Configuration Parameters
-	[Header("Weapons")]
+	[Header("Setup")]
 	[SerializeField] private MechaWeapon m_LeftWeapon = null;
 	[SerializeField] private MechaWeapon m_RightWeapon = null;
 
-	[Header("Movement")]
-	[SerializeField] List<MechaWheel> wheels = null;
-	[SerializeField] float accelerationTorque = 3000.0f;
-	[SerializeField] float turnSpeed = 5.0f;
-
 	[Header("Physics")]
 	[SerializeField] Rigidbody mainRigidBody = null;
-	[SerializeField] Transform centerOfMass = null;
+	[SerializeField] List<MechaWheel> wheels = null;
+	[SerializeField] float accelerationTorque = 3000.0f;
+	[SerializeField] float turnTorque = 5.0f;
 
 	// State variables
 	Vector3 savedVelocity;
@@ -25,9 +22,6 @@ public class MechaController : GameTimeObject
 
 	private void Awake()
 	{
-		if(mainRigidBody && centerOfMass)
-			mainRigidBody.centerOfMass = centerOfMass.localPosition;
-
 		IgnoreSelfCollisions();
 	}
 
@@ -63,7 +57,7 @@ public class MechaController : GameTimeObject
 		if(!mainRigidBody)
 			return;
 
-		Vector3 rotationVelocity = mainRigidBody.transform.up * throwTurn * turnSpeed;
+		Vector3 rotationVelocity = mainRigidBody.transform.up * throwTurn * turnTorque;
 		mainRigidBody.AddTorque(rotationVelocity, ForceMode.VelocityChange);
 	}
 
