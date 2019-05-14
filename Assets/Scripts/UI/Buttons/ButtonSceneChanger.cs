@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SceneChangerButton : MonoBehaviour
+public class ButtonSceneChanger : MonoBehaviour
 {
 	// Configurable Parameter
 	[SerializeField] string newSceneName = "";
