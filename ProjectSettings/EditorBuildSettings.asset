@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu_MainSettings.unity
     guid: baf84a96079c94847800b258f25176a4
   - enabled: 1
-    path: Assets/Scenes/GameMap_FlatArena.unity
-    guid: e4f200f47b0a04a499c61c2c06ce7472
-  - enabled: 1
     path: Assets/Scenes/Menu_MainSettingsVideo.unity
     guid: b6f06cb3a17e63840bea649b22c630dd
   - enabled: 1
@@ -23,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu_MainSettingsControls.unity
     guid: c6273e39994b86b488944199c3afbde4
+  - enabled: 1
+    path: Assets/Scenes/Maps/GameMap_FlatArena.unity
+    guid: e4f200f47b0a04a499c61c2c06ce7472
+  - enabled: 1
+    path: Assets/Scenes/Maps/GameMap_RotatingArena.unity
+    guid: 4a8c613029329b2479f2ec8aee6be746
+  - enabled: 1
+    path: Assets/Scenes/Maps/GameMap_AnvilArena.unity
+    guid: ee06018f40849c34b81cbb8c3f6c9aa3
   m_configObjects: {}
