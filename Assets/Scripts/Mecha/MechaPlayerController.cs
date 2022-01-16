@@ -48,46 +48,46 @@ public class MechaPlayerController : GameTimeObject
 
 	private void GetPlayerInput()
 	{
-		// Movement input
-		throwMovement.x = rewiredPlayer.GetAxis("Turn");
-		throwMovement.y = rewiredPlayer.GetAxis("Accelerate");
+        // Movement input
+        throwMovement.x = rewiredPlayer.GetAxis("Turn");
+        throwMovement.y = rewiredPlayer.GetAxis("Accelerate");
 
-		// Left weapon input
-		if(rewiredPlayer.GetButtonLongPressUp("Fire1"))
-		{
-			fireLeft = MechaWeapon.WeaponFunction.Release;
-		}
-		else if(rewiredPlayer.GetButtonLongPressDown("Fire1"))
-		{
-			fireLeft = MechaWeapon.WeaponFunction.Charge;
-		}
-		else if(rewiredPlayer.GetButtonShortPressDown("Fire1"))
-		{
-			fireLeft = MechaWeapon.WeaponFunction.Fire;
-		}
-		else
-		{
-			fireLeft = MechaWeapon.WeaponFunction.None;
-		}
+        // Left weapon input
+        if (rewiredPlayer.GetButtonLongPressUp("Fire1"))
+        {
+            fireLeft = MechaWeapon.WeaponFunction.Release;
+        }
+        else if (rewiredPlayer.GetButtonLongPressDown("Fire1"))
+        {
+            fireLeft = MechaWeapon.WeaponFunction.Charge;
+        }
+        else if (rewiredPlayer.GetButtonShortPressDown("Fire1"))
+        {
+            fireLeft = MechaWeapon.WeaponFunction.Fire;
+        }
+        else
+        {
+            fireLeft = MechaWeapon.WeaponFunction.None;
+        }
 
-		// Right weapon input
-		if(rewiredPlayer.GetButtonLongPressUp("Fire2"))
-		{
-			fireRight = MechaWeapon.WeaponFunction.Release;
-		}
-		else if(rewiredPlayer.GetButtonLongPressDown("Fire2"))
-		{
-			fireRight = MechaWeapon.WeaponFunction.Charge;
-		}
-		else if(rewiredPlayer.GetButtonShortPressDown("Fire2"))
-		{
-			fireRight = MechaWeapon.WeaponFunction.Fire;
-		}
-		else
-		{
-			fireRight = MechaWeapon.WeaponFunction.None;
-		}
-	}
+        // Right weapon input
+        if (rewiredPlayer.GetButtonLongPressUp("Fire2"))
+        {
+            fireRight = MechaWeapon.WeaponFunction.Release;
+        }
+        else if (rewiredPlayer.GetButtonLongPressDown("Fire2"))
+        {
+            fireRight = MechaWeapon.WeaponFunction.Charge;
+        }
+        else if (rewiredPlayer.GetButtonShortPressDown("Fire2"))
+        {
+            fireRight = MechaWeapon.WeaponFunction.Fire;
+        }
+        else
+        {
+            fireRight = MechaWeapon.WeaponFunction.None;
+        }
+    }
 
 	private void ProcessMechaInput()
 	{

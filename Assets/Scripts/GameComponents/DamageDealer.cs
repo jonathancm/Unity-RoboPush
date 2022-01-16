@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EZCameraShake;
+//using EZCameraShake;
 
 public class DamageDealer : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class DamageDealer : MonoBehaviour
 			return;
 
 		damageable.TakeDamage(damageAmount);
-		if(shakeScreen)
-			CameraShaker.Instance.ShakeOnce(3f, 3f, 0.5f, 0.5f);
+		//if(shakeScreen)
+		//	CameraShaker.Instance.ShakeOnce(3f, 3f, 0.5f, 0.5f);
 	}
 }
